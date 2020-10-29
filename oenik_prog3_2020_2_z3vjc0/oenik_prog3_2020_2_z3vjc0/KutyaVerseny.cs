@@ -19,10 +19,6 @@ namespace KutyaVerseny.Program
         /// </summary>
         public static void Main()
         {
-            //Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True
-            //Scaffold-DbContext "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
-
-
         }
     }
 }
