@@ -6,20 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Database.mdf" />
-    <None Remove="Database_log.ldf" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Database.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="ConsoleMenu-simple" Version="2.4.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
       <PrivateAssets>all</PrivateAssets>
