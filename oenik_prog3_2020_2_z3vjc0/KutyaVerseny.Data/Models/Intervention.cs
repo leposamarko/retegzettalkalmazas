@@ -51,5 +51,14 @@ namespace KutyaVerseny.Data.Models
         /// Gets or sets of the connection.
         /// </summary>
         public virtual Dog DogChipNumNavigation { get; set; }
+
+        /// <summary>
+        /// tostring.
+        /// </summary>
+        /// <returns>string.</returns>
+        public override string ToString()
+        {
+            return "ID:" + this.InterventionId + " ;Doctor name:" + this.Doctor + " ;doctor phone:" + "  ;desription:" + this.Desript + " ;dog chip number:" + this.DogChipNum + " cost:" + this.Cost;
+        }
     }
 }

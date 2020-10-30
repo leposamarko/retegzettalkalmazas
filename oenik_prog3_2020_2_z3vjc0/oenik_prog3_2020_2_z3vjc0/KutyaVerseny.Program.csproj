@@ -17,4 +17,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KutyaVerseny.Logic\KutyaVerseny.Logic.csproj" />
+    <ProjectReference Include="..\KutyaVerseny.Repository\KutyaVerseny.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
