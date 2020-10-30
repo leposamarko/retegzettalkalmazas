@@ -15,4 +15,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KutyaVerseny.Data\KutyaVerseny.Data.csproj" />
+    <ProjectReference Include="..\KutyaVerseny.Repository\KutyaVerseny.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

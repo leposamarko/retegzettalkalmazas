@@ -27,6 +27,5 @@ namespace KutyaVerseny.Repository
         /// <param name="id">dog id.</param>
         /// <param name="owner">new owner name.</param>
         void ChangeOwner(int id, string owner);
-
     }
 }
