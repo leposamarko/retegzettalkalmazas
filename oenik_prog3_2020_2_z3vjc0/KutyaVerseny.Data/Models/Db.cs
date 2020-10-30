@@ -30,6 +30,7 @@ namespace KutyaVerseny.Data.Models
         public Db(DbContextOptions<Db> options)
             : base(options)
         {
+            this.Database.EnsureCreated();
         }
 
         /// <summary>

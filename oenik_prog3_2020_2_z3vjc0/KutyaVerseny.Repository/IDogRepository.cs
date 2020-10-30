@@ -1,0 +1,32 @@
+﻿// <copyright file="IDogRepository.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace KutyaVerseny.Repository
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using KutyaVerseny.Data.Models;
+
+    /// <summary>
+    /// Dog repo.
+    /// </summary>
+    public interface IDogRepository : IRepository<Dog>
+    {
+        /// <summary>
+        /// Dog name changeing method.
+        /// </summary>
+        /// <param name="id">dog id.</param>
+        /// <param name="name">the new dog name.</param>
+        void ChangeName(int id, string name);
+
+        /// <summary>
+        /// Dog owner changeing method.
+        /// </summary>
+        /// <param name="id">dog id.</param>
+        /// <param name="owner">new owner name.</param>
+        void ChangeOwner(int id, string owner);
+
+    }
+}
