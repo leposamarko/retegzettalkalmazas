@@ -62,10 +62,13 @@ namespace KutyaVerseny.Data.Models
         /// </summary>
         public virtual ICollection<Medal> Medal { get; }
 
+        /// <summary>
+        /// toString method.
+        /// </summary>
+        /// <returns>string.</returns>
         public override string ToString()
         {
             return "ID:" + this.ChipNum + " name:" + this.DogName + " owner name:" + this.OwnerName + " gender:" + this.Gender + " born date:" + this.BornDate + " breed:" + this.Breed;
         }
-
     }
 }
