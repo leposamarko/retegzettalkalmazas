@@ -34,7 +34,7 @@ namespace KutyaVerseny.Repository
         {
             var medal = this.GetOne(id);
             medal.Category = s;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace KutyaVerseny.Repository
         {
             var medal = this.GetOne(id);
             medal.Degree = s;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace KutyaVerseny.Repository
         {
             var medal = this.GetOne(id);
             medal.RaceName = s;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace KutyaVerseny.Repository
         {
             var medal = this.GetOne(id);
             medal.StartersNum = db;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
         /// <summary>

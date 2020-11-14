@@ -54,5 +54,17 @@ namespace KutyaVerseny.Logic
         /// <param name="id">medal id.</param>
         /// <returns>a medal.</returns>
         Medal GetMedal(int id);
+
+        /// <summary>
+        /// Add a new medal.
+        /// </summary>
+        /// <param name="m">medal.</param>
+        void AddMedal(Medal m);
+
+        /// <summary>
+        /// remove medal by id.
+        /// </summary>
+        /// <param name="m">id of the medal.</param>
+        void RemoveMedal(Medal m);
     }
 }

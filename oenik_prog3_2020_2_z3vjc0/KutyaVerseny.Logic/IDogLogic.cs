@@ -40,5 +40,17 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <returns>all dogs.</returns>
         IList<Dog> GetAllDogs();
+
+        /// <summary>
+        /// Add dog.
+        /// </summary>
+        /// <param name="d">dog.</param>
+        void AddDog(Dog d);
+
+        /// <summary>
+        /// Remove a dog.
+        /// </summary>
+        /// <param name="d">dog.</param>
+        void RemoveDog(Dog d);
     }
 }

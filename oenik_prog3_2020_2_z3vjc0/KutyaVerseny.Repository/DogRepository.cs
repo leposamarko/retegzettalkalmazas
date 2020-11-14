@@ -34,7 +34,7 @@ namespace KutyaVerseny.Repository
         {
             var dog = this.GetOne(id);
             dog.DogName = name;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace KutyaVerseny.Repository
         {
             var dog = this.GetOne(id);
             dog.OwnerName = owner;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
         /// <summary>

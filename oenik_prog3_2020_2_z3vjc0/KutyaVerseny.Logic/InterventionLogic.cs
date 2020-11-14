@@ -53,7 +53,7 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <param name="id">intervention id.</param>
         /// <param name="txt">new destripton.</param>
-        public void ChangeInterventionDesript(int id, string txt)
+        public void ChangeInterventionDescript(int id, string txt)
         {
             this.interRepo.ChangeDesript(id, txt);
         }
@@ -85,6 +85,24 @@ namespace KutyaVerseny.Logic
         public Intervention GetIntervention(int id)
         {
             return this.interRepo.GetOne(id);
+        }
+
+        /// <summary>
+        /// Add Intervention.
+        /// </summary>
+        /// <param name="i">Intervention.</param>
+        public void Add(Intervention i)
+        {
+            this.interRepo.Add(i);
+        }
+
+        /// <summary>
+        /// Remove an Intervention.
+        /// </summary>
+        /// <param name="i">Intervention.</param>
+        public void Remov(Intervention i)
+        {
+            this.interRepo.Remove(i);
         }
     }
 }

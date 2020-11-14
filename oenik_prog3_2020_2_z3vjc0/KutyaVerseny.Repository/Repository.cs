@@ -19,16 +19,21 @@ namespace KutyaVerseny.Repository
     public abstract class Repository<T> : IRepository<T>
         where T : class
     {
-        protected DbContext ctx;
+        /// <summary>
+        /// Gets or sets ctx.
+        /// </summary>
+        protected DbContext Ctx { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Repository{T}"/> class.
         /// constructor.
         /// </summary>
         /// <param name="ctx">ctx is the context.</param>
+        #pragma warning disable SA1201 // Elements should appear in the correct order
         public Repository(DbContext ctx)
+        #pragma warning restore SA1201 // Elements should appear in the correct order
         {
-            this.ctx = ctx;
+            this.Ctx = ctx;
         }
 
         /// <summary>
@@ -37,7 +42,7 @@ namespace KutyaVerseny.Repository
         /// <returns>Iqueryable list with all data.</returns>
         public IQueryable<T> GetAll()
         {
-            return this.ctx.Set<T>();
+            return this.Ctx.Set<T>();
         }
 
         /// <summary>
@@ -53,7 +58,8 @@ namespace KutyaVerseny.Repository
         /// <param name="item">item to remove.</param>
         public void Remove(T item)
         {
-            this.ctx.Remove<T>(item);
+            this.Ctx.Remove<T>(item);
+            this.Ctx.SaveChanges();
         }
 
         /// <summary>
@@ -62,7 +68,8 @@ namespace KutyaVerseny.Repository
         /// <param name="item">item to add.</param>
         public void Add(T item)
         {
-            this.ctx.Add<T>(item);
+            this.Ctx.Add<T>(item);
+            this.Ctx.SaveChanges();
         }
     }
 }

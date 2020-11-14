@@ -29,6 +29,15 @@ namespace KutyaVerseny.Logic
         }
 
         /// <summary>
+        /// Add dog.
+        /// </summary>
+        /// <param name="d">dog.</param>
+        public void AddDog(Dog d)
+        {
+            this.dogRepo.Add(d);
+        }
+
+        /// <summary>
         /// Dog name changeing method.
         /// </summary>
         /// <param name="id">dog id.</param>
@@ -65,6 +74,15 @@ namespace KutyaVerseny.Logic
         public Dog GetDogByChip(int id)
         {
             return this.dogRepo.GetOne(id);
+        }
+
+        /// <summary>
+        /// remove a dog.
+        /// </summary>
+        /// <param name="d">dog.</param>
+        public void RemoveDog(Dog d)
+        {
+            this.dogRepo.Remove(d);
         }
     }
 }

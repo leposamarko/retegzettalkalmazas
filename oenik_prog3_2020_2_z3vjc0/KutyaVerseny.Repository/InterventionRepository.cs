@@ -34,7 +34,7 @@ namespace KutyaVerseny.Repository
         {
             var inte = this.GetOne(id);
             inte.Cost = nc;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace KutyaVerseny.Repository
         {
             var inte = this.GetOne(id);
             inte.Desript = txt;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace KutyaVerseny.Repository
         {
             var inte = this.GetOne(id);
             inte.DoctorPhone = num;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace KutyaVerseny.Repository
         {
             var inte = this.GetOne(id);
             inte.Doctor = name;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
         /// <inheritdoc/>

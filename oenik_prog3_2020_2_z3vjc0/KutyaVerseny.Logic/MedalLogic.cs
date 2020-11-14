@@ -86,5 +86,23 @@ namespace KutyaVerseny.Logic
         {
             return this.medalRepo.GetOne(id);
         }
+
+        /// <summary>
+        /// Add a new medal.
+        /// </summary>
+        /// <param name="m">medal.</param>
+        public void AddMedal(Medal m)
+        {
+            this.medalRepo.Add(m);
+        }
+
+        /// <summary>
+        /// Remove a medal.
+        /// </summary>
+        /// <param name="m">medal to remove.</param>
+        public void RemoveMedal(Medal m)
+        {
+            this.medalRepo.Remove(m);
+        }
     }
 }

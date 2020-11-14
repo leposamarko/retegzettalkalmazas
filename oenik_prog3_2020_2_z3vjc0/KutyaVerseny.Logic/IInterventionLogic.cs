@@ -34,7 +34,7 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <param name="id">intervention id.</param>
         /// <param name="txt">new destripton.</param>
-        void ChangeInterventionDesript(int id, string txt);
+        void ChangeInterventionDescript(int id, string txt);
 
         /// <summary>
         /// method to change the cost of intervention.
@@ -55,5 +55,17 @@ namespace KutyaVerseny.Logic
         /// <param name="id">intervention id.</param>
         /// <returns>a intervention.</returns>
         Intervention GetIntervention(int id);
+
+        /// <summary>
+        /// Add an Intervention.
+        /// </summary>
+        /// <param name="i">Intervention.</param>
+        void Add(Intervention i);
+
+        /// <summary>
+        /// Remova an Intervention.
+        /// </summary>
+        /// <param name="i">Intervention.</param>
+        void Remov(Intervention i);
     }
 }
