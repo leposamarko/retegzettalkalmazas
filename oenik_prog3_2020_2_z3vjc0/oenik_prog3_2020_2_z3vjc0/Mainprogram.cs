@@ -38,10 +38,12 @@ namespace Races
             MedalLogic medalLogic = new MedalLogic(medalRepo);
             InterventionRepository intRepo = new InterventionRepository(ctx);
             InterventionLogic intLogic = new InterventionLogic(intRepo);
+            NonCRUDLogic ncl = new NonCRUDLogic(dogRepo, medalRepo, intRepo);
             var menu = new ConsoleMenu()
                 .Add(">>DOGS", () => DogMenu(dogLogic))
                 .Add(">>MEDALS", () => MedalMenu(medalLogic, dogLogic))
                 .Add(">>INTERVENTIONS", () => InterventionMenu(intLogic, dogLogic))
+                .Add(">>ALL COST OF INTERVENTIONS: ", () => AllCost(ncl))
                 .Add(">>EXIT", ConsoleMenu.Close);
             menu.Show();
         }
@@ -246,9 +248,7 @@ namespace Races
 
         private static void AddNewDog(DogLogic dogLogic)
         {
-            #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("GIVE THE DATA OF THE DOG");
-            #pragma warning restore CA1303 // Do not pass literals as localized parameters
             Dog d = new Dog();
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("DOG NAME -> ");
@@ -368,6 +368,12 @@ namespace Races
             int id = IdInvestigator<Intervention>.IdNumber(intLog.GetAllIntervention().ToList());
             Intervention rm = intLog.GetIntervention(id);
             intLog.Remov(rm);
+        }
+
+        private static void AllCost(NonCRUDLogic ncl)
+        {
+            int sum = ncl.AllCostOfIntervention();
+            Console.WriteLine("SUM COST -> "+sum);
         }
     }
 }

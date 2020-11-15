@@ -20,7 +20,7 @@ namespace KutyaVerseny.Data.Models
         /// <summary>
         /// Gets or sets the phone number of doctor.
         /// </summary>
-        public decimal? DoctorPhone { get; set; }
+        public int? DoctorPhone { get; set; }
 
         /// <summary>
         /// Gets or sets date of the intervention.
@@ -35,17 +35,17 @@ namespace KutyaVerseny.Data.Models
         /// <summary>
         /// Gets or sets id of the intervention.
         /// </summary>
-        public decimal InterventionId { get; set; }
+        public int InterventionId { get; set; }
 
         /// <summary>
         /// Gets or sets the dog chip number.
         /// </summary>
-        public decimal? DogChipNum { get; set; }
+        public int? DogChipNum { get; set; }
 
         /// <summary>
         /// Gets or sets cost of the intervention.
         /// </summary>
-        public decimal? Cost { get; set; }
+        public int? Cost { get; set; }
 
         /// <summary>
         /// Gets or sets of the connection.
