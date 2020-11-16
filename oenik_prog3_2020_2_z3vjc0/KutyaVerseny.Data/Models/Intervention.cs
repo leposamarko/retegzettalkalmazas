@@ -40,7 +40,7 @@ namespace KutyaVerseny.Data.Models
         /// <summary>
         /// Gets or sets the dog chip number.
         /// </summary>
-        public int? DogChipNum { get; set; }
+        public decimal DogChipNum { get; set; }
 
         /// <summary>
         /// Gets or sets cost of the intervention.

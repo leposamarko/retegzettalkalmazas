@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using KutyaVerseny.Data.Models;
 
 namespace KutyaVerseny.Logic
 {
@@ -22,7 +23,7 @@ namespace KutyaVerseny.Logic
         public int AllCostOfIntervention()
         {
             int sum = 0;
-            foreach (var item in interRepo.GetAll().ToList())
+            foreach (var item in this.interRepo.GetAll().ToList<Intervention>())
             {
                 sum += item.Cost.Value;
             }
