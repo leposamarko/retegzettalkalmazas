@@ -1,4 +1,4 @@
-﻿// <copyright file="IdInvestigator.cs" company="PlaceholderCompany">
+﻿// <copyright file="Investigator.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -13,7 +13,7 @@ namespace KutyaVerseny.Program
     /// id investigator class.
     /// </summary>
     /// <typeparam name="T">dog, medal or Intervention.</typeparam>
-    public static class IdInvestigator<T>
+    public static class Investigator<T>
         where T : class
     {
         /// <summary>
@@ -48,5 +48,10 @@ namespace KutyaVerseny.Program
 
             return id;
         }
+
+        //internal static int IdNumber(List<Intervention> lists)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

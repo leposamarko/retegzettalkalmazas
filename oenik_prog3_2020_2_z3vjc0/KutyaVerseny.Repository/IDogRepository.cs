@@ -27,5 +27,11 @@ namespace KutyaVerseny.Repository
         /// <param name="id">dog id.</param>
         /// <param name="owner">new owner name.</param>
         void ChangeOwner(int id, string owner);
+
+        /// <summary>
+        /// chang the dog gender to neutering.
+        /// </summary>
+        /// <param name="chipnumb">dog cip id.</param>
+        void DogNeutering(int chipnumb);
     }
 }

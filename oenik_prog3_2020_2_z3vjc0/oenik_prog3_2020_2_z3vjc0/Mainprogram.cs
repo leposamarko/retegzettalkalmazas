@@ -39,81 +39,18 @@ namespace Races
             InterventionRepository intRepo = new InterventionRepository(ctx);
             InterventionLogic intLogic = new InterventionLogic(intRepo);
             NonCRUDLogic ncl = new NonCRUDLogic(dogRepo, medalRepo, intRepo);
+
+            OwnerLogic ownerLogic = new OwnerLogic(dogRepo, intRepo, medalRepo);
+            DoctorLogic doctorLogic = new DoctorLogic(intRepo, dogRepo);
+            DirectorLogic directorLogic = new DirectorLogic(medalRepo, dogRepo);
+
+            Menu m = new Menu();
             var menu = new ConsoleMenu()
-                .Add(">>DOGS", () => DogMenu(dogLogic))
-                .Add(">>MEDALS", () => MedalMenu(medalLogic, dogLogic))
-                .Add(">>INTERVENTIONS", () => InterventionMenu(intLogic, dogLogic))
-                .Add(">>ALL COST OF INTERVENTIONS: ", () => AllCost(ncl))
+                .Add(">>BELÉPÉS GAZDIKÉNT", () => m.DogMenu(dogLogic))
+                .Add(">>BELÉPÉS ORVOSKÉNT", () => m.MedalMenu(medalLogic, dogLogic))
+                .Add(">>BELÉPÉS RENDZŐKÉNT", () => m.InterventionMenu(intLogic, dogLogic))
                 .Add(">>EXIT", ConsoleMenu.Close);
             menu.Show();
-        }
-
-        private static void DogMenu(DogLogic dogLogic)
-        {
-            var dmenu = new ConsoleMenu()
-                .Add(">>LIST ALL DOG", () => ListAllDog(dogLogic))
-                .Add(">>CHANGING MENU", () => ChangeingMenuDog(dogLogic))
-                .Add(">>ADD A NEW MEDAL", () => AddNewDog(dogLogic))
-                .Add(">>LIST A MEDAL FROM ID", () => GetDogById(dogLogic))
-                .Add(">>REMOVE A MEDAL BY ID", () => RemoveDogById(dogLogic))
-                .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
-            dmenu.Show();
-        }
-
-        private static void MedalMenu(MedalLogic medalLogic, DogLogic dogLogic)
-        {
-            var mmenu = new ConsoleMenu()
-                .Add(">>LIST ALL MEDAL", () => ListAllMedal(medalLogic))
-                .Add(">>CHANGING MENU", () => ChangeingMenuMedal(medalLogic))
-                .Add(">>ADD A NEW MEDAL", () => AddNewMedal(medalLogic, dogLogic))
-                .Add(">>LIST A MEDAL FROM ID", () => GetMedalById(medalLogic))
-                .Add(">>REMOVE A MEDAL BY ID", () => RemoveMedalById(medalLogic))
-                .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
-            mmenu.Show();
-        }
-
-        private static void InterventionMenu(InterventionLogic intlog, DogLogic dogLogic)
-        {
-            var imenu = new ConsoleMenu()
-                .Add(">>LIST ALL MEDAL", () => ListAllIntervention(intlog))
-                .Add(">>CHANGING MENU", () => ChangeingIntervention(intlog))
-                .Add(">>ADD A NEW INTERVENTION", () => AddNewIntervention(intlog, dogLogic))
-                .Add(">>LIST AN INTERVENTION FROM ID", () => GetInterventionById(intlog))
-                .Add(">>REMOVE A INTERVENTION BY ID", () => RemoveInterventionById(intlog))
-                .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
-            imenu.Show();
-        }
-
-        private static void ChangeingIntervention(InterventionLogic intLog)
-        {
-            var imenu = new ConsoleMenu()
-                .Add(">>CHANGE PHONE NUMBER", () => ChangeInterventionDescript(intLog))
-                .Add(">>CHANGE DOCTOR NAMEN", () => ChangeDocName(intLog))
-                .Add(">>BACK TO INTERVENTION MENU", ConsoleMenu.Close);
-        }
-
-        private static void ChangeingMenuDog(DogLogic dogLogic)
-        {
-            var mmenu = new ConsoleMenu()
-                .Add(">>CHANGE DOG NAME", () => ChangeDogName(dogLogic))
-                .Add(">>CHANGE DOG OWNER'S NAME", () => ChangeOwnerName(dogLogic))
-                .Add(">>BACK TO DOG MENU", ConsoleMenu.Close);
-            mmenu.Show();
-        }
-
-        /// <summary>
-        /// changing medal menu.
-        /// </summary>
-        /// <param name="medalLogic">medallogic.</param>
-        #pragma warning disable SA1202 // Elements should be ordered by access
-        private static void ChangeingMenuMedal(MedalLogic medalLogic)
-        #pragma warning restore SA1202 // Elements should be ordered by access
-        {
-            var mmenu = new ConsoleMenu()
-                .Add(">>CHANGE CATEGORY", () => ChangeMedalCategory(medalLogic))
-                .Add(">>CHANGE DEGREE", () => ChangeMedalDegree(medalLogic))
-                .Add(">>BACK TO MEDAL MENU", ConsoleMenu.Close);
-            mmenu.Show();
         }
 
         private static void ListAllDog(DogLogic log)
@@ -148,7 +85,7 @@ namespace Races
 
         private static void ChangeMedalCategory(MedalLogic medalLogic)
         {
-            int id = IdInvestigator<Medal>.IdNumber(medalLogic.GetAllMedal().ToList());
+            int id = Investigator<Medal>.IdNumber(medalLogic.GetAllMedal().ToList());
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("New name of Category ->");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
@@ -159,7 +96,7 @@ namespace Races
 
         private static void ChangeMedalDegree(MedalLogic medalLogic)
         {
-            int id = IdInvestigator<Medal>.IdNumber(medalLogic.GetAllMedal().ToList());
+            int id = Investigator<Medal>.IdNumber(medalLogic.GetAllMedal().ToList());
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine(">> NEW DEGREE:");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
@@ -188,7 +125,7 @@ namespace Races
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("ID OF THE DOG WHO WIN IT -> ");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
-            m.DogChipNum = IdInvestigator<Dog>.IdNumber(dogLogic.GetAllDogs().ToList());
+            m.DogChipNum = Investigator<Dog>.IdNumber(dogLogic.GetAllDogs().ToList());
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("NUMBER OF STARTERS -> ");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
@@ -204,7 +141,7 @@ namespace Races
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("ID OF THE MEDAL WHAT YOU WANT TO LIST");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
-            int id = IdInvestigator<Medal>.IdNumber(medalLogic.GetAllMedal().ToList());
+            int id = Investigator<Medal>.IdNumber(medalLogic.GetAllMedal().ToList());
             var med = medalLogic.GetMedal(id);
             Console.WriteLine(med.ToString());
             Console.ReadLine();
@@ -215,7 +152,7 @@ namespace Races
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("ID OF THE REMOVING MEDAL");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
-            int id = IdInvestigator<Medal>.IdNumber(medalLogic.GetAllMedal().ToList());
+            int id = Investigator<Medal>.IdNumber(medalLogic.GetAllMedal().ToList());
             Medal rm = medalLogic.GetMedal(id);
             medalLogic.RemoveMedal(rm);
         }
@@ -225,7 +162,7 @@ namespace Races
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("ID OF DOG");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
-            int id = IdInvestigator<Dog>.IdNumber(dogLogic.GetAllDogs().ToList());
+            int id = Investigator<Dog>.IdNumber(dogLogic.GetAllDogs().ToList());
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine(">> NEW DEGREE:");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
@@ -238,7 +175,7 @@ namespace Races
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("ID OF DOG");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
-            int id = IdInvestigator<Dog>.IdNumber(dogLogic.GetAllDogs().ToList());
+            int id = Investigator<Dog>.IdNumber(dogLogic.GetAllDogs().ToList());
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine(">> NEW NAME OF OWNER:");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
@@ -275,7 +212,7 @@ namespace Races
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("ID OF THE DOG WHAT YOU WANT TO LIST");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
-            int id = IdInvestigator<Dog>.IdNumber(dogLogic.GetAllDogs().ToList());
+            int id = Investigator<Dog>.IdNumber(dogLogic.GetAllDogs().ToList());
             var dog = dogLogic.GetDogByChip(id);
             Console.WriteLine(dog.ToString());
             Console.ReadLine();
@@ -286,7 +223,7 @@ namespace Races
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("ID OF THE REMOVING MEDAL");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
-            int id = IdInvestigator<Dog>.IdNumber(dogLogic.GetAllDogs().ToList());
+            int id = Investigator<Dog>.IdNumber(dogLogic.GetAllDogs().ToList());
             Dog rm = dogLogic.GetDogByChip(id);
             dogLogic.RemoveDog(rm);
         }
@@ -296,7 +233,7 @@ namespace Races
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("ID OF INTERVENTION");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
-            int id = IdInvestigator<Intervention>.IdNumber(intLog.GetAllIntervention().ToList());
+            int id = Investigator<Intervention>.IdNumber(intLog.GetAllIntervention().ToList());
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine(">> NEW DESCRIPTION :");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
@@ -309,7 +246,7 @@ namespace Races
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("ID OF INTERVENTION");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
-            int id = IdInvestigator<Intervention>.IdNumber(intLog.GetAllIntervention().ToList());
+            int id = Investigator<Intervention>.IdNumber(intLog.GetAllIntervention().ToList());
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine(">> NEW DOCTOR NAME:");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
@@ -345,7 +282,7 @@ namespace Races
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("DOG CHIP NUMBER -> ");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
-            i.DogChipNum = IdInvestigator<Dog>.IdNumber(dogLogic.GetAllDogs().ToList());
+            i.DogChipNum = Investigator<Dog>.IdNumber(dogLogic.GetAllDogs().ToList());
             intLog.Add(i);
         }
 
@@ -354,7 +291,7 @@ namespace Races
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("ID OF THE INTERVENTION WHAT YOU WANT TO LIST");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
-            int id = IdInvestigator<Intervention>.IdNumber(intLog.GetAllIntervention().ToList());
+            int id = Investigator<Intervention>.IdNumber(intLog.GetAllIntervention().ToList());
             var interv = intLog.GetIntervention(id);
             Console.WriteLine(interv.ToString());
             Console.ReadLine();
@@ -365,15 +302,9 @@ namespace Races
             #pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("ID OF THE REMOVING INTERVENTION");
             #pragma warning restore CA1303 // Do not pass literals as localized parameters
-            int id = IdInvestigator<Intervention>.IdNumber(intLog.GetAllIntervention().ToList());
+            int id = Investigator<Intervention>.IdNumber(intLog.GetAllIntervention().ToList());
             Intervention rm = intLog.GetIntervention(id);
             intLog.Remov(rm);
-        }
-
-        private static void AllCost(NonCRUDLogic ncl)
-        {
-            int sum = ncl.AllCostOfIntervention();
-            Console.WriteLine("SUM COST -> "+sum);
         }
     }
 }

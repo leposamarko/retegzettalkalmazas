@@ -50,6 +50,17 @@ namespace KutyaVerseny.Repository
         }
 
         /// <summary>
+        /// chang the dog gender to neutering.
+        /// </summary>
+        /// <param name="chipnumb">dog cip id.</param>
+        public void DogNeutering(int chipnumb)
+        {
+            var dog = this.GetOne(chipnumb);
+            dog.Gender = "Ivartalanított";
+            this.Ctx.SaveChanges();
+        }
+
+        /// <summary>
         /// Method to get one dog.
         /// </summary>
         /// <param name="id">dog id.</param>
