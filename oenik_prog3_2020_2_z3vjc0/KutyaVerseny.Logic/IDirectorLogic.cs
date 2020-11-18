@@ -9,6 +9,9 @@ namespace KutyaVerseny.Logic
     using System.Text;
     using KutyaVerseny.Data.Models;
 
+    /// <summary>
+    /// interface of director logic.
+    /// </summary>
     public interface IDirectorLogic
     {
         /// <summary>
@@ -70,5 +73,11 @@ namespace KutyaVerseny.Logic
         /// <param name="degree">medal degree.</param>
         /// <returns>list of dogs.</returns>
         List<Dog> DogsWithThisDegree(string degree);
+
+        /// <summary>
+        /// number of medals.
+        /// </summary>
+        /// <param name="directorLogic">directorLogic.</param>
+        public void DegreeNumb();
     }
 }

@@ -29,9 +29,7 @@ namespace Races
         /// </summary>
         public static void Main()
         {
-            #pragma warning disable CA2000 // Dispose objects before losing scope
             Db ctx = new Db();
-            #pragma warning restore CA2000 // Dispose objects before losing scope
             DogRepository dogRepo = new DogRepository(ctx);
             DogLogic dogLogic = new DogLogic(dogRepo);
             MedalRepository medalRepo = new MedalRepository(ctx);
@@ -46,9 +44,9 @@ namespace Races
 
             Menu m = new Menu();
             var menu = new ConsoleMenu()
-                .Add(">>BELÉPÉS GAZDIKÉNT", () => m.DogMenu(dogLogic))
-                .Add(">>BELÉPÉS ORVOSKÉNT", () => m.MedalMenu(medalLogic, dogLogic))
-                .Add(">>BELÉPÉS RENDZŐKÉNT", () => m.InterventionMenu(intLogic, dogLogic))
+                .Add(">>BELÉPÉS GAZDIKÉNT", () => m.OwnerMenu(ownerLogic, directorLogic, doctorLogic))
+                .Add(">>BELÉPÉS ORVOSKÉNT", () => m.DoctorMenu(doctorLogic, ownerLogic))
+                .Add(">>BELÉPÉS RENDZŐKÉNT", () => m.DirectorMenu(directorLogic, ownerLogic))
                 .Add(">>EXIT", ConsoleMenu.Close);
             menu.Show();
         }

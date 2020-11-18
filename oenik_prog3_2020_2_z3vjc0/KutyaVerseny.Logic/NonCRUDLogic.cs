@@ -25,7 +25,7 @@ namespace KutyaVerseny.Logic
             int sum = 0;
             foreach (var item in this.interRepo.GetAll().ToList<Intervention>())
             {
-                sum += item.Cost.Value;
+               // sum += item.Cost.HasValue();
             }
 
             return sum;

@@ -8,6 +8,7 @@ namespace KutyaVerseny.Program
     using System.Collections.Generic;
     using System.Text;
     using KutyaVerseny.Data.Models;
+    using KutyaVerseny.Logic;
 
     /// <summary>
     /// id investigator class.
@@ -49,9 +50,54 @@ namespace KutyaVerseny.Program
             return id;
         }
 
-        //internal static int IdNumber(List<Intervention> lists)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        /// <summary>
+        /// method of the corect owner name login.
+        /// </summary>
+        /// <param name="ownerLogic">ownerLogic.</param>
+        /// <returns>name of owner.</returns>
+        public static string CorrectOwnerLogin(OwnerLogic ownerLogic)
+        {
+            string name;
+            while (true)
+            {
+                name = Console.ReadLine();
+                if (ownerLogic.AllOwner().Contains(name))
+                {
+                    Console.WriteLine("Helyes belépési név!");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Nincs ilyen belépési név, adj meg egy újat -> ");
+                }
+            }
+
+            return name;
+        }
+
+        /// <summary>
+        /// method for the correct doctro login.
+        /// </summary>
+        /// <param name="doctorLogic">doctorLogic.</param>
+        /// <returns>name of doctro.</returns>
+        public static string CorrectDoctorLogin(DoctorLogic doctorLogic)
+        {
+            string name;
+            while (true)
+            {
+                name = Console.ReadLine();
+                if (doctorLogic.AllDoctor().Contains(name))
+                {
+                    Console.WriteLine("Helyes belépési név!");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Nincs ilyen belépési név, adj meg egy újat -> ");
+                }
+            }
+
+            return name;
+        }
     }
 }

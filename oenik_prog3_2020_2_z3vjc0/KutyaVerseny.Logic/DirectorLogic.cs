@@ -11,6 +11,9 @@ namespace KutyaVerseny.Logic
     using KutyaVerseny.Data.Models;
     using KutyaVerseny.Repository;
 
+    /// <summary>
+    /// director logic class.
+    /// </summary>
     public class DirectorLogic : IDirectorLogic
     {
         private MedalRepository medalRepo;
@@ -112,6 +115,27 @@ namespace KutyaVerseny.Logic
         public List<Dog> DogsWithThisDegree(string degree)
         {
             return this.dogRepo.GetAll().ToList();
+        }
+
+        /// <summary>
+        /// number of medals.
+        /// </summary>
+        /// <param name="directorLogic">directorLogic.</param>
+        public void DegreeNumb()
+        {
+            var q3 = from b in this.medalRepo.GetAll()
+                     group b by b.Degree into g
+                     select new
+                     {
+                         fokozat = g.Key,
+                         dijnumb = g.Count(),
+                     };
+            foreach (var item in q3)
+            {
+                Console.WriteLine(item.ToString());
+            }
+
+            Console.ReadLine();
         }
     }
 }

@@ -11,6 +11,9 @@ namespace KutyaVerseny.Logic
     using KutyaVerseny.Data.Models;
     using KutyaVerseny.Repository;
 
+    /// <summary>
+    /// doctro logic.
+    /// </summary>
     public class DoctorLogic : IDoctorLogic
     {
         private InterventionRepository interRepo;
@@ -21,6 +24,7 @@ namespace KutyaVerseny.Logic
         /// intervention logic.
         /// </summary>
         /// <param name="repo">repo.</param>
+        /// <param name="dogRepo">dogrepo.</param>
         public DoctorLogic(InterventionRepository repo, DogRepository dogRepo)
         {
             this.interRepo = repo;

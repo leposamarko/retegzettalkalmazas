@@ -8,6 +8,7 @@ namespace KutyaVerseny.Program
     using System.Collections.Generic;
     using System.Text;
     using ConsoleTools;
+    using KutyaVerseny.Data.Models;
     using KutyaVerseny.Logic;
 
     /// <summary>
@@ -25,91 +26,155 @@ namespace KutyaVerseny.Program
         private readonly Methods met = new Methods();
 
         /// <summary>
-        /// dogmenu.
+        /// owner menu.
         /// </summary>
-        /// <param name="dogLogic">doglogic.</param>
-        public void DogMenu(DogLogic dogLogic)
+        /// <param name="ownerLogic">ownerLogic.</param>
+        /// <param name="directorLogic">directorLogic.</param>
+        /// <param name="doctorLogic">doctorLogic.</param>
+        public void OwnerMenu(OwnerLogic ownerLogic, DirectorLogic directorLogic, DoctorLogic doctorLogic)
         {
             var dmenu = new ConsoleMenu()
-                .Add(">>LIST ALL DOG", () => this.met.ListAllDog(dogLogic))
-                .Add(">>CHANGING MENU", () => this.ChangeingMenuDog(dogLogic))
-                .Add(">>ADD A NEW MEDAL", () => this.met.AddNewDog(dogLogic))
-                .Add(">>LIST A MEDAL FROM ID", () => this.met.GetDogById(dogLogic))
-                .Add(">>REMOVE A MEDAL BY ID", () => this.met.RemoveDogById(dogLogic))
+                .Add(">>ÖSSZES GAZDA KILISTÁZÁSA", () => this.met.ListAllOwner(ownerLogic))
+                .Add(">>ÖSSZES KUTYA KIÍRÁSA", () => this.met.ListAllDog(ownerLogic))
+                .Add(">>BELÉPÉS GAZDA NÉVVEL", () => this.LoginWithOwner(ownerLogic, directorLogic, doctorLogic))
                 .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
             dmenu.Show();
         }
 
         /// <summary>
-        /// changing medal menu.
-        /// </summary>
-        /// <param name="medalLogic">medallogic.</param>
-        public void ChangeingMenuMedal(MedalLogic medalLogic)
-        {
-            var mmenu = new ConsoleMenu()
-                .Add(">>CHANGE CATEGORY", () => this.met.ChangeMedalCategory(medalLogic))
-                .Add(">>CHANGE DEGREE", () => this.met.ChangeMedalDegree(medalLogic))
-                .Add(">>BACK TO MEDAL MENU", ConsoleMenu.Close);
-            mmenu.Show();
-        }
-
-        /// <summary>
         /// medal menu.
         /// </summary>
-        /// <param name="medalLogic">medalLogic.</param>
-        /// <param name="dogLogic">dogLogic.</param>
-        public void MedalMenu(MedalLogic medalLogic, DogLogic dogLogic)
+        /// <param name="directotLogic">medalLogic.</param>
+        /// <param name="ownerLogic">dogLogic.</param>
+        public void DirectorMenu(DirectorLogic directotLogic, OwnerLogic ownerLogic)
         {
-            var mmenu = new ConsoleMenu()
-                .Add(">>LIST ALL MEDAL", () => this.met.ListAllMedal(medalLogic))
-                .Add(">>CHANGING MENU", () => this.ChangeingMenuMedal(medalLogic))
-                .Add(">>ADD A NEW MEDAL", () => this.met.AddNewMedal(medalLogic, dogLogic))
-                .Add(">>LIST A MEDAL FROM ID", () => this.met.GetMedalById(medalLogic))
-                .Add(">>REMOVE A MEDAL BY ID", () => this.met.RemoveMedalById(medalLogic))
+            var dmenu = new ConsoleMenu()
+                .Add(">>ÉRMEK LISTÁZÁSA", () => this.met.ListAllMedal(directotLogic))
+                .Add(">>MÓDOSÍTÁSOK", () => this.ChangeingMenuMedal(directotLogic))
+                .Add(">>ÚJ MEDÁL KIOSZTÁSA", () => this.met.AddNewMedal(directotLogic, ownerLogic))
+                .Add(">>MEDÁL VISSZAVONÁSA", () => this.met.RemoveMedalById(directotLogic))
+                .Add(">>A FOKOZATOKBÓL ENNYIT NYERTEK", () => this.met.DegreeNumb(directotLogic))
                 .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
-            mmenu.Show();
+            dmenu.Show();
         }
 
         /// <summary>
         /// intervention menu.
         /// </summary>
-        /// <param name="intlog">intlog.</param>
-        /// <param name="dogLogic">dogLogic.</param>
-        public void InterventionMenu(InterventionLogic intlog, DogLogic dogLogic)
+        /// <param name="doctorLogic">intlog.</param>
+        /// <param name="ownerLogic">dogLogic.</param>
+        public void DoctorMenu(DoctorLogic doctorLogic, OwnerLogic ownerLogic)
         {
             var imenu = new ConsoleMenu()
-                .Add(">>LIST ALL MEDAL", () => this.met.ListAllIntervention(intlog))
-                .Add(">>CHANGING MENU", () => this.ChangeingIntervention(intlog))
-                .Add(">>ADD A NEW INTERVENTION", () => this.met.AddNewIntervention(intlog, dogLogic))
-                .Add(">>LIST AN INTERVENTION FROM ID", () => this.met.GetInterventionById(intlog))
-                .Add(">>REMOVE A INTERVENTION BY ID", () => this.met.RemoveInterventionById(intlog))
+                .Add(">>ÖSSZES ORVOS LISTÁZÁSA", () => this.met.ListAllDoctors(doctorLogic))
+                .Add(">>ÖSSZES BEAVATKOZÁS LISTÁZÁSA", () => this.met.ListAllIntervention(doctorLogic))
+                .Add(">>BELÉPÉS NÉVVEL", () => this.LogiWithDoctor(doctorLogic, ownerLogic))
                 .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
             imenu.Show();
         }
 
         /// <summary>
-        /// Changeing Intervention menu.
+        /// changing medal menu.
         /// </summary>
-        /// <param name="intLog">intLog.</param>
-        public void ChangeingIntervention(InterventionLogic intLog)
+        /// <param name="doctroLogic">medallogic.</param>
+        public void ChangeingMenuMedal(DirectorLogic doctroLogic)
+        {
+            var mmenu = new ConsoleMenu()
+                .Add(">>CHANGE CATEGORY", () => this.met.ChangeMedalCategory(doctroLogic))
+                .Add(">>CHANGE DEGREE", () => this.met.ChangeMedalDegree(doctroLogic))
+                .Add(">>BACK TO MEDAL MENU", ConsoleMenu.Close);
+            mmenu.Show();
+        }
+
+        /// <summary>
+        /// changing menu of doctor.
+        /// </summary>
+        /// <param name="doctorLogic">doctorLogic.</param>
+        /// <param name="ownerLogic">ownerLogic.</param>
+        /// <param name="name">name.</param>
+        public void ChangeingDoctroMenu(DoctorLogic doctorLogic, OwnerLogic ownerLogic, string name)
         {
             var imenu = new ConsoleMenu()
-                .Add(">>CHANGE PHONE NUMBER", () => this.met.ChangeInterventionDescript(intLog))
-                .Add(">>CHANGE DOCTOR NAMEN", () => this.met.ChangeDocName(intLog))
+                .Add(">>LEÍRÁS MEGVÁLTOZTATÁSA", () => this.met.ChangeInterventionDescript(doctorLogic, name))
+                .Add(">>BEAVATKOZÁS TÖRLÉSE", () => this.met.RemoveInterventionById(doctorLogic, name))
+                .Add(">>KUTYA IVARTALANÍTÁSA", () => this.met.Neutering(ownerLogic, doctorLogic))
+                .Add(">>TELEFONSZÁM MEGVÁLTOZATÁSA", () => this.met.DoctorPhoneNum(doctorLogic, name))
                 .Add(">>BACK TO INTERVENTION MENU", ConsoleMenu.Close);
         }
 
         /// <summary>
         /// ChangeingMenuDog.
         /// </summary>
-        /// <param name="dogLogic">dogLogic.</param>
-        public void ChangeingMenuDog(DogLogic dogLogic)
+        /// <param name="ownerLogic">dogLogic.</param>
+        /// <param name="name">name.</param>
+        public void ChangeingMenuDog(OwnerLogic ownerLogic, string name)
         {
             var mmenu = new ConsoleMenu()
-                .Add(">>CHANGE DOG NAME", () => this.met.ChangeDogName(dogLogic))
-                .Add(">>CHANGE DOG OWNER'S NAME", () => this.met.ChangeOwnerName(dogLogic))
+                .Add(">>KUTYA ÁTNEVEZÉSE", () => this.met.ChangeDogName(ownerLogic))
+                .Add(">>KUTYA ÖRÖKBEFOGADÁSA", () => this.met.AddNewDog(ownerLogic, name))
+                .Add(">>KUTYA ÖRÖKBE ADÁSA (TÖRLÉSE)", () => this.met.RemoveDogById(ownerLogic))
                 .Add(">>BACK TO DOG MENU", ConsoleMenu.Close);
             mmenu.Show();
+        }
+
+        /// <summary>
+        /// login method.
+        /// </summary>
+        /// <param name="ownerLogic">ownerLogic.</param>
+        /// <param name="directorLogic">directorLogic.</param>
+        /// <param name="doctorLogic">doctorLogic.</param>
+        public void LoginWithOwner(OwnerLogic ownerLogic, DirectorLogic directorLogic, DoctorLogic doctorLogic)
+        {
+            Console.WriteLine("KÉREM A GAZDA NEVÉT AMIVEL BE AKAR LÉPNI -> ");
+            string name = Investigator<Dog>.CorrectOwnerLogin(ownerLogic);
+            this.LoginOwnerMenu(name, ownerLogic, directorLogic, doctorLogic);
+        }
+
+        /// <summary>
+        /// login owner menu.
+        /// </summary>
+        /// <param name="name">name of owner.</param>
+        /// <param name="ownerLogic">ownerLogic.</param>
+        /// <param name="directorLogic">directorLogic.</param>
+        /// <param name="doctorLogic">doctorLogic.</param>
+        public void LoginOwnerMenu(string name, OwnerLogic ownerLogic, DirectorLogic directorLogic, DoctorLogic doctorLogic)
+        {
+            var lomenu = new ConsoleMenu()
+                .Add(">>SAJÁT KUTYÁID KILISTÁZÁSA", () => this.met.GetYourDogs(ownerLogic, name))
+                .Add(">>KUTYÁID KÖZÜL EGY KILISTÁZÁSA", () => this.met.GetDogById(ownerLogic, name))
+                .Add(">>KUTYÁID ÉRMEI", () => this.met.DogsMedal(ownerLogic, name))
+                .Add(">>KUTYÁID BEAVATKOZÁSAI", () => this.met.DogsInterventions(ownerLogic, name))
+                .Add(">>MÓDOSÍTÁSOK", () => this.ChangeingMenuDog(ownerLogic, name))
+                .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
+            lomenu.Show();
+        }
+
+        /// <summary>
+        /// doctor login.
+        /// </summary>
+        /// <param name="doctorLogic">doctorLogic.</param>
+        /// <param name="ownerLogic">ownerLogic.</param>
+        public void LogiWithDoctor(DoctorLogic doctorLogic, OwnerLogic ownerLogic)
+        {
+            Console.WriteLine("KÉREM AZ ORVOS NEVÉT -> ");
+            string name = Investigator<Intervention>.CorrectDoctorLogin(doctorLogic);
+            this.LoginDoctroMenu(doctorLogic, ownerLogic, name);
+        }
+
+        /// <summary>
+        /// login doctormenu.
+        /// </summary>
+        /// <param name="doctorLogic">doctorLogic.</param>
+        /// <param name="ownerLogic">ownerLogic.</param>
+        /// <param name="name">doctor name.</param>
+        public void LoginDoctroMenu(DoctorLogic doctorLogic, OwnerLogic ownerLogic, string name)
+        {
+            var imenu = new ConsoleMenu()
+                .Add(">>ÖSSZES BEAVATKOZAS AMIT VÉGZETT", () => this.met.AllInterventionByDoctor(doctorLogic, name))
+                .Add(">>EGY BEAVATKOZÁSS LISTÁZÁSA", () => this.met.GetInterventionById(doctorLogic, name))
+                .Add(">>MÓDOSÍTÁSOK", () => this.ChangeingDoctroMenu(doctorLogic, ownerLogic, name))
+                .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
+            imenu.Show();
         }
     }
 }

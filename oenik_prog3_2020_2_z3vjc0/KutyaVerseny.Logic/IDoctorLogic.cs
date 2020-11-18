@@ -9,6 +9,9 @@ namespace KutyaVerseny.Logic
     using System.Text;
     using KutyaVerseny.Data.Models;
 
+    /// <summary>
+    /// interface of doglogic.
+    /// </summary>
     public interface IDoctorLogic
     {
         /// <summary>

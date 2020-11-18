@@ -29,9 +29,10 @@ namespace KutyaVerseny.Logic
         void ChangeDogName(int id, string name);
 
         /// <summary>
-        /// get all off your dogs from database.
+        ///  get all off your dogs from database.
         /// </summary>
-        /// <returns>all dogs.</returns>
+        /// <param name="name">name.</param>
+        /// <returns>list of dogs.</returns>
         IList<Dog> GetYourDogs(string name);
 
         /// <summary>
@@ -55,12 +56,14 @@ namespace KutyaVerseny.Logic
         /// <summary>
         /// get all intervention from database.
         /// </summary>
-        /// <returns>all intervetnion.</returns>
+        /// <param name="chipnumb">chipnumber.</param>
+        /// <returns>list.</returns>
         IList<Intervention> GetAllIntervention(int chipnumb);
 
         /// <summary>
         /// get all medal from database.
         /// </summary>
+        /// /// <param name="chipnumb">chipnumber.</param>
         /// <returns>all dogs.</returns>
         IList<Medal> GetAllMedal(int chipnumb);
     }
