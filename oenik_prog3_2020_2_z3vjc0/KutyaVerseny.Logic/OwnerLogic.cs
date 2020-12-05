@@ -16,9 +16,9 @@ namespace KutyaVerseny.Logic
     /// </summary>
     public class OwnerLogic : IOwnerLogic
     {
-        private DogRepository dogRepo;
-        private InterventionRepository intRepo;
-        private MedalRepository medalRepo;
+        private IDogRepository dogRepo;
+        private IInterventionRepositry intRepo;
+        private IMedalRepository medalRepo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OwnerLogic"/> class.
@@ -26,11 +26,21 @@ namespace KutyaVerseny.Logic
         /// <param name="repo">repo.</param>
         /// <param name="intRepo">intRepo.</param>
         /// <param name="medalRepo">medalRepo.</param>
-        public OwnerLogic(DogRepository repo, InterventionRepository intRepo, MedalRepository medalRepo)
+        public OwnerLogic(IDogRepository repo, IInterventionRepositry intRepo, IMedalRepository medalRepo)
         {
             this.dogRepo = repo;
             this.intRepo = intRepo;
             this.medalRepo = medalRepo;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OwnerLogic"/> class.
+        /// ctor with one parameter.
+        /// </summary>
+        /// <param name="repo">dog repository.</param>
+        public OwnerLogic(IDogRepository repo)
+        {
+            this.dogRepo = repo;
         }
 
         /// <summary>

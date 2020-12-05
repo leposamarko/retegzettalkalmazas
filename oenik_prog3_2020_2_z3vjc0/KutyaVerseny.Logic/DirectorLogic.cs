@@ -16,18 +16,27 @@ namespace KutyaVerseny.Logic
     /// </summary>
     public class DirectorLogic : IDirectorLogic
     {
-        private MedalRepository medalRepo;
-        private DogRepository dogRepo;
+        private IMedalRepository medalRepo;
+        private IDogRepository dogRepo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DirectorLogic"/> class.
         /// </summary>
         /// <param name="repo">medalrepo.</param>
         /// <param name="dogrepo">dogrepo.</param>
-        public DirectorLogic(MedalRepository repo, DogRepository dogrepo)
+        public DirectorLogic(IMedalRepository repo, IDogRepository dogrepo)
         {
             this.medalRepo = repo;
             this.dogRepo = dogrepo;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DirectorLogic"/> class.
+        /// </summary>
+        /// <param name="repo">medalrepo.</param>
+        public DirectorLogic(IMedalRepository repo)
+        {
+            this.medalRepo = repo;
         }
 
         /// <summary>

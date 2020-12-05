@@ -29,14 +29,12 @@ namespace KutyaVerseny.Program
         /// owner menu.
         /// </summary>
         /// <param name="ownerLogic">ownerLogic.</param>
-        /// <param name="directorLogic">directorLogic.</param>
-        /// <param name="doctorLogic">doctorLogic.</param>
-        public void OwnerMenu(OwnerLogic ownerLogic, DirectorLogic directorLogic, DoctorLogic doctorLogic)
+        public void OwnerMenu(OwnerLogic ownerLogic)
         {
             var dmenu = new ConsoleMenu()
                 .Add(">>ÖSSZES GAZDA KILISTÁZÁSA", () => this.met.ListAllOwner(ownerLogic))
                 .Add(">>ÖSSZES KUTYA KIÍRÁSA", () => this.met.ListAllDog(ownerLogic))
-                .Add(">>BELÉPÉS GAZDA NÉVVEL", () => this.LoginWithOwner(ownerLogic, directorLogic, doctorLogic))
+                .Add(">>BELÉPÉS GAZDA NÉVVEL", () => this.LoginWithOwner(ownerLogic))
                 .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
             dmenu.Show();
         }
@@ -100,6 +98,7 @@ namespace KutyaVerseny.Program
                 .Add(">>KUTYA IVARTALANÍTÁSA", () => this.met.Neutering(ownerLogic, doctorLogic))
                 .Add(">>TELEFONSZÁM MEGVÁLTOZATÁSA", () => this.met.DoctorPhoneNum(doctorLogic, name))
                 .Add(">>BACK TO INTERVENTION MENU", ConsoleMenu.Close);
+            imenu.Show();
         }
 
         /// <summary>
@@ -121,13 +120,11 @@ namespace KutyaVerseny.Program
         /// login method.
         /// </summary>
         /// <param name="ownerLogic">ownerLogic.</param>
-        /// <param name="directorLogic">directorLogic.</param>
-        /// <param name="doctorLogic">doctorLogic.</param>
-        public void LoginWithOwner(OwnerLogic ownerLogic, DirectorLogic directorLogic, DoctorLogic doctorLogic)
+        public void LoginWithOwner(OwnerLogic ownerLogic)
         {
             Console.WriteLine("KÉREM A GAZDA NEVÉT AMIVEL BE AKAR LÉPNI -> ");
             string name = Investigator<Dog>.CorrectOwnerLogin(ownerLogic);
-            this.LoginOwnerMenu(name, ownerLogic, directorLogic, doctorLogic);
+            this.LoginOwnerMenu(name, ownerLogic);
         }
 
         /// <summary>
@@ -135,9 +132,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="name">name of owner.</param>
         /// <param name="ownerLogic">ownerLogic.</param>
-        /// <param name="directorLogic">directorLogic.</param>
-        /// <param name="doctorLogic">doctorLogic.</param>
-        public void LoginOwnerMenu(string name, OwnerLogic ownerLogic, DirectorLogic directorLogic, DoctorLogic doctorLogic)
+        public void LoginOwnerMenu(string name, OwnerLogic ownerLogic)
         {
             var lomenu = new ConsoleMenu()
                 .Add(">>SAJÁT KUTYÁID KILISTÁZÁSA", () => this.met.GetYourDogs(ownerLogic, name))

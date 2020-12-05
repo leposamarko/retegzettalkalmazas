@@ -16,8 +16,8 @@ namespace KutyaVerseny.Logic
     /// </summary>
     public class DoctorLogic : IDoctorLogic
     {
-        private InterventionRepository interRepo;
-        private DogRepository dogRepo;
+        private IInterventionRepositry interRepo;
+        private IDogRepository dogRepo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DoctorLogic"/> class.
@@ -25,10 +25,19 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <param name="repo">repo.</param>
         /// <param name="dogRepo">dogrepo.</param>
-        public DoctorLogic(InterventionRepository repo, DogRepository dogRepo)
+        public DoctorLogic(IInterventionRepositry repo, IDogRepository dogRepo)
         {
             this.interRepo = repo;
             this.dogRepo = dogRepo;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DoctorLogic"/> class.
+        /// </summary>
+        /// <param name="repo">repository.</param>
+        public DoctorLogic(IInterventionRepositry repo)
+        {
+            this.interRepo = repo;
         }
 
         /// <summary>
