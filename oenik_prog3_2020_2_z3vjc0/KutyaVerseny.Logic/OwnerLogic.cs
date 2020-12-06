@@ -8,6 +8,7 @@ namespace KutyaVerseny.Logic
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Threading.Tasks;
     using KutyaVerseny.Data.Models;
     using KutyaVerseny.Repository;
 
@@ -170,6 +171,16 @@ namespace KutyaVerseny.Logic
         }
 
         /// <summary>
+        /// task.
+        /// </summary>
+        /// <param name="name">name of owner.</param>
+        /// <returns>Task</returns>
+        public Task<List<string>> DogMedalsAsync(string name)
+        {
+            return Task.Run(() => this.DogsMedals(name));
+        }
+
+        /// <summary>
         /// dog wiht intervetnion.
         /// </summary>
         /// <param name="name">name.</param>
@@ -188,6 +199,16 @@ namespace KutyaVerseny.Logic
                          Cost = b.Cost,
                      };
             return q2.Select(x => $"neve={x.DogName}, fajtaja={x.Breed}, Desript={x.Desript}, Doctor={x.Doctor}, Cost={x.Cost}").ToList();
+        }
+
+        /// <summary>
+        /// task.
+        /// </summary>
+        /// <param name="name">name of owner.</param>
+        /// <returns>Task</returns>
+        public Task<List<string>> DogInterventionsAsync(string name)
+        {
+            return Task.Run(() => this.DogsInterventions(name));
         }
     }
 }

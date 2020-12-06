@@ -7,6 +7,7 @@ namespace KutyaVerseny.Logic
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Threading.Tasks;
     using KutyaVerseny.Data.Models;
 
     /// <summary>
@@ -80,5 +81,11 @@ namespace KutyaVerseny.Logic
         /// <param name="directorLogic">directorLogic.</param>
         /// <returns>string list.</returns>
         List<string> DegreeNumb();
+
+        /// <summary>
+        /// task of noncroud.
+        /// </summary>
+        /// <returns>list task.</returns>
+        Task<List<string>> DegreeNumbAsync();
     }
 }

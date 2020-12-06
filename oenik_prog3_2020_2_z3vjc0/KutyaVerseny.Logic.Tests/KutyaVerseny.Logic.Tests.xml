@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KutyaVerseny.Logic.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:KutyaVerseny.Logic.Tests.DirectorLogicTests">
+            <summary>
+            director logic test.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.Tests.DirectorLogicTests.RemoveMedalTest">
+            <summary>
+            remove test.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.Tests.DirectorLogicTests.MedalCountTest">
+            <summary>
+            medalcount test.
+            </summary>
+        </member>
+        <member name="T:KutyaVerseny.Logic.Tests.DoctorLogicTests">
+            <summary>
+            doctor logic tester.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.Tests.DoctorLogicTests.UpdateCostTest">
+            <summary>
+            test of changing cost method (this is an update method).
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.Tests.DoctorLogicTests.OneIntervetnionTest">
+            <summary>
+            test of getone method.
+            </summary>
+        </member>
+        <member name="T:KutyaVerseny.Logic.Tests.OwnerLogicTests">
+            <summary>
+            Test fixture of owner's logic.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.Tests.OwnerLogicTests.TestGetDogs">
+            <summary>
+            test of getAll().
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.Tests.OwnerLogicTests.TestAddDog">
+            <summary>
+            add dog test.
+            </summary>
+        </member>
+        <member name="T:KutyaVerseny.Logic.Tests.ExpectedMedals">
+            <summary>
+            expected medals.
+            </summary>
+        </member>
+    </members>
+</doc>

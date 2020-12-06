@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KutyaVerseny.Data</name>
+    </assembly>
+    <members>
+        <member name="T:KutyaVerseny.Data.Models.Db">
+            <summary>
+            main class.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Data.Models.Db.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Data.Models.Db"/> class.
+            This is the constructor.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Data.Models.Db.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{KutyaVerseny.Data.Models.Db})">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Data.Models.Db"/> class.
+            public db.
+            </summary>
+            <param name="options">something.</param>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Db.Dog">
+            <summary>
+            Gets or sets the database of dogs.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Db.Intervention">
+            <summary>
+            Gets or sets Intervention database.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Db.Medal">
+            <summary>
+            Gets or sets database of medals.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Data.Models.Db.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            this is the conncton for the mdf.
+            </summary>
+            <param name="optionsBuilder">connecton.</param>
+        </member>
+        <member name="M:KutyaVerseny.Data.Models.Db.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="T:KutyaVerseny.Data.Models.Dog">
+            <summary>
+            this is the main class.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Data.Models.Dog.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Data.Models.Dog"/> class.
+            this is the constructor.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Dog.DogName">
+            <summary>
+            Gets or sets name of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Dog.Gender">
+            <summary>
+            Gets or sets gender of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Dog.ChipNum">
+            <summary>
+            Gets or sets chip number of the medal.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Dog.Breed">
+            <summary>
+            Gets or sets breed of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Dog.BornDate">
+            <summary>
+            Gets or sets born date of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Dog.OwnerName">
+            <summary>
+            Gets or sets owner's name of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Dog.Intervention">
+            <summary>
+            Gets intervertions.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Dog.Medal">
+            <summary>
+            Gets medals.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Data.Models.Dog.ToString">
+            <summary>
+            toString method.
+            </summary>
+            <returns>string.</returns>
+        </member>
+        <member name="T:KutyaVerseny.Data.Models.Intervention">
+            <summary>
+            the main class.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Intervention.Doctor">
+            <summary>
+            Gets or sets name of the doctor who made the intervention.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Intervention.DoctorPhone">
+            <summary>
+            Gets or sets the phone number of doctor.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Intervention.InterventionDate">
+            <summary>
+            Gets or sets date of the intervention.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Intervention.Desript">
+            <summary>
+            Gets or sets desription of the intervention.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Intervention.InterventionId">
+            <summary>
+            Gets or sets id of the intervention.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Intervention.DogChipNum">
+            <summary>
+            Gets or sets the dog chip number.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Intervention.Cost">
+            <summary>
+            Gets or sets cost of the intervention.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Intervention.DogChipNumNavigation">
+            <summary>
+            Gets or sets of the connection.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Data.Models.Intervention.ToString">
+            <summary>
+            tostring.
+            </summary>
+            <returns>string.</returns>
+        </member>
+        <member name="T:KutyaVerseny.Data.Models.Medal">
+            <summary>
+            This is the main class.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Medal.MedalId">
+            <summary>
+             Gets or sets this is the id of medal table.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Medal.Degree">
+            <summary>
+             Gets or sets the degree of the medal.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Medal.DogChipNum">
+            <summary>
+            Gets or sets the dog chip number.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Medal.WonDate">
+            <summary>
+            Gets or sets the date of the medal winnig.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Medal.RaceName">
+            <summary>
+            Gets or sets the race name where the dog win the medal.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Medal.Category">
+            <summary>
+            Gets or sets the category when win the medal.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Medal.StartersNum">
+            <summary>
+            Gets or sets the straters number of the race.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Data.Models.Medal.DogChipNumNavigation">
+            <summary>
+            Gets or sets the connection.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Data.Models.Medal.ToString">
+            <summary>
+            tostring.
+            </summary>
+            <returns>string.</returns>
+        </member>
+    </members>
+</doc>

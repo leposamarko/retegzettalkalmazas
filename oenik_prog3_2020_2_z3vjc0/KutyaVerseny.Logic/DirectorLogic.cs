@@ -8,6 +8,7 @@ namespace KutyaVerseny.Logic
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Threading.Tasks;
     using KutyaVerseny.Data.Models;
     using KutyaVerseny.Repository;
 
@@ -141,6 +142,16 @@ namespace KutyaVerseny.Logic
                          CountWin = g.Count(),
                      };
             return q3.Select(x => $"Degree={x.Degree}, ConuntWin={x.CountWin}").ToList();
+        }
+
+        /// <summary>
+        /// task.
+        /// </summary>
+        /// <param name="name">name of owner.</param>
+        /// <returns>Task</returns>
+        public Task<List<string>> DegreeNumbAsync()
+        {
+            return Task.Run(() => this.DegreeNumb());
         }
     }
 }

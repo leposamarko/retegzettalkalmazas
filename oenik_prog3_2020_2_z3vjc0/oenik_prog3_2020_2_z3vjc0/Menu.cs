@@ -51,7 +51,8 @@ namespace KutyaVerseny.Program
                 .Add(">>MÓDOSÍTÁSOK", () => this.ChangeingMenuMedal(directotLogic))
                 .Add(">>ÚJ MEDÁL KIOSZTÁSA", () => this.met.AddNewMedal(directotLogic, ownerLogic))
                 .Add(">>MEDÁL VISSZAVONÁSA", () => this.met.RemoveMedalById(directotLogic))
-                .Add(">>A FOKOZATOKBÓL ENNYIT NYERTEK", () => this.met.DegreeNumb(directotLogic))
+                .Add(">>A FOKOZATOKBÓL ENNYIT NYERTEK", () => this.met.PrintList(directotLogic.DegreeNumb()))
+                .Add(">>A FOKOZATOKBÓL ENNYIT NYERTEK ASYNC", () => this.met.ProcessTaskData(directotLogic.DegreeNumbAsync()))
                 .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
             dmenu.Show();
         }
@@ -137,8 +138,10 @@ namespace KutyaVerseny.Program
             var lomenu = new ConsoleMenu()
                 .Add(">>SAJÁT KUTYÁID KILISTÁZÁSA", () => this.met.GetYourDogs(ownerLogic, name))
                 .Add(">>KUTYÁID KÖZÜL EGY KILISTÁZÁSA", () => this.met.GetDogById(ownerLogic, name))
-                .Add(">>KUTYÁID ÉRMEI", () => this.met.DogsMedal(ownerLogic, name))
-                .Add(">>KUTYÁID BEAVATKOZÁSAI", () => this.met.DogsInterventions(ownerLogic, name))
+                .Add(">>KUTYÁID ÉRMEI", () => this.met.PrintList(ownerLogic.DogsMedals(name)))
+                .Add(">>KUTYÁID ÉRMEI ASYNC", () => this.met.ProcessTaskData(ownerLogic.DogMedalsAsync(name)))
+                .Add(">>KUTYÁID BEAVATKOZÁSAI", () => this.met.PrintList(ownerLogic.DogsInterventions(name)))
+                .Add(">>KUTYÁID BEAVATKOZÁSAI ASYNC", () => this.met.ProcessTaskData(ownerLogic.DogInterventionsAsync(name)))
                 .Add(">>MÓDOSÍTÁSOK", () => this.ChangeingMenuDog(ownerLogic, name))
                 .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
             lomenu.Show();

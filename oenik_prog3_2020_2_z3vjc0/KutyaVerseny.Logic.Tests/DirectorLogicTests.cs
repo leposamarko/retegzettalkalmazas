@@ -51,13 +51,11 @@ namespace KutyaVerseny.Logic.Tests
                 new Medal() { MedalId = 2, Degree = "test", Category = "justtest" },
                 new Medal() { MedalId = 3, Degree = "test2", Category = "justtest" },
             };
-            Mock<DirectorLogic> mlog = new Mock<DirectorLogic>();
-            mlog.Setup(mas => mas.DegreeNumb()).Returns(new List<string>());
             medalrepo.Setup(rep => rep.GetAll()).Returns(m.AsQueryable());
             string result = $"Degree={m[0].Degree}, ConuntWin={2}";
-            DirectorLogic log = mlog.Object;
+            DirectorLogic log = new DirectorLogic(medalrepo.Object,null);
             Assert.That(log.DegreeNumb()[0], Is.EquivalentTo(result));
-            mlog.Verify(ma => ma.DegreeNumb(), Times.Once);
+            medalrepo.Verify(ma => ma.GetAll(), Times.Once);
         }
     }
 }

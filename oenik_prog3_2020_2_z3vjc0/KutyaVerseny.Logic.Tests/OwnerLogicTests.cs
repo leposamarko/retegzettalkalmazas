@@ -85,6 +85,8 @@ namespace KutyaVerseny.Logic.Tests
             OwnerLogic log = new OwnerLogic(dogrepo.Object, medalrepo.Object);
             List<string> methodresutl = log.DogsMedals(name);
             Assert.That(methodresutl[0], Is.EquivalentTo(epm[0].ToString()));
+            dogrepo.Verify(rep => rep.GetAll(), Times.Once);
+            medalrepo.Verify(rep => rep.GetAll(), Times.Once);
         }
 
         [Test]
@@ -116,6 +118,8 @@ namespace KutyaVerseny.Logic.Tests
             string expected = $"neve={d.DogName}, fajtaja={d.Breed}, Desript={inters[1].Desript}, Doctor={inters[1].Doctor}, Cost={inters[1].Cost}";
             OwnerLogic log = new OwnerLogic(dogrepo.Object, intrepo.Object,null);
             Assert.That(log.DogsInterventions(name)[0], Is.EquivalentTo(expected));
+            dogrepo.Verify(rep => rep.GetAll(), Times.Once);
+            intrepo.Verify(rep => rep.GetAll(), Times.Once);
         }
     }
 

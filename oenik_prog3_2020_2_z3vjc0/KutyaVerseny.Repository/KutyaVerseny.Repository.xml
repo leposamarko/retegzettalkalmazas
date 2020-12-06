@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KutyaVerseny.Repository</name>
+    </assembly>
+    <members>
+        <member name="T:KutyaVerseny.Repository.DogRepository">
+            <summary>
+            dog repo.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Repository.DogRepository.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Repository.DogRepository"/> class.
+            </summary>
+            <param name="ctx">database.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.DogRepository.ChangeName(System.Int32,System.String)">
+            <summary>
+            method to change the dog name.
+            </summary>
+            <param name="id">dog id.</param>
+            <param name="name">new owner name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.DogRepository.ChangeOwner(System.Int32,System.String)">
+            <summary>
+            method to change owner name.
+            </summary>
+            <param name="id">dog id.</param>
+            <param name="owner">new name of owner.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.DogRepository.DogNeutering(System.Int32)">
+            <summary>
+            chang the dog gender to neutering.
+            </summary>
+            <param name="chipnumb">dog cip id.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.DogRepository.GetOne(System.Int32)">
+            <summary>
+            Method to get one dog.
+            </summary>
+            <param name="id">dog id.</param>
+            <returns>a dog.</returns>
+        </member>
+        <member name="T:KutyaVerseny.Repository.IDogRepository">
+            <summary>
+            Dog repo.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IDogRepository.ChangeName(System.Int32,System.String)">
+            <summary>
+            Dog name changeing method.
+            </summary>
+            <param name="id">dog id.</param>
+            <param name="name">the new dog name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IDogRepository.ChangeOwner(System.Int32,System.String)">
+            <summary>
+            Dog owner changeing method.
+            </summary>
+            <param name="id">dog id.</param>
+            <param name="owner">new owner name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IDogRepository.DogNeutering(System.Int32)">
+            <summary>
+            chang the dog gender to neutering.
+            </summary>
+            <param name="chipnumb">dog cip id.</param>
+        </member>
+        <member name="T:KutyaVerseny.Repository.IInterventionRepositry">
+            <summary>
+            intervention repo.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IInterventionRepositry.ChangeDoctor(System.Int32,System.String)">
+            <summary>
+            method to change the doctor name.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="name">doctor name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IInterventionRepositry.ChangeDocPhone(System.Int32,System.Int32)">
+            <summary>
+            method to change the doctro phone number.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="num">new number.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IInterventionRepositry.ChangeDesript(System.Int32,System.String)">
+            <summary>
+            method to change the desription.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="txt">new destripton.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IInterventionRepositry.ChangeCost(System.Int32,System.Int32)">
+            <summary>
+            method to change the cost of intervention.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="nc">new cost.</param>
+        </member>
+        <member name="T:KutyaVerseny.Repository.IMedalRepository">
+            <summary>
+            meda repo.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IMedalRepository.ChangeDegree(System.Int32,System.String)">
+            <summary>
+            method to change the degree of the medal.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="s">new medal degree.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IMedalRepository.ChangeRaceName(System.Int32,System.String)">
+            <summary>
+            method to change the race name.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="s">new race name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IMedalRepository.ChangeCategory(System.Int32,System.String)">
+            <summary>
+            method to change the category.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="s">new cahtery name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IMedalRepository.ChangeStratersNum(System.Int32,System.Int32)">
+            <summary>
+            method to change the starters number on the race.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="db">new number of staters.</param>
+        </member>
+        <member name="T:KutyaVerseny.Repository.InterventionRepository">
+            <summary>
+            intervention repo.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Repository.InterventionRepository.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Repository.InterventionRepository"/> class.
+            </summary>
+            <param name="ctx">datatbase.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.InterventionRepository.ChangeCost(System.Int32,System.Int32)">
+            <summary>
+            method to change the cost of intervention.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="nc">new cost.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.InterventionRepository.ChangeDesript(System.Int32,System.String)">
+            <summary>
+            method to change the desription.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="txt">new destripton.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.InterventionRepository.ChangeDocPhone(System.Int32,System.Int32)">
+            <summary>
+            method to change the doctro phone number.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="num">new number.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.InterventionRepository.ChangeDoctor(System.Int32,System.String)">
+            <summary>
+            method to change the doctor name.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="name">doctor name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.InterventionRepository.GetOne(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:KutyaVerseny.Repository.IRepository`1">
+            <summary>
+            main repositroy.
+            </summary>
+            <typeparam name="T">Main.</typeparam>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IRepository`1.GetOne(System.Int32)">
+            <summary>
+            Return with one object.
+            </summary>
+            <param name="id">Fint the object from id.</param>
+            <returns>An T generic object.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IRepository`1.GetAll">
+            <summary>
+            Get back all of the data from the object.
+            </summary>
+            <returns>An IQueryable list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IRepository`1.Add(`0)">
+            <summary>
+            Add item for the database.
+            </summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IRepository`1.Remove(`0)">
+            <summary>
+            Remove the item from the database.
+            </summary>
+            <param name="item">Item to remove from database.</param>
+        </member>
+        <member name="T:KutyaVerseny.Repository.MedalRepository">
+            <summary>
+            medalrepo.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Repository.MedalRepository.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Repository.MedalRepository"/> class.
+            </summary>
+            <param name="ctx">database.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.MedalRepository.ChangeCategory(System.Int32,System.String)">
+            <summary>
+            method to change the category.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="s">new cahtery name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.MedalRepository.ChangeDegree(System.Int32,System.String)">
+            <summary>
+            method to change the degree of the medal.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="s">new medal degree.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.MedalRepository.ChangeRaceName(System.Int32,System.String)">
+            <summary>
+            method to change the race name.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="s">new race name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.MedalRepository.ChangeStratersNum(System.Int32,System.Int32)">
+            <summary>
+            method to change the starters number on the race.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="db">new number of staters.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.MedalRepository.GetOne(System.Int32)">
+            <summary>
+            get one medal object.
+            </summary>
+            <param name="id">id of searching medal.</param>
+            <returns>a medal.</returns>
+        </member>
+        <member name="T:KutyaVerseny.Repository.Repository`1">
+            <summary>
+            repositry class.
+            </summary>
+            <typeparam name="T">unknow object.</typeparam>
+        </member>
+        <member name="P:KutyaVerseny.Repository.Repository`1.Ctx">
+            <summary>
+            Gets or sets ctx.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Repository.Repository`1.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Repository.Repository`1"/> class.
+            constructor.
+            </summary>
+            <param name="ctx">ctx is the context.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.Repository`1.GetAll">
+            <summary>
+            list all data from the T.
+            </summary>
+            <returns>Iqueryable list with all data.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Repository.Repository`1.GetOne(System.Int32)">
+            <summary>
+            Take the searched one item.
+            </summary>
+            <param name="id">id of the searching item.</param>
+            <returns>an item.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Repository.Repository`1.Remove(`0)">
+            <summary>
+            methond to remov an item.
+            </summary>
+            <param name="item">item to remove.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.Repository`1.Add(`0)">
+            <summary>
+            method to add an item.
+            </summary>
+            <param name="item">item to add.</param>
+        </member>
+    </members>
+</doc>

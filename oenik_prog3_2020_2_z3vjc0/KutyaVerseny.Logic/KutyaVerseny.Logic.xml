@@ -1,0 +1,525 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KutyaVerseny.Logic</name>
+    </assembly>
+    <members>
+        <member name="T:KutyaVerseny.Logic.DirectorLogic">
+            <summary>
+            director logic class.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.#ctor(KutyaVerseny.Repository.IMedalRepository,KutyaVerseny.Repository.IDogRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Logic.DirectorLogic"/> class.
+            </summary>
+            <param name="repo">medalrepo.</param>
+            <param name="dogrepo">dogrepo.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.#ctor(KutyaVerseny.Repository.IMedalRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Logic.DirectorLogic"/> class.
+            </summary>
+            <param name="repo">medalrepo.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.ChangeMedalDegree(System.Int32,System.String)">
+            <summary>
+            method to change the degree of the medal.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="s">new medal degree.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.ChangeMedalRaceName(System.Int32,System.String)">
+            <summary>
+            method to change the race name.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="s">new race name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.ChangeMedalCategory(System.Int32,System.String)">
+            <summary>
+            method to change the category.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="s">new cahtery name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.ChangeMedalStratersNum(System.Int32,System.Int32)">
+            <summary>
+            method to change the starters number on the race.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="db">new number of staters.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.GetAllMedal">
+            <summary>
+            get all medal.
+            </summary>
+            <returns>all medal.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.GetMedal(System.Int32)">
+            <summary>
+            get one medal by id.
+            </summary>
+            <param name="id">medal id.</param>
+            <returns>a medal.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.AddMedal(KutyaVerseny.Data.Models.Medal)">
+            <summary>
+            Add a new medal.
+            </summary>
+            <param name="m">medal.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.RemoveMedal(KutyaVerseny.Data.Models.Medal)">
+            <summary>
+            Remove a medal.
+            </summary>
+            <param name="m">medal to remove.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.DogsWithThisDegree(System.String)">
+            <summary>
+            get the dogs whos won this type of medal.
+            </summary>
+            <param name="degree">type of medal.</param>
+            <returns>dog list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.DegreeNumb">
+            <summary>
+            number of medals.
+            </summary>
+            <param name="directorLogic">directorLogic.</param>
+            <returns>string list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DirectorLogic.DegreeNumbAsync">
+            <summary>
+            task.
+            </summary>
+            <param name="name">name of owner.</param>
+            <returns>Task</returns>
+        </member>
+        <member name="T:KutyaVerseny.Logic.DoctorLogic">
+            <summary>
+            doctro logic.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DoctorLogic.#ctor(KutyaVerseny.Repository.IInterventionRepositry,KutyaVerseny.Repository.IDogRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Logic.DoctorLogic"/> class.
+            intervention logic.
+            </summary>
+            <param name="repo">repo.</param>
+            <param name="dogRepo">dogrepo.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DoctorLogic.#ctor(KutyaVerseny.Repository.IInterventionRepositry)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Logic.DoctorLogic"/> class.
+            </summary>
+            <param name="repo">repository.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DoctorLogic.ChangeInterventionDocPhone(System.Int32,System.Int32)">
+            <summary>
+            method to change the doctro phone number.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="num">new number.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DoctorLogic.ChangeInterventionDescript(System.Int32,System.String)">
+            <summary>
+            method to change the desription.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="txt">new destripton.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DoctorLogic.ChangeInterventionCost(System.Int32,System.Int32)">
+            <summary>
+            method to change the cost of intervention.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="nc">new cost.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DoctorLogic.GetAllIntervention">
+            <summary>
+            get all intervention from database.
+            </summary>
+            <returns>all intervetnion.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DoctorLogic.GetIntervention(System.Int32)">
+            <summary>
+            Take a intervention by id.
+            </summary>
+            <param name="id">intervention id.</param>
+            <returns>a intervention.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DoctorLogic.Add(KutyaVerseny.Data.Models.Intervention)">
+            <summary>
+            Add Intervention.
+            </summary>
+            <param name="i">Intervention.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DoctorLogic.Remov(KutyaVerseny.Data.Models.Intervention)">
+            <summary>
+            Remove an Intervention.
+            </summary>
+            <param name="i">Intervention.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DoctorLogic.AllDoctor">
+            <summary>
+            return all doctor.
+            </summary>
+            <returns>string list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DoctorLogic.AllInterventionForDoc(System.String)">
+            <summary>
+            Docotrs interventions.
+            </summary>
+            <param name="name">doctor name.</param>
+            <returns>list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.DoctorLogic.DogNeutering(System.Int32)">
+            <summary>
+            Dog neutering.
+            </summary>
+            <param name="chipNum">dog chip number.</param>
+        </member>
+        <member name="T:KutyaVerseny.Logic.IDirectorLogic">
+            <summary>
+            interface of director logic.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDirectorLogic.ChangeMedalDegree(System.Int32,System.String)">
+            <summary>
+            method to change the degree of the medal.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="s">new medal degree.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDirectorLogic.ChangeMedalRaceName(System.Int32,System.String)">
+            <summary>
+            method to change the race name.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="s">new race name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDirectorLogic.ChangeMedalCategory(System.Int32,System.String)">
+            <summary>
+            method to change the category.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="s">new cahtery name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDirectorLogic.ChangeMedalStratersNum(System.Int32,System.Int32)">
+            <summary>
+            method to change the starters number on the race.
+            </summary>
+            <param name="id">medal id.</param>
+            <param name="db">new number of staters.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDirectorLogic.GetAllMedal">
+            <summary>
+            get all medal from database.
+            </summary>
+            <returns>all dogs.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDirectorLogic.GetMedal(System.Int32)">
+            <summary>
+            Take a madal by id.
+            </summary>
+            <param name="id">medal id.</param>
+            <returns>a medal.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDirectorLogic.AddMedal(KutyaVerseny.Data.Models.Medal)">
+            <summary>
+            Add a new medal.
+            </summary>
+            <param name="m">medal.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDirectorLogic.RemoveMedal(KutyaVerseny.Data.Models.Medal)">
+            <summary>
+            remove medal by id.
+            </summary>
+            <param name="m">id of the medal.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDirectorLogic.DogsWithThisDegree(System.String)">
+            <summary>
+            retrun the lis of dogs, who won gold, silver or bronz medal in races.
+            </summary>
+            <param name="degree">medal degree.</param>
+            <returns>list of dogs.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDirectorLogic.DegreeNumb">
+            <summary>
+            number of medals.
+            </summary>
+            <param name="directorLogic">directorLogic.</param>
+            <returns>string list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDirectorLogic.DegreeNumbAsync">
+            <summary>
+            task of noncroud.
+            </summary>
+            <returns>list task.</returns>
+        </member>
+        <member name="T:KutyaVerseny.Logic.IDoctorLogic">
+            <summary>
+            interface of doglogic.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDoctorLogic.AllDoctor">
+            <summary>
+            list all doctor.
+            </summary>
+            <returns>string list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDoctorLogic.ChangeInterventionDocPhone(System.Int32,System.Int32)">
+            <summary>
+            method to change the doctro phone number.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="num">new number.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDoctorLogic.ChangeInterventionDescript(System.Int32,System.String)">
+            <summary>
+            method to change the desription.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="txt">new destripton.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDoctorLogic.ChangeInterventionCost(System.Int32,System.Int32)">
+            <summary>
+            method to change the cost of intervention.
+            </summary>
+            <param name="id">intervention id.</param>
+            <param name="nc">new cost.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDoctorLogic.GetAllIntervention">
+            <summary>
+            get all intervention from database.
+            </summary>
+            <returns>all intervetnion.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDoctorLogic.GetIntervention(System.Int32)">
+            <summary>
+            Take a intervention by id.
+            </summary>
+            <param name="id">intervention id.</param>
+            <returns>a intervention.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDoctorLogic.Add(KutyaVerseny.Data.Models.Intervention)">
+            <summary>
+            Add an Intervention.
+            </summary>
+            <param name="i">Intervention.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDoctorLogic.Remov(KutyaVerseny.Data.Models.Intervention)">
+            <summary>
+            Remova an Intervention.
+            </summary>
+            <param name="i">Intervention.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDoctorLogic.AllInterventionForDoc(System.String)">
+            <summary>
+            list the intervention for a doctro.
+            </summary>
+            <param name="name">name of the doctor.</param>
+            <returns>list of intervention.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IDoctorLogic.DogNeutering(System.Int32)">
+            <summary>
+            Dog neutering.
+            </summary>
+            <param name="chipNum">dog chip number.</param>
+        </member>
+        <member name="T:KutyaVerseny.Logic.IOwnerLogic">
+            <summary>
+            interface.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.GetYourDogByChip(System.Int32)">
+            <summary>
+            Take a dog by id.
+            </summary>
+            <param name="id">dog id.</param>
+            <returns>a dog.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.ChangeDogName(System.Int32,System.String)">
+            <summary>
+            Dog name changeing method.
+            </summary>
+            <param name="id">dog id.</param>
+            <param name="name">the new dog name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.GetYourDogs(System.String)">
+            <summary>
+             get all off your dogs from database.
+            </summary>
+            <param name="name">name.</param>
+            <returns>list of dogs.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.GetAllDogs">
+            <summary>
+            get all dogs from database.
+            </summary>
+            <returns>all dogs.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.AddDog(KutyaVerseny.Data.Models.Dog)">
+            <summary>
+            Add dog.
+            </summary>
+            <param name="d">dog.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.RemoveDog(KutyaVerseny.Data.Models.Dog)">
+            <summary>
+            Remove a dog.
+            </summary>
+            <param name="d">dog.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.GetAllIntervention(System.Int32)">
+            <summary>
+            get all intervention from database.
+            </summary>
+            <param name="chipnumb">chipnumber.</param>
+            <returns>list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.GetAllMedal(System.Int32)">
+            <summary>
+            get all medal from database.
+            </summary>
+            /// <param name="chipnumb">chipnumber.</param>
+            <returns>all dogs.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.DogsMedals(System.String)">
+            <summary>
+            dogmedals.
+            </summary>
+            <param name="name">name of dog.</param>
+            <returns>string list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.DogInterventionsAsync(System.String)">
+            <summary>
+            task croud.
+            </summary>
+            <param name="name">name of owner.</param>
+            <returns>task list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.DogMedalsAsync(System.String)">
+            <summary>
+            task croud.
+            </summary>
+            <param name="name">name of owner.</param>
+            <returns>task list.</returns>
+        </member>
+        <member name="T:KutyaVerseny.Logic.OwnerLogic">
+            <summary>
+            class of owner logic.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.#ctor(KutyaVerseny.Repository.IDogRepository,KutyaVerseny.Repository.IInterventionRepositry,KutyaVerseny.Repository.IMedalRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Logic.OwnerLogic"/> class.
+            </summary>
+            <param name="repo">repo.</param>
+            <param name="intRepo">intRepo.</param>
+            <param name="medalRepo">medalRepo.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.#ctor(KutyaVerseny.Repository.IDogRepository,KutyaVerseny.Repository.IMedalRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Logic.OwnerLogic"/> class.
+            </summary>
+            <param name="repo">repo.</param>
+            <param name="medalRepo">medalRepo.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.#ctor(KutyaVerseny.Repository.IDogRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Logic.OwnerLogic"/> class.
+            ctor with one parameter.
+            </summary>
+            <param name="repo">dog repository.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.AddDog(KutyaVerseny.Data.Models.Dog)">
+            <summary>
+            add a dog.
+            </summary>
+            <param name="d">dog.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.ChangeDogName(System.Int32,System.String)">
+            <summary>
+            change dog name.
+            </summary>
+            <param name="id">id.</param>
+            <param name="name">name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.GetAllDogs">
+            <summary>
+            get all dogs.
+            </summary>
+            <returns>list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.GetAllIntervention(System.Int32)">
+            <summary>
+            get all intervention.
+            </summary>
+            <param name="chipnumb">chipnumb.</param>
+            <returns>list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.GetAllMedal(System.Int32)">
+            <summary>
+            get all medal.
+            </summary>
+            <param name="chipnumb">chipnumb.</param>
+            <returns>list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.GetYourDogByChip(System.Int32)">
+            <summary>
+            get your dog according to chip.
+            </summary>
+            <param name="id">id.</param>
+            <returns>a dog.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.GetYourDogs(System.String)">
+            <summary>
+            get all of your dogs.
+            </summary>
+            <param name="name">name.</param>
+            <returns>list of dogs.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.RemoveDog(KutyaVerseny.Data.Models.Dog)">
+            <summary>
+            delet a dog.
+            </summary>
+            <param name="d">dog.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.AllOwner">
+            <summary>
+            list all owner in the database.
+            </summary>
+            <returns>list of string.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.DogsMedals(System.String)">
+            <summary>
+            dog medals.
+            </summary>
+            <param name="name">naem of owner.</param>
+            <returns>string list.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.DogMedalsAsync(System.String)">
+            <summary>
+            task.
+            </summary>
+            <param name="name">name of owner.</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.DogsInterventions(System.String)">
+            <summary>
+            dog wiht intervetnion.
+            </summary>
+            <param name="name">name.</param>
+            <returns>string list</returns>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.DogInterventionsAsync(System.String)">
+            <summary>
+            task.
+            </summary>
+            <param name="name">name of owner.</param>
+            <returns>Task</returns>
+        </member>
+    </members>
+</doc>

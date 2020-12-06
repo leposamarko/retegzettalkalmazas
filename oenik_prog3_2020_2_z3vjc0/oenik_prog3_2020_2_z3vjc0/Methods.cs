@@ -8,6 +8,7 @@ namespace KutyaVerseny.Program
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Threading.Tasks;
     using ConsoleTools;
     using KutyaVerseny.Data.Models;
     using KutyaVerseny.Logic;
@@ -424,6 +425,34 @@ namespace KutyaVerseny.Program
         public void DegreeNumb(DirectorLogic directorLogic)
         {
             directorLogic.DegreeNumb();
+        }
+
+
+        public void PrintList(List<string> input)
+        {
+            if(input != null)
+            {
+                foreach (var item in input)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            Console.ReadLine();
+        }
+
+        public void ProcessTaskData<T>(Task<T> task)
+        {
+            Task<T> call = task;
+            if (call != null)
+            {
+                call.Wait();
+                T result = call.Result;
+                foreach (var item in result as List<string>)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            Console.ReadLine();
         }
     }
 }

@@ -7,6 +7,7 @@ namespace KutyaVerseny.Logic
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Threading.Tasks;
     using KutyaVerseny.Data.Models;
 
     /// <summary>
@@ -73,5 +74,19 @@ namespace KutyaVerseny.Logic
         /// <param name="name">name of dog.</param>
         /// <returns>string list.</returns>
         List<string> DogsMedals(string name);
+
+        /// <summary>
+        /// task croud.
+        /// </summary>
+        /// <param name="name">name of owner.</param>
+        /// <returns>task list.</returns>
+        Task<List<string>> DogInterventionsAsync(string name);
+
+        /// <summary>
+        /// task croud.
+        /// </summary>
+        /// <param name="name">name of owner.</param>
+        /// <returns>task list.</returns>
+        Task<List<string>> DogMedalsAsync(string name);
     }
 }
