@@ -56,7 +56,7 @@ namespace KutyaVerseny.Repository
         public void DogNeutering(int chipnumb)
         {
             var dog = this.GetOne(chipnumb);
-            dog.Gender = "Ivartalanított";
+            dog.Gender = "semmi";
             this.Ctx.SaveChanges();
         }
 

@@ -212,17 +212,17 @@
             </summary>
             <typeparam name="T">unknow object.</typeparam>
         </member>
-        <member name="P:KutyaVerseny.Repository.MainRepository`1.Ctx">
-            <summary>
-            Gets or sets ctx.
-            </summary>
-        </member>
         <member name="M:KutyaVerseny.Repository.MainRepository`1.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
             <summary>
             Initializes a new instance of the <see cref="T:KutyaVerseny.Repository.MainRepository`1"/> class.
             constructor.
             </summary>
             <param name="ctx">ctx is the context.</param>
+        </member>
+        <member name="P:KutyaVerseny.Repository.MainRepository`1.Ctx">
+            <summary>
+            Gets or sets ctx.
+            </summary>
         </member>
         <member name="M:KutyaVerseny.Repository.MainRepository`1.GetAll">
             <summary>
