@@ -132,7 +132,7 @@ namespace KutyaVerseny.Logic
         /// <returns>list.</returns>
         public List<Intervention> AllInterventionForDoc(string name)
         {
-            return this.interRepo.GetAll().Where(x => x.Doctor.Equals(name)).ToList();
+            return this.interRepo.GetAll().Where(x => x.Doctor == name).ToList();
         }
 
         /// <summary>

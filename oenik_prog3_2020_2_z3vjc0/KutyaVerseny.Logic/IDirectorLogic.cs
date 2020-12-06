@@ -78,7 +78,6 @@ namespace KutyaVerseny.Logic
         /// <summary>
         /// number of medals.
         /// </summary>
-        /// <param name="directorLogic">directorLogic.</param>
         /// <returns>string list.</returns>
         List<string> DegreeNumb();
 

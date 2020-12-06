@@ -14,7 +14,7 @@ namespace KutyaVerseny.Program
     /// id investigator class.
     /// </summary>
     /// <typeparam name="T">dog, medal or Intervention.</typeparam>
-    public static class Investigator<T>
+    public class Investigator<T>
         where T : class
     {
         /// <summary>
@@ -22,31 +22,26 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="m">list of the medal, dog or intervention.</param>
         /// <returns>id.</returns>
-        #pragma warning disable CA1000 // Do not declare static members on generic types
-        public static int IdNumber(List<T> m)
-        #pragma warning restore CA1000 // Do not declare static members on generic types
+        public int IdNumber(List<T> m)
         {
-            #pragma warning disable CA1062 // Validate arguments of public methods
-            Type t = m.GetType();
-            #pragma warning restore CA1062 // Validate arguments of public methods
-            int id;
-            while (true)
+            int id = 0;
+            if (m != null)
             {
-                Console.WriteLine("ID range: 1, " + m.Count + " ->");
-                #pragma warning disable CA1305 // Specify IFormatProvider
-                id = int.Parse(Console.ReadLine());
-                if (id > 0 && id <= m.Count)
+                while (true)
                 {
-                    break;
-                }
-                else
-                {
-                    #pragma warning disable CA1303 // Do not pass literals as localized parameters
-                    Console.WriteLine("THE ID NUMBER IS INVALID");
-                    #pragma warning restore CA1303 // Do not pass literals as localized parameters
+                    Console.WriteLine("ID range: 1, " + m.Count + " ->");
+
+                    id = int.Parse(Console.ReadLine(), null);
+                    if (id > 0 && id <= m.Count)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Methods.PrintMessage("THE ID NUMBER IS INVALID");
+                    }
                 }
             }
-
             return id;
         }
 
@@ -55,20 +50,23 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="ownerLogic">ownerLogic.</param>
         /// <returns>name of owner.</returns>
-        public static string CorrectOwnerLogin(OwnerLogic ownerLogic)
+        public string CorrectOwnerLogin(OwnerLogic ownerLogic)
         {
-            string name;
-            while (true)
+            string name = string.Empty;
+            if (ownerLogic != null)
             {
-                name = Console.ReadLine();
-                if (ownerLogic.AllOwner().Contains(name))
+                while (true)
                 {
-                    Console.WriteLine("Helyes belépési név!");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Nincs ilyen belépési név, adj meg egy újat -> ");
+                    name = Console.ReadLine();
+                    if (ownerLogic.AllOwner().Contains(name))
+                    {
+                        Methods.PrintMessage("Helyes belépési név!");
+                        break;
+                    }
+                    else
+                    {
+                        Methods.PrintMessage("Nincs ilyen belépési név, adj meg egy újat -> ");
+                    }
                 }
             }
 
@@ -80,20 +78,23 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="doctorLogic">doctorLogic.</param>
         /// <returns>name of doctro.</returns>
-        public static string CorrectDoctorLogin(DoctorLogic doctorLogic)
+        public string CorrectDoctorLogin(DoctorLogic doctorLogic)
         {
-            string name;
-            while (true)
+            string name = string.Empty;
+            if (doctorLogic != null)
             {
-                name = Console.ReadLine();
-                if (doctorLogic.AllDoctor().Contains(name))
+                while (true)
                 {
-                    Console.WriteLine("Helyes belépési név!");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Nincs ilyen belépési név, adj meg egy újat -> ");
+                    name = Console.ReadLine();
+                    if (doctorLogic.AllDoctor().Contains(name))
+                    {
+                        Methods.PrintMessage("Helyes belépési név!");
+                        break;
+                    }
+                    else
+                    {
+                        Methods.PrintMessage("Nincs ilyen belépési név, adj meg egy újat -> ");
+                    }
                 }
             }
 

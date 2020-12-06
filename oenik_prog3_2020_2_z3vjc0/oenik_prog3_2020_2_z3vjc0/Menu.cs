@@ -32,8 +32,8 @@ namespace KutyaVerseny.Program
         public void OwnerMenu(OwnerLogic ownerLogic)
         {
             var dmenu = new ConsoleMenu()
-                .Add(">>ÖSSZES GAZDA KILISTÁZÁSA", () => this.met.ListAllOwner(ownerLogic))
-                .Add(">>ÖSSZES KUTYA KIÍRÁSA", () => this.met.ListAllDog(ownerLogic))
+                .Add(">>ÖSSZES GAZDA KILISTÁZÁSA", () => Methods.ListAllOwner(ownerLogic))
+                .Add(">>ÖSSZES KUTYA KIÍRÁSA", () => Methods.ListAllDog(ownerLogic))
                 .Add(">>BELÉPÉS GAZDA NÉVVEL", () => this.LoginWithOwner(ownerLogic))
                 .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
             dmenu.Show();
@@ -47,9 +47,9 @@ namespace KutyaVerseny.Program
         public void DirectorMenu(DirectorLogic directotLogic, OwnerLogic ownerLogic)
         {
             var dmenu = new ConsoleMenu()
-                .Add(">>ÉRMEK LISTÁZÁSA", () => this.met.ListAllMedal(directotLogic))
+                .Add(">>ÉRMEK LISTÁZÁSA", () => Methods.ListAllMedal(directotLogic))
                 .Add(">>MÓDOSÍTÁSOK", () => this.ChangeingMenuMedal(directotLogic))
-                .Add(">>ÚJ MEDÁL KIOSZTÁSA", () => this.met.AddNewMedal(directotLogic, ownerLogic))
+                .Add(">>ÚJ MEDÁL KIOSZTÁSA", () => Methods.AddNewMedal(directotLogic, ownerLogic))
                 .Add(">>MEDÁL VISSZAVONÁSA", () => this.met.RemoveMedalById(directotLogic))
                 .Add(">>A FOKOZATOKBÓL ENNYIT NYERTEK", () => this.met.PrintList(directotLogic.DegreeNumb()))
                 .Add(">>A FOKOZATOKBÓL ENNYIT NYERTEK ASYNC", () => this.met.ProcessTaskData(directotLogic.DegreeNumbAsync()))

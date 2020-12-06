@@ -6,6 +6,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>KutyaVerseny.Repository.xml</DocumentationFile>
+    <WarningsAsErrors>;NU1605</WarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>

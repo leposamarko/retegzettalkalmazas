@@ -120,7 +120,7 @@ namespace KutyaVerseny.Logic
         /// <returns>list of dogs.</returns>
         public IList<Dog> GetYourDogs(string name)
         {
-            return this.dogRepo.GetAll().Where(x => x.OwnerName.Equals(name)).ToList();
+            return this.dogRepo.GetAll().Where(x => x.OwnerName == name).ToList();
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace KutyaVerseny.Logic
         {
             var q1 = from a in this.dogRepo.GetAll().ToList()
                      join b in this.medalRepo.GetAll().ToList() on a.ChipNum equals b.DogChipNum
-                     where a.OwnerName.Equals(name)
+                     where a.OwnerName == name
                      select new
                      {
                          DogName = a.DogName,
@@ -189,7 +189,7 @@ namespace KutyaVerseny.Logic
         {
             var q2 = from a in this.dogRepo.GetAll().ToList()
                      join b in this.intRepo.GetAll().ToList() on a.ChipNum equals b.DogChipNum
-                     where a.OwnerName.Equals(name)
+                     where a.OwnerName == name
                      select new
                      {
                          DogName = a.DogName,

@@ -16,20 +16,48 @@ namespace KutyaVerseny.Program
     /// <summary>
     /// methods class what u can use from the menu.
     /// </summary>
-    public class Methods
+    public static class Methods
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Methods"/> class.
+        /// print messege out.
         /// </summary>
-        public Methods()
+        /// <param name="msg">messege.</param>
+        public static void PrintMessage(string msg)
         {
+            Console.WriteLine(msg);
+        }
+
+        /// <summary>
+        /// Add a new medal.
+        /// </summary>
+        /// <param name="directorLogic">medallogic.</param>
+        /// <param name="ownerLogic">doglogic.</param>
+        public static void AddNewMedal(DirectorLogic directorLogic, OwnerLogic ownerLogic)
+        {
+            if (directorLogic != null && ownerLogic != null)
+            {
+                PrintMessage("GIVE THE DATA OF THE MEDAL:");
+                Medal m = new Medal();
+                Console.WriteLine("NAME OF THE RACE -> ");
+                m.RaceName = Console.ReadLine();
+                Console.WriteLine("NAME OF THE CATEGORY -> ");
+                m.Category = Console.ReadLine();
+                Console.WriteLine("NAME OF THE DEGREE -> ");
+                m.Degree = Console.ReadLine();
+                Console.WriteLine("ID OF THE DOG WHO WIN IT -> ");
+                m.DogChipNum = Investigator<Dog>.IdNumber(ownerLogic.GetAllDogs().ToList());
+                Console.WriteLine("NUMBER OF STARTERS -> ");
+                m.MedalId = directorLogic.GetAllMedal().Count + 1;
+                m.StartersNum = int.Parse(Console.ReadLine(), null);
+                directorLogic.AddMedal(m);
+            }
         }
 
         /// <summary>
         /// list all god.
         /// </summary>
         /// <param name="ownerLogic">log.</param>
-        public void ListAllDog(OwnerLogic ownerLogic)
+        public static void ListAllDog(OwnerLogic ownerLogic)
         {
             System.Console.WriteLine("\n:: ALL DOGS ::\n");
             ownerLogic.GetAllDogs().ToList()
@@ -41,7 +69,7 @@ namespace KutyaVerseny.Program
         /// list all meda.
         /// </summary>
         /// <param name="dirctorLogic">medalog.</param>
-        public void ListAllMedal(DirectorLogic dirctorLogic)
+        public static void ListAllMedal(DirectorLogic dirctorLogic)
         {
             System.Console.WriteLine("\n:: ALL MEDALS ::\n");
             dirctorLogic.GetAllMedal().ToList()
@@ -53,7 +81,7 @@ namespace KutyaVerseny.Program
         /// List All Intervention.
         /// </summary>
         /// <param name="doctroLogic">intervention log.</param>
-        public void ListAllIntervention(DoctorLogic doctroLogic)
+        public static void ListAllIntervention(DoctorLogic doctroLogic)
         {
             System.Console.WriteLine("\n:: ALLL INTERVENTIONS ::\n");
             doctroLogic.GetAllIntervention().ToList()
@@ -65,7 +93,7 @@ namespace KutyaVerseny.Program
         /// change medal category.
         /// </summary>
         /// <param name="directroLogic">medallogic.</param>
-        public void ChangeMedalCategory(DirectorLogic directroLogic)
+        public static void ChangeMedalCategory(DirectorLogic directroLogic)
         {
             int id = Investigator<Medal>.IdNumber(directroLogic.GetAllMedal().ToList());
             Console.WriteLine("New name of Category ->");
@@ -77,7 +105,7 @@ namespace KutyaVerseny.Program
         /// Change medal degree.
         /// </summary>
         /// <param name="directorLogic">medal logic.</param>
-        public void ChangeMedalDegree(DirectorLogic directorLogic)
+        public static void ChangeMedalDegree(DirectorLogic directorLogic)
         {
             int id = Investigator<Medal>.IdNumber(directorLogic.GetAllMedal().ToList());
             Console.WriteLine(">> NEW DEGREE:");
@@ -85,34 +113,13 @@ namespace KutyaVerseny.Program
             directorLogic.ChangeMedalDegree(id, degree);
         }
 
-        /// <summary>
-        /// Add a new medal.
-        /// </summary>
-        /// <param name="directorLogic">medallogic.</param>
-        /// <param name="ownerLogic">doglogic.</param>
-        public void AddNewMedal(DirectorLogic directorLogic, OwnerLogic ownerLogic)
-        {
-            Console.WriteLine("GIVE THE DATA OF THE MEDAL:");
-            Medal m = new Medal();
-            Console.WriteLine("NAME OF THE RACE -> ");
-            m.RaceName = Console.ReadLine();
-            Console.WriteLine("NAME OF THE CATEGORY -> ");
-            m.Category = Console.ReadLine();
-            Console.WriteLine("NAME OF THE DEGREE -> ");
-            m.Degree = Console.ReadLine();
-            Console.WriteLine("ID OF THE DOG WHO WIN IT -> ");
-            m.DogChipNum = Investigator<Dog>.IdNumber(ownerLogic.GetAllDogs().ToList());
-            Console.WriteLine("NUMBER OF STARTERS -> ");
-            m.MedalId = directorLogic.GetAllMedal().Count + 1;
-            m.StartersNum = int.Parse(Console.ReadLine());
-            directorLogic.AddMedal(m);
-        }
+        
 
         /// <summary>
         /// get a medal according to id.
         /// </summary>
         /// <param name="diredtorLogic">medallogic.</param>
-        public void GetMedalById(DirectorLogic diredtorLogic)
+        public static void GetMedalById(DirectorLogic diredtorLogic)
         {
             Console.WriteLine("ID OF THE MEDAL WHAT YOU WANT TO LIST");
             int id = Investigator<Medal>.IdNumber(diredtorLogic.GetAllMedal().ToList());
@@ -125,7 +132,7 @@ namespace KutyaVerseny.Program
         /// remove a medal according to id.
         /// </summary>
         /// <param name="directorLogic">medallogic.</param>
-        public void RemoveMedalById(DirectorLogic directorLogic)
+        public static void RemoveMedalById(DirectorLogic directorLogic)
         {
             Console.WriteLine("ID OF THE REMOVING MEDAL");
             int id = Investigator<Medal>.IdNumber(directorLogic.GetAllMedal().ToList());
@@ -137,7 +144,7 @@ namespace KutyaVerseny.Program
         /// change the dog name.
         /// </summary>
         /// <param name="ownerLogic">doglogic.</param>
-        public void ChangeDogName(OwnerLogic ownerLogic)
+        public static void ChangeDogName(OwnerLogic ownerLogic)
         {
             Console.WriteLine("ID OF DOG");
             int id = Investigator<Dog>.IdNumber(ownerLogic.GetAllDogs().ToList());
@@ -151,7 +158,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="ownerLogic">doglog.</param>
         /// <param name="name">name.</param>
-        public void AddNewDog(OwnerLogic ownerLogic, string name)
+        public static void AddNewDog(OwnerLogic ownerLogic, string name)
         {
             Console.WriteLine("GIVE THE DATA OF THE DOG");
             Dog d = new Dog();
@@ -172,7 +179,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="ownerLogic">ownerLogic.</param>
         /// <param name="name">name.</param>
-        public void GetDogById(OwnerLogic ownerLogic, string name)
+        public static void GetDogById(OwnerLogic ownerLogic, string name)
         {
             while (true)
             {
@@ -197,7 +204,7 @@ namespace KutyaVerseny.Program
         /// dog remove.
         /// </summary>
         /// <param name="ownerLogic">doglocig.</param>
-        public void RemoveDogById(OwnerLogic ownerLogic)
+        public static void RemoveDogById(OwnerLogic ownerLogic)
         {
             Console.WriteLine("ID OF THE REMOVING MEDAL");
             int id = Investigator<Dog>.IdNumber(ownerLogic.GetAllDogs().ToList());
@@ -210,7 +217,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="doctorLogic">intervention log.</param>
         /// <param name="name">name.</param>
-        public void ChangeInterventionDescript(DoctorLogic doctorLogic, string name)
+        public static void ChangeInterventionDescript(DoctorLogic doctorLogic, string name)
         {
             int id;
             while (true)
@@ -237,7 +244,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="doctorLogic".>intervention logic.</param>
         /// <param name="ownerLogic">dog logic.</param>
-        public void AddNewIntervention(DoctorLogic doctorLogic, OwnerLogic ownerLogic)
+        public static void AddNewIntervention(DoctorLogic doctorLogic, OwnerLogic ownerLogic)
         {
             Console.WriteLine("GIVE THE DATA OF THE INTERVENTION");
             Intervention i = new Intervention();
@@ -260,7 +267,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="doctorLogic">intervention logic.</param>
         /// <param name="name">name.</param>
-        public void GetInterventionById(DoctorLogic doctorLogic, string name)
+        public static void GetInterventionById(DoctorLogic doctorLogic, string name)
         {
             while (true)
             {
@@ -286,7 +293,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="doctorLogic">intervention logic.</param>
         /// <param name="name">name.</param>
-        public void RemoveInterventionById(DoctorLogic doctorLogic, string name)
+        public static void RemoveInterventionById(DoctorLogic doctorLogic, string name)
         {
             int id;
             while (true)
@@ -311,7 +318,7 @@ namespace KutyaVerseny.Program
         /// list all owners, you can login with his name.
         /// </summary>
         /// <param name="ownerLogic">owner logic.</param>
-        public void ListAllOwner(OwnerLogic ownerLogic)
+        public static void ListAllOwner(OwnerLogic ownerLogic)
         {
             List<string> owners = ownerLogic.AllOwner();
             foreach (var item in owners)
@@ -327,7 +334,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="ownerLogic">ownerLogic.</param>
         /// <param name="name">name of owner.</param>
-        public void GetYourDogs(OwnerLogic ownerLogic, string name)
+        public static void GetYourDogs(OwnerLogic ownerLogic, string name)
         {
             foreach (var item in ownerLogic.GetYourDogs(name))
             {
@@ -342,7 +349,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="ownerLogic">ownerLogic.</param>
         /// <param name="name">name.</param>
-        public void DogsMedal(OwnerLogic ownerLogic, string name)
+        public static void DogsMedal(OwnerLogic ownerLogic, string name)
         {
             ownerLogic.DogsMedals(name);
         }
@@ -352,7 +359,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="ownerLogic">ownerLogic.</param>
         /// <param name="name">name.</param>
-        public void DogsInterventions(OwnerLogic ownerLogic, string name)
+        public static void DogsInterventions(OwnerLogic ownerLogic, string name)
         {
             ownerLogic.DogsInterventions(name);
         }
@@ -361,7 +368,7 @@ namespace KutyaVerseny.Program
         /// list all doctors.
         /// </summary>
         /// <param name="doctorLogic">doctorLogic.</param>
-        public void ListAllDoctors(DoctorLogic doctorLogic)
+        public static void ListAllDoctors(DoctorLogic doctorLogic)
         {
             List<string> owners = doctorLogic.AllDoctor();
             foreach (var item in owners)
@@ -377,7 +384,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="doctorLogic">doctorlogic.</param>
         /// <param name="name">nem of doctor.</param>
-        public void AllInterventionByDoctor(DoctorLogic doctorLogic, string name)
+        public static void AllInterventionByDoctor(DoctorLogic doctorLogic, string name)
         {
             foreach (var item in doctorLogic.AllInterventionForDoc(name))
             {
@@ -392,7 +399,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="ownerLogic">ownerlogic.</param>
         /// <param name="doctorLogic">doctrologic.</param>
-        public void Neutering(OwnerLogic ownerLogic, DoctorLogic doctorLogic)
+        public static void Neutering(OwnerLogic ownerLogic, DoctorLogic doctorLogic)
         {
             Console.WriteLine("KUTYA ID-JA AKIT IVARTALANÍTANI KELL ->");
             int id = Investigator<Dog>.IdNumber(ownerLogic.GetAllDogs().ToList());
@@ -404,7 +411,7 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="doctorLogic">doctorLogic.</param>
         /// <param name="name">name.</param>
-        public void DoctorPhoneNum(DoctorLogic doctorLogic, string name)
+        public static void DoctorPhoneNum(DoctorLogic doctorLogic, string name)
         {
             Console.WriteLine("KÉREM AZ ÚJ TELEFONSZÁMOT -> ");
             int num = int.Parse(Console.ReadLine());
@@ -422,15 +429,15 @@ namespace KutyaVerseny.Program
         /// number of the degrees.
         /// </summary>
         /// <param name="directorLogic">directorLogic.</param>
-        public void DegreeNumb(DirectorLogic directorLogic)
+        public static void DegreeNumb(DirectorLogic directorLogic)
         {
             directorLogic.DegreeNumb();
         }
 
 
-        public void PrintList(List<string> input)
+        public static void PrintList(List<string> input)
         {
-            if(input != null)
+            if (input != null)
             {
                 foreach (var item in input)
                 {
@@ -440,7 +447,7 @@ namespace KutyaVerseny.Program
             Console.ReadLine();
         }
 
-        public void ProcessTaskData<T>(Task<T> task)
+        public static void ProcessTaskData<T>(Task<T> task)
         {
             Task<T> call = task;
             if (call != null)
@@ -452,6 +459,7 @@ namespace KutyaVerseny.Program
                     Console.WriteLine(item);
                 }
             }
+
             Console.ReadLine();
         }
     }

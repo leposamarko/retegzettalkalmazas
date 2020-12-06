@@ -130,7 +130,6 @@ namespace KutyaVerseny.Logic
         /// <summary>
         /// number of medals.
         /// </summary>
-        /// <param name="directorLogic">directorLogic.</param>
         /// <returns>string list.</returns>
         public List<string> DegreeNumb()
         {
@@ -147,8 +146,7 @@ namespace KutyaVerseny.Logic
         /// <summary>
         /// task.
         /// </summary>
-        /// <param name="name">name of owner.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         public Task<List<string>> DegreeNumbAsync()
         {
             return Task.Run(() => this.DegreeNumb());
