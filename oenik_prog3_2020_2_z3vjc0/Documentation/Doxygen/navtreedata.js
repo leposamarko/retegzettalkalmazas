@@ -47,7 +47,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_db_8cs_source.html",
-"interface_kutya_verseny_1_1_logic_1_1_i_doctor_logic.html#a05595c7bd9025ce0e06e82ac3a25186d"
+"interface_kutya_verseny_1_1_logic_1_1_i_doctor_logic.html#a2b8e442ba503b53541556e5144591a7e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
