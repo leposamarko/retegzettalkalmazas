@@ -32,9 +32,9 @@ namespace KutyaVerseny.Program
         public void ChangeingMenuMedal(DirectorLogic doctroLogic)
         {
             var mmenu = new ConsoleMenu()
-                .Add(">>CHANGE CATEGORY", () => this.met.ChangeMedalCategory(doctroLogic))
-                .Add(">>CHANGE DEGREE", () => this.met.ChangeMedalDegree(doctroLogic))
-                .Add(">>BACK TO MEDAL MENU", ConsoleMenu.Close);
+                .Add(">>KATEGÓRIA MÓDOSÍTÁSA", () => this.met.ChangeMedalCategory(doctroLogic))
+                .Add(">>FOKOZAT MÓDOSÍTÁSA", () => this.met.ChangeMedalDegree(doctroLogic))
+                .Add(">>VISSZA A FŐ MENÜBE", ConsoleMenu.Close);
             mmenu.Show();
         }
 
@@ -48,7 +48,7 @@ namespace KutyaVerseny.Program
                 .Add(">>ÖSSZES GAZDA KILISTÁZÁSA", () => Methods.ListAllOwner(ownerLogic))
                 .Add(">>ÖSSZES KUTYA KIÍRÁSA", () => Methods.ListAllDog(ownerLogic))
                 .Add(">>BELÉPÉS GAZDA NÉVVEL", () => this.LoginWithOwner(ownerLogic))
-                .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
+                .Add(">>VISSZA A FŐ MENÜBE", ConsoleMenu.Close);
             dmenu.Show();
         }
 
@@ -66,7 +66,7 @@ namespace KutyaVerseny.Program
                 .Add(">>MEDÁL VISSZAVONÁSA", () => this.met.RemoveMedalById(directotLogic))
                 .Add(">>A FOKOZATOKBÓL ENNYIT NYERTEK", () => Methods.PrintList(directotLogic.DegreeNumb()))
                 .Add(">>A FOKOZATOKBÓL ENNYIT NYERTEK ASYNC", () => Methods.ProcessTaskData(directotLogic.DegreeNumbAsync()))
-                .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
+                .Add(">>VISSZA A FŐ MENÜBE", ConsoleMenu.Close);
             dmenu.Show();
         }
 
@@ -81,7 +81,7 @@ namespace KutyaVerseny.Program
                 .Add(">>ÖSSZES ORVOS LISTÁZÁSA", () => Methods.ListAllDoctors(doctorLogic))
                 .Add(">>ÖSSZES BEAVATKOZÁS LISTÁZÁSA", () => Methods.ListAllIntervention(doctorLogic))
                 .Add(">>BELÉPÉS NÉVVEL", () => this.LogiWithDoctor(doctorLogic, ownerLogic))
-                .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
+                .Add(">>VISSZA A FŐ MENÜBE", ConsoleMenu.Close);
             imenu.Show();
         }
 
@@ -98,7 +98,7 @@ namespace KutyaVerseny.Program
                 .Add(">>BEAVATKOZÁS TÖRLÉSE", () => this.met.RemoveInterventionById(doctorLogic, name))
                 .Add(">>KUTYA IVARTALANÍTÁSA", () => this.met.Neutering(ownerLogic, doctorLogic))
                 .Add(">>TELEFONSZÁM MEGVÁLTOZATÁSA", () => Methods.DoctorPhoneNum(doctorLogic, name))
-                .Add(">>BACK TO INTERVENTION MENU", ConsoleMenu.Close);
+                .Add(">>VISSZA", ConsoleMenu.Close);
             imenu.Show();
         }
 
@@ -113,7 +113,7 @@ namespace KutyaVerseny.Program
                 .Add(">>KUTYA ÁTNEVEZÉSE", () => this.met.ChangeDogName(ownerLogic))
                 .Add(">>KUTYA ÖRÖKBEFOGADÁSA", () => Methods.AddNewDog(ownerLogic, name))
                 .Add(">>KUTYA ÖRÖKBE ADÁSA (TÖRLÉSE)", () => this.met.RemoveDogById(ownerLogic))
-                .Add(">>BACK TO DOG MENU", ConsoleMenu.Close);
+                .Add(">>VISSZA", ConsoleMenu.Close);
             mmenu.Show();
         }
 
@@ -143,7 +143,7 @@ namespace KutyaVerseny.Program
                 .Add(">>KUTYÁID BEAVATKOZÁSAI", () => Methods.PrintList(ownerLogic.DogsInterventions(name)))
                 .Add(">>KUTYÁID BEAVATKOZÁSAI ASYNC", () => Methods.ProcessTaskData(ownerLogic.DogInterventionsAsync(name)))
                 .Add(">>MÓDOSÍTÁSOK", () => this.ChangeingMenuDog(ownerLogic, name))
-                .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
+                .Add(">>VISSZA A FŐ MENÜBE", ConsoleMenu.Close);
             lomenu.Show();
         }
 
@@ -171,7 +171,7 @@ namespace KutyaVerseny.Program
                 .Add(">>ÖSSZES BEAVATKOZAS AMIT VÉGZETT", () => Methods.AllInterventionByDoctor(doctorLogic, name))
                 .Add(">>EGY BEAVATKOZÁSS LISTÁZÁSA", () => this.met.GetInterventionById(doctorLogic, name))
                 .Add(">>MÓDOSÍTÁSOK", () => this.ChangeingDoctroMenu(doctorLogic, ownerLogic, name))
-                .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
+                .Add(">>VISSZA A FŐ MENÜBE", ConsoleMenu.Close);
             imenu.Show();
         }
     }

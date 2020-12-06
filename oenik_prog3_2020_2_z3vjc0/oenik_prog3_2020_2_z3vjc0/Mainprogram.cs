@@ -44,7 +44,7 @@ namespace Races
                 .Add(">>BELÉPÉS GAZDIKÉNT", () => m.OwnerMenu(ownerLogic))
                 .Add(">>BELÉPÉS ORVOSKÉNT", () => m.DoctorMenu(doctorLogic, ownerLogic))
                 .Add(">>BELÉPÉS RENDZŐKÉNT", () => m.DirectorMenu(directorLogic, ownerLogic))
-                .Add(">>EXIT", ConsoleMenu.Close);
+                .Add(">>KILÉPÉS", ConsoleMenu.Close);
             menu.Show();
         }
     }
