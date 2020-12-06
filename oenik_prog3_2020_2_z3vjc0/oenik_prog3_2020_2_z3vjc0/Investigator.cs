@@ -1,5 +1,5 @@
-﻿// <copyright file="Investigator.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="Investigator.cs" company="Z3VJC0">
+// Copyright (c) Z3VJC0. All rights reserved.
 // </copyright>
 
 namespace KutyaVerseny.Program
@@ -42,6 +42,7 @@ namespace KutyaVerseny.Program
                     }
                 }
             }
+
             return id;
         }
 

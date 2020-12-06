@@ -1,5 +1,5 @@
-﻿// <copyright file="OwnerLogic.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="OwnerLogic.cs" company="Z3VJC0">
+// Copyright (c) Z3VJC0. All rights reserved.
 // </copyright>
 
 namespace KutyaVerseny.Logic
@@ -174,7 +174,7 @@ namespace KutyaVerseny.Logic
         /// task.
         /// </summary>
         /// <param name="name">name of owner.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         public Task<List<string>> DogMedalsAsync(string name)
         {
             return Task.Run(() => this.DogsMedals(name));
@@ -184,7 +184,7 @@ namespace KutyaVerseny.Logic
         /// dog wiht intervetnion.
         /// </summary>
         /// <param name="name">name.</param>
-        /// <returns>string list</returns>
+        /// <returns>string list.</returns>
         public List<string> DogsInterventions(string name)
         {
             var q2 = from a in this.dogRepo.GetAll().ToList()
@@ -205,7 +205,7 @@ namespace KutyaVerseny.Logic
         /// task.
         /// </summary>
         /// <param name="name">name of owner.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         public Task<List<string>> DogInterventionsAsync(string name)
         {
             return Task.Run(() => this.DogsInterventions(name));

@@ -1,5 +1,5 @@
-﻿// <copyright file="Methods.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="Methods.cs" company="Z3VJC0">
+// Copyright (c) Z3VJC0. All rights reserved.
 // </copyright>
 
 namespace KutyaVerseny.Program
@@ -59,10 +59,13 @@ namespace KutyaVerseny.Program
         /// <param name="ownerLogic">log.</param>
         public static void ListAllDog(OwnerLogic ownerLogic)
         {
-            System.Console.WriteLine("\n:: ALL DOGS ::\n");
-            ownerLogic.GetAllDogs().ToList()
-                .ForEach(x => System.Console.WriteLine(x.ToString()));
-            Console.ReadLine();
+            if (ownerLogic != null)
+            {
+                Methods.PrintMessage("\n:: ALL DOGS ::\n");
+                ownerLogic.GetAllDogs().ToList()
+                    .ForEach(x => System.Console.WriteLine(x.ToString()));
+                Console.ReadLine();
+            }
         }
 
         /// <summary>
@@ -71,10 +74,13 @@ namespace KutyaVerseny.Program
         /// <param name="dirctorLogic">medalog.</param>
         public static void ListAllMedal(DirectorLogic dirctorLogic)
         {
-            System.Console.WriteLine("\n:: ALL MEDALS ::\n");
-            dirctorLogic.GetAllMedal().ToList()
-                .ForEach(x => System.Console.WriteLine(x.ToString()));
-            Console.ReadLine();
+            if (dirctorLogic != null)
+            {
+                Methods.PrintMessage("\n:: ALL MEDALS ::\n");
+                dirctorLogic.GetAllMedal().ToList()
+                    .ForEach(x => System.Console.WriteLine(x.ToString()));
+                Console.ReadLine();
+            }
         }
 
         /// <summary>
@@ -83,10 +89,13 @@ namespace KutyaVerseny.Program
         /// <param name="doctroLogic">intervention log.</param>
         public static void ListAllIntervention(DoctorLogic doctroLogic)
         {
-            System.Console.WriteLine("\n:: ALLL INTERVENTIONS ::\n");
-            doctroLogic.GetAllIntervention().ToList()
-                .ForEach(x => System.Console.WriteLine(x.ToString()));
-            Console.ReadLine();
+            if (doctroLogic != null)
+            {
+                PrintMessage("\n:: ALLL INTERVENTIONS ::\n");
+                doctroLogic.GetAllIntervention().ToList()
+                    .ForEach(x => System.Console.WriteLine(x.ToString()));
+                Console.ReadLine();
+            }
         }
 
         /// <summary>
@@ -95,10 +104,13 @@ namespace KutyaVerseny.Program
         /// <param name="directroLogic">medallogic.</param>
         public static void ChangeMedalCategory(DirectorLogic directroLogic)
         {
-            int id = Investigator<Medal>.IdNumber(directroLogic.GetAllMedal().ToList());
-            Console.WriteLine("New name of Category ->");
-            string categor = Console.ReadLine();
-            directroLogic.ChangeMedalCategory(id, categor);
+            if (directroLogic != null)
+            {
+                int id = Investigator<Medal>.IdNumber(directroLogic.GetAllMedal().ToList());
+                PrintMessage("New name of Category ->");
+                string categor = Console.ReadLine();
+                directroLogic.ChangeMedalCategory(id, categor);
+            }
         }
 
         /// <summary>
@@ -107,13 +119,14 @@ namespace KutyaVerseny.Program
         /// <param name="directorLogic">medal logic.</param>
         public static void ChangeMedalDegree(DirectorLogic directorLogic)
         {
-            int id = Investigator<Medal>.IdNumber(directorLogic.GetAllMedal().ToList());
-            Console.WriteLine(">> NEW DEGREE:");
-            string degree = Console.ReadLine();
-            directorLogic.ChangeMedalDegree(id, degree);
+            if (directorLogic != null)
+            {
+                int id = Investigator<Medal>.IdNumber(directorLogic.GetAllMedal().ToList());
+                PrintMessage(">> NEW DEGREE:");
+                string degree = Console.ReadLine();
+                directorLogic.ChangeMedalDegree(id, degree);
+            }
         }
-
-        
 
         /// <summary>
         /// get a medal according to id.
@@ -121,11 +134,14 @@ namespace KutyaVerseny.Program
         /// <param name="diredtorLogic">medallogic.</param>
         public static void GetMedalById(DirectorLogic diredtorLogic)
         {
-            Console.WriteLine("ID OF THE MEDAL WHAT YOU WANT TO LIST");
-            int id = Investigator<Medal>.IdNumber(diredtorLogic.GetAllMedal().ToList());
-            var med = diredtorLogic.GetMedal(id);
-            Console.WriteLine(med.ToString());
-            Console.ReadLine();
+            if (diredtorLogic != null)
+            {
+                PrintMessage("ID OF THE MEDAL WHAT YOU WANT TO LIST");
+                int id = Investigator<Medal>.IdNumber(diredtorLogic.GetAllMedal().ToList());
+                var med = diredtorLogic.GetMedal(id);
+                PrintMessage(med.ToString());
+                Console.ReadLine();
+            }
         }
 
         /// <summary>
@@ -134,10 +150,13 @@ namespace KutyaVerseny.Program
         /// <param name="directorLogic">medallogic.</param>
         public static void RemoveMedalById(DirectorLogic directorLogic)
         {
-            Console.WriteLine("ID OF THE REMOVING MEDAL");
-            int id = Investigator<Medal>.IdNumber(directorLogic.GetAllMedal().ToList());
-            Medal rm = directorLogic.GetMedal(id);
-            directorLogic.RemoveMedal(rm);
+            if (directorLogic != null)
+            {
+                Methods.PrintMessage("ID OF THE REMOVING MEDAL");
+                int id = Investigator<Medal>.IdNumber(directorLogic.GetAllMedal().ToList());
+                Medal rm = directorLogic.GetMedal(id);
+                directorLogic.RemoveMedal(rm);
+            }
         }
 
         /// <summary>
@@ -146,11 +165,14 @@ namespace KutyaVerseny.Program
         /// <param name="ownerLogic">doglogic.</param>
         public static void ChangeDogName(OwnerLogic ownerLogic)
         {
-            Console.WriteLine("ID OF DOG");
-            int id = Investigator<Dog>.IdNumber(ownerLogic.GetAllDogs().ToList());
-            Console.WriteLine(">> NEW DEGREE:");
-            string name = Console.ReadLine();
-            ownerLogic.ChangeDogName(id, name);
+            if (ownerLogic != null)
+            {
+                PrintMessage("ID OF DOG");
+                int id = Investigator<Dog>.IdNumber(ownerLogic.GetAllDogs().ToList());
+                Console.WriteLine(">> NEW DEGREE:");
+                string name = Console.ReadLine();
+                ownerLogic.ChangeDogName(id, name);
+            }
         }
 
         /// <summary>
@@ -160,18 +182,21 @@ namespace KutyaVerseny.Program
         /// <param name="name">name.</param>
         public static void AddNewDog(OwnerLogic ownerLogic, string name)
         {
-            Console.WriteLine("GIVE THE DATA OF THE DOG");
+            PrintMessage("GIVE THE DATA OF THE DOG");
             Dog d = new Dog();
-            Console.WriteLine("DOG NAME -> ");
+            PrintMessage("DOG NAME -> ");
             d.DogName = Console.ReadLine();
-            Console.WriteLine("OWNER NAME -> ");
+            PrintMessage("OWNER NAME -> ");
             d.OwnerName = name;
-            Console.WriteLine("GENDER -> ");
+            PrintMessage("GENDER -> ");
             d.Gender = Console.ReadLine();
-            Console.WriteLine("BREED -> ");
+            PrintMessage("BREED -> ");
             d.Breed = Console.ReadLine();
-            d.ChipNum = ownerLogic.GetAllDogs().Count + 1;
-            ownerLogic.AddDog(d);
+            if (ownerLogic != null)
+            {
+                d.ChipNum = ownerLogic.GetAllDogs().Count + 1;
+                ownerLogic.AddDog(d);
+            }
         }
 
         /// <summary>
@@ -186,7 +211,7 @@ namespace KutyaVerseny.Program
                 Console.WriteLine("KUTYÁD ID-JA -> ");
                 int id = Investigator<Dog>.IdNumber(ownerLogic.GetAllDogs().ToList());
                 var dog = ownerLogic.GetYourDogByChip(id);
-                if (!dog.OwnerName.Equals(name))
+                if (!(dog.OwnerName == name))
                 {
                     Console.WriteLine("NEM A TE KUTYÁD, ADJ MEG MÁS ID-T ->");
                 }
@@ -222,11 +247,11 @@ namespace KutyaVerseny.Program
             int id;
             while (true)
             {
-                Console.WriteLine("BEAVATKOZÁS ID-JA -> ");
+                PrintMessage("BEAVATKOZÁS ID-JA -> ");
                 id = Investigator<Intervention>.IdNumber(doctorLogic.GetAllIntervention().ToList());
-                if (!doctorLogic.GetIntervention(id).Doctor.Equals(name))
+                if (!(doctorLogic.GetIntervention(id).Doctor == name))
                 {
-                    Console.WriteLine("EZT A BEAVATKZÁST NEM TE VÉGEZTED EL, ADDJ MEG EGY ÚJ ID-T");
+                    PrintMessage("EZT A BEAVATKZÁST NEM TE VÉGEZTED EL, ADDJ MEG EGY ÚJ ID-T");
                 }
                 else
                 {
@@ -234,7 +259,7 @@ namespace KutyaVerseny.Program
                 }
             }
 
-            Console.WriteLine(">> NEW DESCRIPTION :");
+            PrintMessage(">> NEW DESCRIPTION :");
             string desc = Console.ReadLine();
             doctorLogic.ChangeInterventionDescript(id, desc);
         }
@@ -242,24 +267,27 @@ namespace KutyaVerseny.Program
         /// <summary>
         /// add a new interventon.
         /// </summary>
-        /// <param name="doctorLogic".>intervention logic.</param>
+        /// <param name="doctorLogic">intervention logic.</param>
         /// <param name="ownerLogic">dog logic.</param>
         public static void AddNewIntervention(DoctorLogic doctorLogic, OwnerLogic ownerLogic)
         {
-            Console.WriteLine("GIVE THE DATA OF THE INTERVENTION");
-            Intervention i = new Intervention();
-            Console.WriteLine("DESCRIPTION -> ");
-            i.Desript = Console.ReadLine();
-            i.InterventionId = doctorLogic.GetAllIntervention().ToList().Count + 1;
-            Console.WriteLine("COST -> ");
-            i.Cost = int.Parse(Console.ReadLine());
-            Console.WriteLine("NAME OF DOCTOR -> ");
-            i.Doctor = Console.ReadLine();
-            Console.WriteLine();
-            i.DoctorPhone = int.Parse(Console.ReadLine());
-            Console.WriteLine("DOG CHIP NUMBER -> ");
-            i.DogChipNum = Investigator<Dog>.IdNumber(ownerLogic.GetAllDogs().ToList());
-            doctorLogic.Add(i);
+            if (doctorLogic != null && ownerLogic != null)
+            {
+                PrintMessage("GIVE THE DATA OF THE INTERVENTION");
+                Intervention i = new Intervention();
+                PrintMessage("DESCRIPTION -> ");
+                i.Desript = Console.ReadLine();
+                i.InterventionId = doctorLogic.GetAllIntervention().ToList().Count + 1;
+                PrintMessage("COST -> ");
+                i.Cost = int.Parse(Console.ReadLine(), null);
+                PrintMessage("NAME OF DOCTOR -> ");
+                i.Doctor = Console.ReadLine();
+                Console.WriteLine();
+                i.DoctorPhone = int.Parse(Console.ReadLine(), null);
+                PrintMessage("DOG CHIP NUMBER -> ");
+                i.DogChipNum = Investigator<Dog>.IdNumber(ownerLogic.GetAllDogs().ToList());
+                doctorLogic.Add(i);
+            }
         }
 
         /// <summary>
@@ -271,12 +299,12 @@ namespace KutyaVerseny.Program
         {
             while (true)
             {
-                Console.WriteLine("ID OF THE INTERVENTION WHAT YOU WANT TO LIST");
+                PrintMessage("ID OF THE INTERVENTION WHAT YOU WANT TO LIST");
                 int id = Investigator<Intervention>.IdNumber(doctorLogic.GetAllIntervention().ToList());
                 Intervention interv = doctorLogic.GetIntervention(id);
-                if (!interv.Doctor.Equals(name))
+                if (!(interv.Doctor == name))
                 {
-                    Console.WriteLine("Ez az ID-u beavatkozás nem a tiéd, adj meg egy újat -> ");
+                    PrintMessage("Ez az ID-u beavatkozás nem a tiéd, adj meg egy újat -> ");
                 }
                 else
                 {
@@ -298,11 +326,11 @@ namespace KutyaVerseny.Program
             int id;
             while (true)
             {
-                Console.WriteLine("ID  A TÖRLENDŐ BEAVATKOZÁSNAK");
+                PrintMessage("ID  A TÖRLENDŐ BEAVATKOZÁSNAK");
                 id = Investigator<Intervention>.IdNumber(doctorLogic.GetAllIntervention().ToList());
-                if (!doctorLogic.GetIntervention(id).Doctor.Equals(name))
+                if (!(doctorLogic.GetIntervention(id).Doctor == name))
                 {
-                    Console.WriteLine("EZT A BEAVATKOZÁST NEM TE VÉGEZTED EL, ADJ MEG MÁS ID-T!");
+                    PrintMessage("EZT A BEAVATKOZÁST NEM TE VÉGEZTED EL, ADJ MEG MÁS ID-T!");
                 }
                 else
                 {
@@ -320,13 +348,16 @@ namespace KutyaVerseny.Program
         /// <param name="ownerLogic">owner logic.</param>
         public static void ListAllOwner(OwnerLogic ownerLogic)
         {
-            List<string> owners = ownerLogic.AllOwner();
-            foreach (var item in owners)
+            if (ownerLogic != null)
             {
-                Console.WriteLine(item);
-            }
+                List<string> owners = ownerLogic.AllOwner();
+                foreach (var item in owners)
+                {
+                    Console.WriteLine(item);
+                }
 
-            Console.ReadLine();
+                Console.ReadLine();
+            }
         }
 
         /// <summary>
@@ -336,12 +367,15 @@ namespace KutyaVerseny.Program
         /// <param name="name">name of owner.</param>
         public static void GetYourDogs(OwnerLogic ownerLogic, string name)
         {
-            foreach (var item in ownerLogic.GetYourDogs(name))
+            if (ownerLogic != null)
             {
-                Console.WriteLine(item.ToString());
-            }
+                foreach (var item in ownerLogic.GetYourDogs(name))
+                {
+                    Console.WriteLine(item.ToString());
+                }
 
-            Console.ReadLine();
+                Console.ReadLine();
+            }
         }
 
         /// <summary>
@@ -351,7 +385,10 @@ namespace KutyaVerseny.Program
         /// <param name="name">name.</param>
         public static void DogsMedal(OwnerLogic ownerLogic, string name)
         {
-            ownerLogic.DogsMedals(name);
+            if (ownerLogic != null)
+            {
+                ownerLogic.DogsMedals(name);
+            }
         }
 
         /// <summary>
@@ -361,7 +398,10 @@ namespace KutyaVerseny.Program
         /// <param name="name">name.</param>
         public static void DogsInterventions(OwnerLogic ownerLogic, string name)
         {
-            ownerLogic.DogsInterventions(name);
+            if (ownerLogic != null)
+            {
+                ownerLogic.DogsInterventions(name);
+            }
         }
 
         /// <summary>
@@ -370,13 +410,16 @@ namespace KutyaVerseny.Program
         /// <param name="doctorLogic">doctorLogic.</param>
         public static void ListAllDoctors(DoctorLogic doctorLogic)
         {
-            List<string> owners = doctorLogic.AllDoctor();
-            foreach (var item in owners)
+            if (doctorLogic != null)
             {
-                Console.WriteLine(item);
-            }
+                List<string> owners = doctorLogic.AllDoctor();
+                foreach (var item in owners)
+                {
+                    Console.WriteLine(item);
+                }
 
-            Console.ReadLine();
+                Console.ReadLine();
+            }
         }
 
         /// <summary>
@@ -386,12 +429,15 @@ namespace KutyaVerseny.Program
         /// <param name="name">nem of doctor.</param>
         public static void AllInterventionByDoctor(DoctorLogic doctorLogic, string name)
         {
-            foreach (var item in doctorLogic.AllInterventionForDoc(name))
+            if (doctorLogic != null)
             {
-                Console.WriteLine(item.ToString());
-            }
+                foreach (var item in doctorLogic.AllInterventionForDoc(name))
+                {
+                    Console.WriteLine(item.ToString());
+                }
 
-            Console.ReadLine();
+                Console.ReadLine();
+            }
         }
 
         /// <summary>
@@ -401,9 +447,12 @@ namespace KutyaVerseny.Program
         /// <param name="doctorLogic">doctrologic.</param>
         public static void Neutering(OwnerLogic ownerLogic, DoctorLogic doctorLogic)
         {
-            Console.WriteLine("KUTYA ID-JA AKIT IVARTALANÍTANI KELL ->");
-            int id = Investigator<Dog>.IdNumber(ownerLogic.GetAllDogs().ToList());
-            doctorLogic.DogNeutering(id);
+            if (doctorLogic != null && ownerLogic != null)
+            {
+                PrintMessage("KUTYA ID-JA AKIT IVARTALANÍTANI KELL ->");
+                int id = Investigator<Dog>.IdNumber(ownerLogic.GetAllDogs().ToList());
+                doctorLogic.DogNeutering(id);
+            }
         }
 
         /// <summary>
@@ -413,14 +462,17 @@ namespace KutyaVerseny.Program
         /// <param name="name">name.</param>
         public static void DoctorPhoneNum(DoctorLogic doctorLogic, string name)
         {
-            Console.WriteLine("KÉREM AZ ÚJ TELEFONSZÁMOT -> ");
-            int num = int.Parse(Console.ReadLine());
-            foreach (var item in doctorLogic.GetAllIntervention().ToList())
+            if (doctorLogic != null)
             {
-                if (item.Doctor.Equals(name))
+                PrintMessage("KÉREM AZ ÚJ TELEFONSZÁMOT -> ");
+                int num = int.Parse(Console.ReadLine(), null);
+                foreach (var item in doctorLogic.GetAllIntervention().ToList())
                 {
-                    int id = (int)item.InterventionId;
-                    doctorLogic.ChangeInterventionDocPhone(id, num);
+                    if (item.Doctor == name)
+                    {
+                        int id = (int)item.InterventionId;
+                        doctorLogic.ChangeInterventionDocPhone(id, num);
+                    }
                 }
             }
         }
@@ -431,10 +483,16 @@ namespace KutyaVerseny.Program
         /// <param name="directorLogic">directorLogic.</param>
         public static void DegreeNumb(DirectorLogic directorLogic)
         {
-            directorLogic.DegreeNumb();
+            if (directorLogic != null)
+            {
+                directorLogic.DegreeNumb();
+            }
         }
 
-
+        /// <summary>
+        /// print out the non croud methods resutl.
+        /// </summary>
+        /// <param name="input">list string.</param>
         public static void PrintList(List<string> input)
         {
             if (input != null)
@@ -444,9 +502,15 @@ namespace KutyaVerseny.Program
                     Console.WriteLine(item);
                 }
             }
+
             Console.ReadLine();
         }
 
+        /// <summary>
+        /// print out the task non croud.
+        /// </summary>
+        /// <typeparam name="T">generc.</typeparam>
+        /// <param name="task">tack.</param>
         public static void ProcessTaskData<T>(Task<T> task)
         {
             Task<T> call = task;

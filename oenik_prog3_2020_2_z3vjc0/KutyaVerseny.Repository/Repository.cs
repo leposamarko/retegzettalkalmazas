@@ -1,5 +1,5 @@
-﻿// <copyright file="Repository.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="Repository.cs" company="Z3VJC0">
+// Copyright (c) Z3VJC0. All rights reserved.
 // </copyright>
 
 namespace KutyaVerseny.Repository

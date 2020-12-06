@@ -1,5 +1,5 @@
-﻿// <copyright file="OwnerLogicTests.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="OwnerLogicTests.cs" company="Z3VJC0">
+// Copyright (c) Z3VJC0. All rights reserved.
 // </copyright>
 
 namespace KutyaVerseny.Logic.Tests
@@ -59,6 +59,10 @@ namespace KutyaVerseny.Logic.Tests
             logic.AddDog(d);
             dogrepo.Verify(r => r.Add(d), Times.Once);
         }
+
+        /// <summary>
+        /// dog medal test.
+        /// </summary>
         [Test]
         public void DogsMedalTest()
         {
@@ -89,6 +93,9 @@ namespace KutyaVerseny.Logic.Tests
             medalrepo.Verify(rep => rep.GetAll(), Times.Once);
         }
 
+        /// <summary>
+        /// dog intervetnions test.
+        /// </summary>
         [Test]
         public void TestDogsInterventions()
         {
@@ -116,7 +123,7 @@ namespace KutyaVerseny.Logic.Tests
             dogrepo.Setup(rep => rep.GetAll()).Returns(dogs.AsQueryable());
             intrepo.Setup(rep => rep.GetAll()).Returns(inters.AsQueryable());
             string expected = $"neve={d.DogName}, fajtaja={d.Breed}, Desript={inters[1].Desript}, Doctor={inters[1].Doctor}, Cost={inters[1].Cost}";
-            OwnerLogic log = new OwnerLogic(dogrepo.Object, intrepo.Object,null);
+            OwnerLogic log = new OwnerLogic(dogrepo.Object, intrepo.Object, null);
             Assert.That(log.DogsInterventions(name)[0], Is.EquivalentTo(expected));
             dogrepo.Verify(rep => rep.GetAll(), Times.Once);
             intrepo.Verify(rep => rep.GetAll(), Times.Once);
@@ -132,11 +139,21 @@ namespace KutyaVerseny.Logic.Tests
         public string Category { get; set; }
         public string Breed { get; set; }
         public string DogName { get; set; }
+        
+        /// <summary>
+        /// overrieded toString.
+        /// </summary>
+        /// <returns>string.</returns>
         public override string ToString()
         {
             return $"DogName = {this.DogName}, Breed= {this.Breed},  Category= {this.Category}, Degree= {this.Degree}";
         }
 
+        /// <summary>
+        /// oveerided equals.
+        /// </summary>
+        /// <param name="obj">other object.</param>
+        /// <returns>true or false.</returns>
         public override bool Equals(object obj)
         {
             if (obj is ExpectedMedals)
@@ -148,9 +165,12 @@ namespace KutyaVerseny.Logic.Tests
             {
                 return false;
             }
-
         }
 
+        /// <summary>
+        /// ovverider gethashcode.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return 0;
