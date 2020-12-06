@@ -14,7 +14,7 @@ namespace KutyaVerseny.Repository
     /// <summary>
     /// dog repo.
     /// </summary>
-    public class DogRepository : Repository<Dog>, IDogRepository
+    public class DogRepository : MainRepository<Dog>, IDogRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DogRepository"/> class.

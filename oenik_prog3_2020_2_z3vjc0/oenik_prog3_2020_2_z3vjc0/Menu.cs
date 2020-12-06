@@ -16,6 +16,8 @@ namespace KutyaVerseny.Program
     /// </summary>
     public class Menu
     {
+        private readonly Methods met = new Methods();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Menu"/> class.
         /// </summary>
@@ -27,11 +29,11 @@ namespace KutyaVerseny.Program
         /// changing medal menu.
         /// </summary>
         /// <param name="doctroLogic">medallogic.</param>
-        public static void ChangeingMenuMedal(DirectorLogic doctroLogic)
+        public void ChangeingMenuMedal(DirectorLogic doctroLogic)
         {
             var mmenu = new ConsoleMenu()
-                .Add(">>CHANGE CATEGORY", () => Methods.ChangeMedalCategory(doctroLogic))
-                .Add(">>CHANGE DEGREE", () => Methods.ChangeMedalDegree(doctroLogic))
+                .Add(">>CHANGE CATEGORY", () => this.met.ChangeMedalCategory(doctroLogic))
+                .Add(">>CHANGE DEGREE", () => this.met.ChangeMedalDegree(doctroLogic))
                 .Add(">>BACK TO MEDAL MENU", ConsoleMenu.Close);
             mmenu.Show();
         }
@@ -60,8 +62,8 @@ namespace KutyaVerseny.Program
             var dmenu = new ConsoleMenu()
                 .Add(">>ÉRMEK LISTÁZÁSA", () => Methods.ListAllMedal(directotLogic))
                 .Add(">>MÓDOSÍTÁSOK", () => this.ChangeingMenuMedal(directotLogic))
-                .Add(">>ÚJ MEDÁL KIOSZTÁSA", () => Methods.AddNewMedal(directotLogic, ownerLogic))
-                .Add(">>MEDÁL VISSZAVONÁSA", () => Methods.RemoveMedalById(directotLogic))
+                .Add(">>ÚJ MEDÁL KIOSZTÁSA", () => this.met.AddNewMedal(directotLogic, ownerLogic))
+                .Add(">>MEDÁL VISSZAVONÁSA", () => this.met.RemoveMedalById(directotLogic))
                 .Add(">>A FOKOZATOKBÓL ENNYIT NYERTEK", () => Methods.PrintList(directotLogic.DegreeNumb()))
                 .Add(">>A FOKOZATOKBÓL ENNYIT NYERTEK ASYNC", () => Methods.ProcessTaskData(directotLogic.DegreeNumbAsync()))
                 .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
@@ -89,12 +91,12 @@ namespace KutyaVerseny.Program
         /// <param name="doctorLogic">doctorLogic.</param>
         /// <param name="ownerLogic">ownerLogic.</param>
         /// <param name="name">name.</param>
-        public static void ChangeingDoctroMenu(DoctorLogic doctorLogic, OwnerLogic ownerLogic, string name)
+        public void ChangeingDoctroMenu(DoctorLogic doctorLogic, OwnerLogic ownerLogic, string name)
         {
             var imenu = new ConsoleMenu()
-                .Add(">>LEÍRÁS MEGVÁLTOZTATÁSA", () => Methods.ChangeInterventionDescript(doctorLogic, name))
-                .Add(">>BEAVATKOZÁS TÖRLÉSE", () => Methods.RemoveInterventionById(doctorLogic, name))
-                .Add(">>KUTYA IVARTALANÍTÁSA", () => Methods.Neutering(ownerLogic, doctorLogic))
+                .Add(">>LEÍRÁS MEGVÁLTOZTATÁSA", () => this.met.ChangeInterventionDescript(doctorLogic, name))
+                .Add(">>BEAVATKOZÁS TÖRLÉSE", () => this.met.RemoveInterventionById(doctorLogic, name))
+                .Add(">>KUTYA IVARTALANÍTÁSA", () => this.met.Neutering(ownerLogic, doctorLogic))
                 .Add(">>TELEFONSZÁM MEGVÁLTOZATÁSA", () => Methods.DoctorPhoneNum(doctorLogic, name))
                 .Add(">>BACK TO INTERVENTION MENU", ConsoleMenu.Close);
             imenu.Show();
@@ -105,12 +107,12 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="ownerLogic">dogLogic.</param>
         /// <param name="name">name.</param>
-        public static void ChangeingMenuDog(OwnerLogic ownerLogic, string name)
+        public void ChangeingMenuDog(OwnerLogic ownerLogic, string name)
         {
             var mmenu = new ConsoleMenu()
-                .Add(">>KUTYA ÁTNEVEZÉSE", () => Methods.ChangeDogName(ownerLogic))
+                .Add(">>KUTYA ÁTNEVEZÉSE", () => this.met.ChangeDogName(ownerLogic))
                 .Add(">>KUTYA ÖRÖKBEFOGADÁSA", () => Methods.AddNewDog(ownerLogic, name))
-                .Add(">>KUTYA ÖRÖKBE ADÁSA (TÖRLÉSE)", () => Methods.RemoveDogById(ownerLogic))
+                .Add(">>KUTYA ÖRÖKBE ADÁSA (TÖRLÉSE)", () => this.met.RemoveDogById(ownerLogic))
                 .Add(">>BACK TO DOG MENU", ConsoleMenu.Close);
             mmenu.Show();
         }
@@ -121,8 +123,8 @@ namespace KutyaVerseny.Program
         /// <param name="ownerLogic">ownerLogic.</param>
         public void LoginWithOwner(OwnerLogic ownerLogic)
         {
-            Console.WriteLine("KÉREM A GAZDA NEVÉT AMIVEL BE AKAR LÉPNI -> ");
-            string name = Investigator<Dog>.CorrectOwnerLogin(ownerLogic);
+            Methods.PrintMessage("KÉREM A GAZDA NEVÉT AMIVEL BE AKAR LÉPNI -> ");
+            string name = new Investigator<Dog>().CorrectOwnerLogin(ownerLogic);
             this.LoginOwnerMenu(name, ownerLogic);
         }
 
@@ -131,11 +133,11 @@ namespace KutyaVerseny.Program
         /// </summary>
         /// <param name="name">name of owner.</param>
         /// <param name="ownerLogic">ownerLogic.</param>
-        public static void LoginOwnerMenu(string name, OwnerLogic ownerLogic)
+        public void LoginOwnerMenu(string name, OwnerLogic ownerLogic)
         {
             var lomenu = new ConsoleMenu()
                 .Add(">>SAJÁT KUTYÁID KILISTÁZÁSA", () => Methods.GetYourDogs(ownerLogic, name))
-                .Add(">>KUTYÁID KÖZÜL EGY KILISTÁZÁSA", () => Methods.GetDogById(ownerLogic, name))
+                .Add(">>KUTYÁID KÖZÜL EGY KILISTÁZÁSA", () => this.met.GetDogById(ownerLogic, name))
                 .Add(">>KUTYÁID ÉRMEI", () => Methods.PrintList(ownerLogic.DogsMedals(name)))
                 .Add(">>KUTYÁID ÉRMEI ASYNC", () => Methods.ProcessTaskData(ownerLogic.DogMedalsAsync(name)))
                 .Add(">>KUTYÁID BEAVATKOZÁSAI", () => Methods.PrintList(ownerLogic.DogsInterventions(name)))
@@ -152,8 +154,8 @@ namespace KutyaVerseny.Program
         /// <param name="ownerLogic">ownerLogic.</param>
         public void LogiWithDoctor(DoctorLogic doctorLogic, OwnerLogic ownerLogic)
         {
-            Console.WriteLine("KÉREM AZ ORVOS NEVÉT -> ");
-            string name = Investigator<Intervention>.CorrectDoctorLogin(doctorLogic);
+            Methods.PrintMessage("KÉREM AZ ORVOS NEVÉT -> ");
+            string name = new Investigator<Intervention>().CorrectDoctorLogin(doctorLogic);
             this.LoginDoctroMenu(doctorLogic, ownerLogic, name);
         }
 
@@ -167,7 +169,7 @@ namespace KutyaVerseny.Program
         {
             var imenu = new ConsoleMenu()
                 .Add(">>ÖSSZES BEAVATKOZAS AMIT VÉGZETT", () => Methods.AllInterventionByDoctor(doctorLogic, name))
-                .Add(">>EGY BEAVATKOZÁSS LISTÁZÁSA", () => Methods.GetInterventionById(doctorLogic, name))
+                .Add(">>EGY BEAVATKOZÁSS LISTÁZÁSA", () => this.met.GetInterventionById(doctorLogic, name))
                 .Add(">>MÓDOSÍTÁSOK", () => this.ChangeingDoctroMenu(doctorLogic, ownerLogic, name))
                 .Add(">>BACK TO MAIN MENU", ConsoleMenu.Close);
             imenu.Show();

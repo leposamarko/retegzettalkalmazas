@@ -206,6 +206,49 @@
             </summary>
             <param name="item">Item to remove from database.</param>
         </member>
+        <member name="T:KutyaVerseny.Repository.MainRepository`1">
+            <summary>
+            repositry class.
+            </summary>
+            <typeparam name="T">unknow object.</typeparam>
+        </member>
+        <member name="P:KutyaVerseny.Repository.MainRepository`1.Ctx">
+            <summary>
+            Gets or sets ctx.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Repository.MainRepository`1.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Repository.MainRepository`1"/> class.
+            constructor.
+            </summary>
+            <param name="ctx">ctx is the context.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.MainRepository`1.GetAll">
+            <summary>
+            list all data from the T.
+            </summary>
+            <returns>Iqueryable list with all data.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Repository.MainRepository`1.GetOne(System.Int32)">
+            <summary>
+            Take the searched one item.
+            </summary>
+            <param name="id">id of the searching item.</param>
+            <returns>an item.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Repository.MainRepository`1.Remove(`0)">
+            <summary>
+            methond to remov an item.
+            </summary>
+            <param name="item">item to remove.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.MainRepository`1.Add(`0)">
+            <summary>
+            method to add an item.
+            </summary>
+            <param name="item">item to add.</param>
+        </member>
         <member name="T:KutyaVerseny.Repository.MedalRepository">
             <summary>
             medalrepo.
@@ -251,49 +294,6 @@
             </summary>
             <param name="id">id of searching medal.</param>
             <returns>a medal.</returns>
-        </member>
-        <member name="T:KutyaVerseny.Repository.Repository`1">
-            <summary>
-            repositry class.
-            </summary>
-            <typeparam name="T">unknow object.</typeparam>
-        </member>
-        <member name="P:KutyaVerseny.Repository.Repository`1.Ctx">
-            <summary>
-            Gets or sets ctx.
-            </summary>
-        </member>
-        <member name="M:KutyaVerseny.Repository.Repository`1.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:KutyaVerseny.Repository.Repository`1"/> class.
-            constructor.
-            </summary>
-            <param name="ctx">ctx is the context.</param>
-        </member>
-        <member name="M:KutyaVerseny.Repository.Repository`1.GetAll">
-            <summary>
-            list all data from the T.
-            </summary>
-            <returns>Iqueryable list with all data.</returns>
-        </member>
-        <member name="M:KutyaVerseny.Repository.Repository`1.GetOne(System.Int32)">
-            <summary>
-            Take the searched one item.
-            </summary>
-            <param name="id">id of the searching item.</param>
-            <returns>an item.</returns>
-        </member>
-        <member name="M:KutyaVerseny.Repository.Repository`1.Remove(`0)">
-            <summary>
-            methond to remov an item.
-            </summary>
-            <param name="item">item to remove.</param>
-        </member>
-        <member name="M:KutyaVerseny.Repository.Repository`1.Add(`0)">
-            <summary>
-            method to add an item.
-            </summary>
-            <param name="item">item to add.</param>
         </member>
     </members>
 </doc>

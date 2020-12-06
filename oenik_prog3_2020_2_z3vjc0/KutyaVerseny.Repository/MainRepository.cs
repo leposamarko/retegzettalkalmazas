@@ -1,4 +1,4 @@
-﻿// <copyright file="Repository.cs" company="Z3VJC0">
+﻿// <copyright file="MainRepository.cs" company="Z3VJC0">
 // Copyright (c) Z3VJC0. All rights reserved.
 // </copyright>
 
@@ -16,7 +16,7 @@ namespace KutyaVerseny.Repository
     /// repositry class.
     /// </summary>
     /// <typeparam name="T">unknow object.</typeparam>
-    public abstract class Repository<T> : IRepository<T>
+    public abstract class MainRepository<T> : IRepository<T>
         where T : class
     {
         /// <summary>
@@ -25,12 +25,12 @@ namespace KutyaVerseny.Repository
         protected DbContext Ctx { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Repository{T}"/> class.
+        /// Initializes a new instance of the <see cref="MainRepository{T}"/> class.
         /// constructor.
         /// </summary>
         /// <param name="ctx">ctx is the context.</param>
         #pragma warning disable SA1201 // Elements should appear in the correct order
-        public Repository(DbContext ctx)
+        public MainRepository(DbContext ctx)
         #pragma warning restore SA1201 // Elements should appear in the correct order
         {
             this.Ctx = ctx;

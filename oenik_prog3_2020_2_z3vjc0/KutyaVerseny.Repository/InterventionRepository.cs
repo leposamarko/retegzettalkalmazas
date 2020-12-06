@@ -14,7 +14,7 @@ namespace KutyaVerseny.Repository
     /// <summary>
     /// intervention repo.
     /// </summary>
-    public class InterventionRepository : Repository<Intervention>, IInterventionRepositry
+    public class InterventionRepository : MainRepository<Intervention>, IInterventionRepositry
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InterventionRepository"/> class.

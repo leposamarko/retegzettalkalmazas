@@ -1,5 +1,5 @@
-﻿// <copyright file="Mainprogram.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="Mainprogram.cs" company="Z3VJC0">
+// Copyright (c) Z3VJC0. All rights reserved.
 // </copyright>
 
 namespace Races
@@ -24,15 +24,17 @@ namespace Races
     /// </summary>
     public static class Mainprogram
     {
+        private static Db Ctx { get; set; }
+
         /// <summary>
         /// start of the program.
         /// </summary>
         public static void Main()
         {
-            Db ctx = new Db();
-            DogRepository dogRepo = new DogRepository(ctx);
-            MedalRepository medalRepo = new MedalRepository(ctx);
-            InterventionRepository intRepo = new InterventionRepository(ctx);
+            Ctx = new Db();
+            DogRepository dogRepo = new DogRepository(Ctx);
+            MedalRepository medalRepo = new MedalRepository(Ctx);
+            InterventionRepository intRepo = new InterventionRepository(Ctx);
             OwnerLogic ownerLogic = new OwnerLogic(dogRepo, intRepo, medalRepo);
             DoctorLogic doctorLogic = new DoctorLogic(intRepo, dogRepo);
             DirectorLogic directorLogic = new DirectorLogic(medalRepo, dogRepo);

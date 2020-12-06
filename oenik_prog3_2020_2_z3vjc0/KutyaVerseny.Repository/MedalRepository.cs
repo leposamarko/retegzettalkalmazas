@@ -14,7 +14,7 @@ namespace KutyaVerseny.Repository
     /// <summary>
     /// medalrepo.
     /// </summary>
-    public class MedalRepository : Repository<Medal>, IMedalRepository
+    public class MedalRepository : MainRepository<Medal>, IMedalRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MedalRepository"/> class.

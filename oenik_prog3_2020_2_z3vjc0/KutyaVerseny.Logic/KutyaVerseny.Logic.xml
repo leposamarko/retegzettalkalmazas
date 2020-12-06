@@ -92,8 +92,7 @@
             <summary>
             task.
             </summary>
-            <param name="name">name of owner.</param>
-            <returns>Task</returns>
+            <returns>Task.</returns>
         </member>
         <member name="T:KutyaVerseny.Logic.DoctorLogic">
             <summary>
@@ -503,21 +502,21 @@
             task.
             </summary>
             <param name="name">name of owner.</param>
-            <returns>Task</returns>
+            <returns>Task.</returns>
         </member>
         <member name="M:KutyaVerseny.Logic.OwnerLogic.DogsInterventions(System.String)">
             <summary>
             dog wiht intervetnion.
             </summary>
             <param name="name">name.</param>
-            <returns>string list</returns>
+            <returns>string list.</returns>
         </member>
         <member name="M:KutyaVerseny.Logic.OwnerLogic.DogInterventionsAsync(System.String)">
             <summary>
             task.
             </summary>
             <param name="name">name of owner.</param>
-            <returns>Task</returns>
+            <returns>Task.</returns>
         </member>
     </members>
 </doc>

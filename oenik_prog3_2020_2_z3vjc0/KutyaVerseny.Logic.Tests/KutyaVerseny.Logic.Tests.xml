@@ -49,9 +49,14 @@
             add dog test.
             </summary>
         </member>
-        <member name="T:KutyaVerseny.Logic.Tests.ExpectedMedals">
+        <member name="M:KutyaVerseny.Logic.Tests.OwnerLogicTests.DogsMedalTest">
             <summary>
-            expected medals.
+            dog medal test.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Logic.Tests.OwnerLogicTests.TestDogsInterventions">
+            <summary>
+            dog intervetnions test.
             </summary>
         </member>
     </members>

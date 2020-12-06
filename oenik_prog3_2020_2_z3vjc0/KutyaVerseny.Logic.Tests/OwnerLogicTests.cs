@@ -78,11 +78,11 @@ namespace KutyaVerseny.Logic.Tests
                 new Medal() { Category = "test3", DogChipNum = 1, Degree = "arany" },
                 new Medal() { Category = "test2", DogChipNum = 2, Degree = "arany" },
             };
-            List<ExpectedMedals> epm = new List<ExpectedMedals>()
+            List<string> epm = new List<string>()
             {
-                new ExpectedMedals() { DogName = "testdog1", Breed = "unknow", Category = "test1", Degree = "arany" },
-                new ExpectedMedals() { DogName = "testdog1", Breed = "unknow", Category = "test3", Degree = "arany" },
-                new ExpectedMedals() { DogName = "testdog2", Breed = "unknow", Category = "test2", Degree = "arany" },
+                { "DogName = testdog1, Breed= unknow, Category = test1, Degree= arany" },
+                { "DogName = testdog1, Breed= unknow, Category = test3, Degree= arany" },
+                { "DogName = testdog2, Breed= unknow, Category = test2, Degree= arany" },
             };
             dogrepo.Setup(rep => rep.GetAll()).Returns(dogs.AsQueryable);
             medalrepo.Setup(rep => rep.GetAll()).Returns(medals.AsQueryable);
@@ -127,53 +127,6 @@ namespace KutyaVerseny.Logic.Tests
             Assert.That(log.DogsInterventions(name)[0], Is.EquivalentTo(expected));
             dogrepo.Verify(rep => rep.GetAll(), Times.Once);
             intrepo.Verify(rep => rep.GetAll(), Times.Once);
-        }
-    }
-
-    /// <summary>
-    /// expected medals.
-    /// </summary>
-    public class ExpectedMedals
-    {
-        public string Degree { get; set; }
-        public string Category { get; set; }
-        public string Breed { get; set; }
-        public string DogName { get; set; }
-        
-        /// <summary>
-        /// overrieded toString.
-        /// </summary>
-        /// <returns>string.</returns>
-        public override string ToString()
-        {
-            return $"DogName = {this.DogName}, Breed= {this.Breed},  Category= {this.Category}, Degree= {this.Degree}";
-        }
-
-        /// <summary>
-        /// oveerided equals.
-        /// </summary>
-        /// <param name="obj">other object.</param>
-        /// <returns>true or false.</returns>
-        public override bool Equals(object obj)
-        {
-            if (obj is ExpectedMedals)
-            {
-                ExpectedMedals other = obj as ExpectedMedals;
-                return this.DogName == other.DogName && this.Degree == other.Degree && this.Category == other.Category && this.Breed == other.Breed;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// ovverider gethashcode.
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return 0;
         }
     }
 }
