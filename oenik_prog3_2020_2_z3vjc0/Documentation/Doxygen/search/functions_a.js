@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['testadddog_280',['TestAddDog',['../class_kutya_verseny_1_1_logic_1_1_tests_1_1_owner_logic_tests.html#aa93ca14118c63f7abc52e64a7c3836c4',1,'KutyaVerseny::Logic::Tests::OwnerLogicTests']]],
-  ['testgetdogs_281',['TestGetDogs',['../class_kutya_verseny_1_1_logic_1_1_tests_1_1_owner_logic_tests.html#a74749d6d6a017be3df0e39f78e96fa79',1,'KutyaVerseny::Logic::Tests::OwnerLogicTests']]],
-  ['tostring_282',['ToString',['../class_kutya_verseny_1_1_data_1_1_models_1_1_dog.html#a41dadb5786eb9b72764abe0df6cf6416',1,'KutyaVerseny.Data.Models.Dog.ToString()'],['../class_kutya_verseny_1_1_data_1_1_models_1_1_intervention.html#a42cde348fb246f2161825a2b6da91aa7',1,'KutyaVerseny.Data.Models.Intervention.ToString()'],['../class_kutya_verseny_1_1_data_1_1_models_1_1_medal.html#a0c54a4f894d6fe2c65cf3066d61d2e00',1,'KutyaVerseny.Data.Models.Medal.ToString()']]]
+  ['remov_284',['Remov',['../class_kutya_verseny_1_1_logic_1_1_doctor_logic.html#a9e94de0e1729fa36e65e5eb5b07ec0cf',1,'KutyaVerseny.Logic.DoctorLogic.Remov()'],['../interface_kutya_verseny_1_1_logic_1_1_i_doctor_logic.html#adce455978138175aca72f8f2bcb64976',1,'KutyaVerseny.Logic.IDoctorLogic.Remov()']]],
+  ['remove_285',['Remove',['../interface_kutya_verseny_1_1_repository_1_1_i_repository.html#a20c598623682b2aaf03cfbe276cf9dd4',1,'KutyaVerseny.Repository.IRepository.Remove()'],['../class_kutya_verseny_1_1_repository_1_1_main_repository.html#ae9ab2714c1e78122768ec6cb5b48afa4',1,'KutyaVerseny.Repository.MainRepository.Remove()']]],
+  ['removedog_286',['RemoveDog',['../interface_kutya_verseny_1_1_logic_1_1_i_owner_logic.html#a75374f6d602d613a743140594bc95eaa',1,'KutyaVerseny.Logic.IOwnerLogic.RemoveDog()'],['../class_kutya_verseny_1_1_logic_1_1_owner_logic.html#a7646400e4a228829261f01f7394f17f7',1,'KutyaVerseny.Logic.OwnerLogic.RemoveDog()']]],
+  ['removedogbyid_287',['RemoveDogById',['../class_kutya_verseny_1_1_program_1_1_methods.html#ac306f2dbba5b88dc4966c50bdaaa10c0',1,'KutyaVerseny::Program::Methods']]],
+  ['removeinterventionbyid_288',['RemoveInterventionById',['../class_kutya_verseny_1_1_program_1_1_methods.html#a2806778d3258ca2b23492e29a9995ad1',1,'KutyaVerseny::Program::Methods']]],
+  ['removemedal_289',['RemoveMedal',['../class_kutya_verseny_1_1_logic_1_1_director_logic.html#ae65518ec0295bf7e057e0d4ac29484d9',1,'KutyaVerseny.Logic.DirectorLogic.RemoveMedal()'],['../interface_kutya_verseny_1_1_logic_1_1_i_director_logic.html#a43a669db19243941f47099a485dd8118',1,'KutyaVerseny.Logic.IDirectorLogic.RemoveMedal()']]],
+  ['removemedalbyid_290',['RemoveMedalById',['../class_kutya_verseny_1_1_program_1_1_methods.html#ab98c282bf29c0464b06117094f823fec',1,'KutyaVerseny::Program::Methods']]],
+  ['removemedaltest_291',['RemoveMedalTest',['../class_kutya_verseny_1_1_logic_1_1_tests_1_1_director_logic_tests.html#a0a77ff1a7d89b52f6e4f1a80694e53e1',1,'KutyaVerseny::Logic::Tests::DirectorLogicTests']]]
 ];

@@ -23,8 +23,8 @@ var searchData=
   ['changeracename_32',['ChangeRaceName',['../interface_kutya_verseny_1_1_repository_1_1_i_medal_repository.html#a35698be40c3f5acbca72689b1465c928',1,'KutyaVerseny.Repository.IMedalRepository.ChangeRaceName()'],['../class_kutya_verseny_1_1_repository_1_1_medal_repository.html#a26345ccbef4b8e2bc3f28418c9d74576',1,'KutyaVerseny.Repository.MedalRepository.ChangeRaceName()']]],
   ['changestratersnum_33',['ChangeStratersNum',['../interface_kutya_verseny_1_1_repository_1_1_i_medal_repository.html#ad9f30420b83dee5c9817b94b958fe17a',1,'KutyaVerseny.Repository.IMedalRepository.ChangeStratersNum()'],['../class_kutya_verseny_1_1_repository_1_1_medal_repository.html#abca28c52c82abd64ad28fd4f84e7c181',1,'KutyaVerseny.Repository.MedalRepository.ChangeStratersNum()']]],
   ['chipnum_34',['ChipNum',['../class_kutya_verseny_1_1_data_1_1_models_1_1_dog.html#aea5950f9f2893de631c2379d9b428cb6',1,'KutyaVerseny::Data::Models::Dog']]],
-  ['correctdoctorlogin_35',['CorrectDoctorLogin',['../class_kutya_verseny_1_1_program_1_1_investigator.html#a860482a86f1b190f8be29f96fac96be3',1,'KutyaVerseny::Program::Investigator']]],
-  ['correctownerlogin_36',['CorrectOwnerLogin',['../class_kutya_verseny_1_1_program_1_1_investigator.html#aa5207d12522f5664fb1985199e15bafe',1,'KutyaVerseny::Program::Investigator']]],
+  ['correctdoctorlogin_35',['CorrectDoctorLogin',['../class_kutya_verseny_1_1_program_1_1_investigator.html#a4ee47829899a8a5aae0d92d7d4cf7675',1,'KutyaVerseny::Program::Investigator']]],
+  ['correctownerlogin_36',['CorrectOwnerLogin',['../class_kutya_verseny_1_1_program_1_1_investigator.html#af8f74ae12432f817ffcce34b3d36cb50',1,'KutyaVerseny::Program::Investigator']]],
   ['cost_37',['Cost',['../class_kutya_verseny_1_1_data_1_1_models_1_1_intervention.html#a59fcf2f155846484e8483dcac812f445',1,'KutyaVerseny::Data::Models::Intervention']]],
-  ['ctx_38',['Ctx',['../class_kutya_verseny_1_1_repository_1_1_repository.html#a4142036d2fb083674c683b8022f3341b',1,'KutyaVerseny::Repository::Repository']]]
+  ['ctx_38',['Ctx',['../class_kutya_verseny_1_1_repository_1_1_main_repository.html#a5a0c47ee5933dd9870de681946571f3f',1,'KutyaVerseny::Repository::MainRepository']]]
 ];

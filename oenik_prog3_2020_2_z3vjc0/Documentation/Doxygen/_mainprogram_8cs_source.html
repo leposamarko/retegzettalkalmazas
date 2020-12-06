@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>oenik_prog3_2020_2_z3vjc0: C:/Users/Márkó/Documents/oenik_prog3_2020_2_z3vjc0/oenik_prog3_2020_2_z3vjc0/oenik_prog3_2020_2_z3vjc0/Mainprogram.cs Source File</title>
+<title>oenik_prog3_2020_2_z3vjc0: D:/egyetem/felev3/prog3/oenik_prog3_2020_2_z3vjc0/oenik_prog3_2020_2_z3vjc0/Mainprogram.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,8 +85,8 @@ $(document).ready(function(){initNavTree('_mainprogram_8cs_source.html',''); ini
 <div class="title">Mainprogram.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// &lt;copyright file=&quot;Mainprogram.cs&quot; company=&quot;PlaceholderCompany&quot;&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Copyright (c) PlaceholderCompany. All rights reserved.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// &lt;copyright file=&quot;Mainprogram.cs&quot; company=&quot;Z3VJC0&quot;&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Copyright (c) Z3VJC0. All rights reserved.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// &lt;/copyright&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
 <div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="namespace_races.html">    5</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_races.html">Races</a></div>
@@ -108,36 +108,38 @@ $(document).ready(function(){initNavTree('_mainprogram_8cs_source.html',''); ini
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_races_1_1_mainprogram.html">   25</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="class_races_1_1_mainprogram.html">Mainprogram</a></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    {</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_races_1_1_mainprogram.html#adb4dcd46b5a7c800951a713e2d9eded0">   30</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_races_1_1_mainprogram.html#adb4dcd46b5a7c800951a713e2d9eded0">Main</a>()</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            Db ctx = <span class="keyword">new</span> Db();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            DogRepository dogRepo = <span class="keyword">new</span> DogRepository(ctx);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            MedalRepository medalRepo = <span class="keyword">new</span> MedalRepository(ctx);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            InterventionRepository intRepo = <span class="keyword">new</span> InterventionRepository(ctx);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            OwnerLogic ownerLogic = <span class="keyword">new</span> OwnerLogic(dogRepo, intRepo, medalRepo);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            DoctorLogic doctorLogic = <span class="keyword">new</span> DoctorLogic(intRepo, dogRepo);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            DirectorLogic directorLogic = <span class="keyword">new</span> DirectorLogic(medalRepo, dogRepo);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            Menu m = <span class="keyword">new</span> Menu();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            var menu = <span class="keyword">new</span> ConsoleMenu()</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                .Add(<span class="stringliteral">&quot;&gt;&gt;BELÉPÉS GAZDIKÉNT&quot;</span>, () =&gt; m.OwnerMenu(ownerLogic))</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                .Add(<span class="stringliteral">&quot;&gt;&gt;BELÉPÉS ORVOSKÉNT&quot;</span>, () =&gt; m.DoctorMenu(doctorLogic, ownerLogic))</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                .Add(<span class="stringliteral">&quot;&gt;&gt;BELÉPÉS RENDZŐKÉNT&quot;</span>, () =&gt; m.DirectorMenu(directorLogic, ownerLogic))</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                .Add(<span class="stringliteral">&quot;&gt;&gt;EXIT&quot;</span>, ConsoleMenu.Close);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            menu.Show();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">private</span> <span class="keyword">static</span> Db Ctx { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_races_1_1_mainprogram.html#adb4dcd46b5a7c800951a713e2d9eded0">   32</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_races_1_1_mainprogram.html#adb4dcd46b5a7c800951a713e2d9eded0">Main</a>()</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            Ctx = <span class="keyword">new</span> Db();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            DogRepository dogRepo = <span class="keyword">new</span> DogRepository(Ctx);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            MedalRepository medalRepo = <span class="keyword">new</span> MedalRepository(Ctx);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            InterventionRepository intRepo = <span class="keyword">new</span> InterventionRepository(Ctx);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            OwnerLogic ownerLogic = <span class="keyword">new</span> OwnerLogic(dogRepo, intRepo, medalRepo);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            DoctorLogic doctorLogic = <span class="keyword">new</span> DoctorLogic(intRepo, dogRepo);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            DirectorLogic directorLogic = <span class="keyword">new</span> DirectorLogic(medalRepo, dogRepo);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            Menu m = <span class="keyword">new</span> Menu();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            var menu = <span class="keyword">new</span> ConsoleMenu()</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                .Add(<span class="stringliteral">&quot;&gt;&gt;BELÉPÉS GAZDIKÉNT&quot;</span>, () =&gt; m.OwnerMenu(ownerLogic))</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                .Add(<span class="stringliteral">&quot;&gt;&gt;BELÉPÉS ORVOSKÉNT&quot;</span>, () =&gt; m.DoctorMenu(doctorLogic, ownerLogic))</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                .Add(<span class="stringliteral">&quot;&gt;&gt;BELÉPÉS RENDZŐKÉNT&quot;</span>, () =&gt; m.DirectorMenu(directorLogic, ownerLogic))</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                .Add(<span class="stringliteral">&quot;&gt;&gt;EXIT&quot;</span>, ConsoleMenu.Close);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            menu.Show();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_races_1_1_mainprogram_html_adb4dcd46b5a7c800951a713e2d9eded0"><div class="ttname"><a href="class_races_1_1_mainprogram.html#adb4dcd46b5a7c800951a713e2d9eded0">Races.Mainprogram.Main</a></div><div class="ttdeci">static void Main()</div><div class="ttdoc">start of the program.</div><div class="ttdef"><b>Definition:</b> <a href="_mainprogram_8cs_source.html#l00030">Mainprogram.cs:30</a></div></div>
+<div class="ttc" id="aclass_races_1_1_mainprogram_html_adb4dcd46b5a7c800951a713e2d9eded0"><div class="ttname"><a href="class_races_1_1_mainprogram.html#adb4dcd46b5a7c800951a713e2d9eded0">Races.Mainprogram.Main</a></div><div class="ttdeci">static void Main()</div><div class="ttdoc">start of the program.</div><div class="ttdef"><b>Definition:</b> <a href="_mainprogram_8cs_source.html#l00032">Mainprogram.cs:32</a></div></div>
 <div class="ttc" id="aclass_races_1_1_mainprogram_html"><div class="ttname"><a href="class_races_1_1_mainprogram.html">Races.Mainprogram</a></div><div class="ttdoc">A program.</div><div class="ttdef"><b>Definition:</b> <a href="_mainprogram_8cs_source.html#l00025">Mainprogram.cs:26</a></div></div>
 <div class="ttc" id="anamespace_races_html"><div class="ttname"><a href="namespace_races.html">Races</a></div><div class="ttdef"><b>Definition:</b> <a href="_mainprogram_8cs_source.html#l00005">Mainprogram.cs:6</a></div></div>
 <div class="ttc" id="aclass_system_1_1_diagnostics_html"><div class="ttname"><a href="class_system_1_1_diagnostics.html">Diagnostics</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_e6bb53534ac0e427887cf7a94c0c004e.html">C:</a></li><li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_408cbdeb3dd8744eabc12433b965d4a1.html">Márkó</a></li><li class="navelem"><a class="el" href="dir_344dacd65dedb6e5e9d6d424444e933c.html">Documents</a></li><li class="navelem"><a class="el" href="dir_95cc2611f0eb21669896557b2f17c315.html">oenik_prog3_2020_2_z3vjc0</a></li><li class="navelem"><a class="el" href="dir_aa8620bf9b68e7965825c5cee5a970be.html">oenik_prog3_2020_2_z3vjc0</a></li><li class="navelem"><a class="el" href="dir_df652e93c04aae18ef702f3ab3e24d18.html">oenik_prog3_2020_2_z3vjc0</a></li><li class="navelem"><b>Mainprogram.cs</b></li>
+    <li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_9b3cb5b0b04bd54a03c3f4da5726a4b2.html">egyetem</a></li><li class="navelem"><a class="el" href="dir_2e67a3b7cb23def24cba51091a974de9.html">felev3</a></li><li class="navelem"><a class="el" href="dir_ddb55668b363064d2bdc702430741b43.html">prog3</a></li><li class="navelem"><a class="el" href="dir_3e36bcb78f3974f02bc92df596463caf.html">oenik_prog3_2020_2_z3vjc0</a></li><li class="navelem"><a class="el" href="dir_f76e61cbd1d98ac308d806606a8170b3.html">oenik_prog3_2020_2_z3vjc0</a></li><li class="navelem"><b>Mainprogram.cs</b></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

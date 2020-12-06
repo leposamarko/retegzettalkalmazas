@@ -20,21 +20,19 @@ namespace KutyaVerseny.Repository
         where T : class
     {
         /// <summary>
-        /// Gets or sets ctx.
-        /// </summary>
-        protected DbContext Ctx { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="MainRepository{T}"/> class.
         /// constructor.
         /// </summary>
         /// <param name="ctx">ctx is the context.</param>
-        #pragma warning disable SA1201 // Elements should appear in the correct order
         public MainRepository(DbContext ctx)
-        #pragma warning restore SA1201 // Elements should appear in the correct order
         {
             this.Ctx = ctx;
         }
+
+        /// <summary>
+        /// Gets or sets ctx.
+        /// </summary>
+        protected DbContext Ctx { get; set; }
 
         /// <summary>
         /// list all data from the T.

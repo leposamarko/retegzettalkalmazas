@@ -6,6 +6,6 @@ var namespace_kutya_verseny_1_1_repository =
     [ "IMedalRepository", "interface_kutya_verseny_1_1_repository_1_1_i_medal_repository.html", "interface_kutya_verseny_1_1_repository_1_1_i_medal_repository" ],
     [ "InterventionRepository", "class_kutya_verseny_1_1_repository_1_1_intervention_repository.html", "class_kutya_verseny_1_1_repository_1_1_intervention_repository" ],
     [ "IRepository", "interface_kutya_verseny_1_1_repository_1_1_i_repository.html", "interface_kutya_verseny_1_1_repository_1_1_i_repository" ],
-    [ "MedalRepository", "class_kutya_verseny_1_1_repository_1_1_medal_repository.html", "class_kutya_verseny_1_1_repository_1_1_medal_repository" ],
-    [ "Repository", "class_kutya_verseny_1_1_repository_1_1_repository.html", "class_kutya_verseny_1_1_repository_1_1_repository" ]
+    [ "MainRepository", "class_kutya_verseny_1_1_repository_1_1_main_repository.html", "class_kutya_verseny_1_1_repository_1_1_main_repository" ],
+    [ "MedalRepository", "class_kutya_verseny_1_1_repository_1_1_medal_repository.html", "class_kutya_verseny_1_1_repository_1_1_medal_repository" ]
 ];
