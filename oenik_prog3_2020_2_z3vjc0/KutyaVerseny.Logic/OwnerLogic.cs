@@ -35,6 +35,17 @@ namespace KutyaVerseny.Logic
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OwnerLogic"/> class.
+        /// </summary>
+        /// <param name="repo">repo.</param>
+        /// <param name="medalRepo">medalRepo.</param>
+        public OwnerLogic(IDogRepository repo, IMedalRepository medalRepo)
+        {
+            this.dogRepo = repo;
+            this.medalRepo = medalRepo;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OwnerLogic"/> class.
         /// ctor with one parameter.
         /// </summary>
         /// <param name="repo">dog repository.</param>
@@ -142,49 +153,41 @@ namespace KutyaVerseny.Logic
         /// dog medals.
         /// </summary>
         /// <param name="name">naem of owner.</param>
-        public void DogsMedals(string name)
+        /// <returns>string list.</returns>
+        public List<string> DogsMedals(string name)
         {
             var q1 = from a in this.dogRepo.GetAll().ToList()
                      join b in this.medalRepo.GetAll().ToList() on a.ChipNum equals b.DogChipNum
                      where a.OwnerName.Equals(name)
                      select new
                      {
-                         neve = a.DogName,
-                         fajta = a.Breed,
-                         dij = b.Category,
-                         fokozat = b.Degree,
+                         DogName = a.DogName,
+                         Breed = a.Breed,
+                         Category = b.Category,
+                         Degree = b.Degree,
                      };
-            foreach (var item in q1)
-            {
-                Console.WriteLine(item.ToString());
-            }
-
-            Console.ReadLine();
+            return q1.Select(x => $"DogName = {x.DogName}, Breed= {x.Breed},  Category= {x.Category}, Degree= {x.Degree}").ToList();
         }
 
         /// <summary>
         /// dog wiht intervetnion.
         /// </summary>
         /// <param name="name">name.</param>
-        public void DogsInterventions(string name)
+        /// <returns>string list</returns>
+        public List<string> DogsInterventions(string name)
         {
             var q2 = from a in this.dogRepo.GetAll().ToList()
                      join b in this.intRepo.GetAll().ToList() on a.ChipNum equals b.DogChipNum
                      where a.OwnerName.Equals(name)
                      select new
                      {
-                         neve = a.DogName,
-                         fajta = a.Breed,
-                         leiras = b.Desript,
-                         orvos = b.Doctor,
-                         ara = b.Cost,
+                         DogName = a.DogName,
+                         Breed = a.Breed,
+                         Desript = b.Desript,
+                         Doctor = b.Doctor,
+                         Cost = b.Cost,
                      };
-            foreach (var item in q2)
-            {
-                Console.WriteLine(item.ToString());
-            }
-
-            Console.ReadLine();
+            return q2.Select(x => $"neve={x.DogName}, fajtaja={x.Breed}, Desript={x.Desript}, Doctor={x.Doctor}, Cost={x.Cost}").ToList();
         }
     }
 }

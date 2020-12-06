@@ -130,21 +130,17 @@ namespace KutyaVerseny.Logic
         /// number of medals.
         /// </summary>
         /// <param name="directorLogic">directorLogic.</param>
-        public void DegreeNumb()
+        /// <returns>string list.</returns>
+        public List<string> DegreeNumb()
         {
             var q3 = from b in this.medalRepo.GetAll()
                      group b by b.Degree into g
                      select new
                      {
-                         fokozat = g.Key,
-                         dijnumb = g.Count(),
+                         Degree = g.Key,
+                         CountWin = g.Count(),
                      };
-            foreach (var item in q3)
-            {
-                Console.WriteLine(item.ToString());
-            }
-
-            Console.ReadLine();
+            return q3.Select(x => $"Degree={x.Degree}, ConuntWin={x.CountWin}").ToList();
         }
     }
 }

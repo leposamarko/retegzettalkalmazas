@@ -66,5 +66,12 @@ namespace KutyaVerseny.Logic
         /// /// <param name="chipnumb">chipnumber.</param>
         /// <returns>all dogs.</returns>
         IList<Medal> GetAllMedal(int chipnumb);
+
+        /// <summary>
+        /// dogmedals.
+        /// </summary>
+        /// <param name="name">name of dog.</param>
+        /// <returns>string list.</returns>
+        List<string> DogsMedals(string name);
     }
 }
