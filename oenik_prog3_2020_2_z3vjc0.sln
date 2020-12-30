@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KutyaVerseny.Program", "oenik_prog3_2020_2_z3vjc0\KutyaVerseny.Program.csproj", "{5FB5F337-E54B-4144-BEBD-EA13522C6A52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KutyaVerseny.Program", "KutyaVerseny.Program\KutyaVerseny.Program.csproj", "{5FB5F337-E54B-4144-BEBD-EA13522C6A52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KutyaVerseny.Data", "KutyaVerseny.Data\KutyaVerseny.Data.csproj", "{0B12A2D4-09D2-4805-86E7-BE76717D8CCB}"
 EndProject
