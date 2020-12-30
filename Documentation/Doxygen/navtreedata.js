@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "oenik_prog3_2020_2_z3vjc0", "index.html", [
+    [ "README", "md__r_e_a_d_m_e.html", null ],
     [ "Packages", "namespaces.html", [
       [ "Packages", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -47,7 +48,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_db_8cs_source.html",
-"interface_kutya_verseny_1_1_logic_1_1_i_doctor_logic.html#a2b8e442ba503b53541556e5144591a7e"
+"interface_kutya_verseny_1_1_logic_1_1_i_doctor_logic.html#a350dfde97e764bd1b0d539d6a8fe705f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
