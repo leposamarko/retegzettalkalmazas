@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KutyaVerseny.WpfApplication</name>
+    </assembly>
+    <members>
+        <member name="T:KutyaVerseny.WpfApplication.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Data.DogWpf.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.Data.DogWpf"/> class.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.DogName">
+            <summary>
+            Gets or sets name of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.Gender">
+            <summary>
+            Gets or sets gender of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.ChipNum">
+            <summary>
+            Gets or sets chip number of the medal.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.Breed">
+            <summary>
+            Gets or sets breed of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.BornDate">
+            <summary>
+            Gets or sets born date of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.OwnerName">
+            <summary>
+            Gets or sets owner's name of the dog.
+            </summary>
+        </member>
+        <member name="T:KutyaVerseny.WpfApplication.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+    </members>
+</doc>
