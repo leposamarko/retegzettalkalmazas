@@ -1,13 +1,21 @@
-﻿using GalaSoft.MvvmLight;
-using KutyaVerseny.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="DogWpf.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace KutyaVerseny.WpfApplication.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Text;
+    using System.Threading.Tasks;
+    using GalaSoft.MvvmLight;
+    using KutyaVerseny.Data.Models;
+
+    /// <summary>
+    /// dog entity in wpf.
+    /// </summary>
     public class DogWpf : ObservableObject
     {
         /// <summary>
@@ -17,14 +25,18 @@ namespace KutyaVerseny.WpfApplication.Data
         {
         }
 
-        public DogWpf( Dog d)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DogWpf"/> class.
+        /// </summary>
+        /// <param name="d">dog.</param>
+        public DogWpf(Dog d)
         {
-            ChipNum = d.ChipNum;
-            DogName = d.DogName;
-            Gender = d.Gender;
-            Breed = d.Breed;
-            BornDate = d.BornDate;
-            OwnerName = d.OwnerName;
+            this.ChipNum = d.ChipNum;
+            this.DogName = d.DogName;
+            this.Gender = d.Gender;
+            this.Breed = d.Breed;
+            this.BornDate = d.BornDate;
+            this.OwnerName = d.OwnerName;
         }
 
         /// <summary>
@@ -57,9 +69,22 @@ namespace KutyaVerseny.WpfApplication.Data
         /// </summary>
         public string OwnerName { get; set; }
 
+        /// <summary>
+        /// copy from method.
+        /// </summary>
+        /// <returns>dog.</returns>
         public Dog ConvertToEntity()
         {
             return new Dog() { ChipNum = this.ChipNum, BornDate = this.BornDate, OwnerName = this.OwnerName, Breed = this.Breed, Gender = this.Gender, DogName = this.DogName };
+        }
+
+        /// <summary>
+        /// other copyfrom.
+        /// </summary>
+        /// <param name="dog">dot to copy.</param>
+        public void CopyFrom(DogWpf dog)
+        {
+            this.GetType().GetProperties().ToList().ForEach(p => p.SetValue(this, p.GetValue(dog)));
         }
     }
 }

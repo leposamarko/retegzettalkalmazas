@@ -4,9 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KutyaVerseny.WpfApplication"
+        xmlns:data="clr-namespace:KutyaVerseny.WpfApplication.Data"
+        xmlns:ui="clr-namespace:KutyaVerseny.WpfApplication.UI"
+        xmlns:vm="clr-namespace:KutyaVerseny.WpfApplication.VM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="388" Width="422">
+    <Window.Resources>
+        <vm:MainViewModel x:Key="VM" />
+
+        <DataTemplate x:Key="listTemplate" DataType="{x:Type data:DogWpf}">
+            <DockPanel>
+                <Label Content="{Binding Path=OwnerName}" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                <Label Content="{Binding Path=BornDate}" DockPanel.Dock="Bottom" HorizontalAlignment="Center"/>
+                <Label Content="{Binding Path=Breed}" DockPanel.Dock="Left"/>
+                <Label Content="{Binding Path=Gender}" DockPanel.Dock="Right"/>
+                <Label/>
+            </DockPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource VM}">
+
+        <ListBox ItemTemplate="{StaticResource listTemplate}" ItemsSource="{Binding Path=Dogs}" SelectedItem="{Binding Path=SelectedDog}" 
+                 HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Height="251" Margin="10,10,0,0" VerticalAlignment="Top" Width="210"/>
+        <Button Command="{Binding Path=AddCmd}" Content="ADD" HorizontalAlignment="Left" Margin="225,15,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Command="{Binding Path=ModCmd}" Content="MOD" HorizontalAlignment="Left" Margin="225,40,0,0" VerticalAlignment="Top" Width="75" />
+        <Button Command="{Binding Path=DelCmd}" Content="DEL" HorizontalAlignment="Left" Margin="225,65,0,0" VerticalAlignment="Top" Width="75" />
+
 
     </Grid>
 </Window>

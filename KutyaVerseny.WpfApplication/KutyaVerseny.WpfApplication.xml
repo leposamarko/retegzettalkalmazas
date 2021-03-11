@@ -22,10 +22,21 @@
             Application Entry Point.
             </summary>
         </member>
+        <member name="T:KutyaVerseny.WpfApplication.Data.DogWpf">
+            <summary>
+            dog entity in wpf.
+            </summary>
+        </member>
         <member name="M:KutyaVerseny.WpfApplication.Data.DogWpf.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.Data.DogWpf"/> class.
             </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Data.DogWpf.#ctor(KutyaVerseny.Data.Models.Dog)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.Data.DogWpf"/> class.
+            </summary>
+            <param name="d">dog.</param>
         </member>
         <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.DogName">
             <summary>
@@ -57,17 +68,190 @@
             Gets or sets owner's name of the dog.
             </summary>
         </member>
+        <member name="M:KutyaVerseny.WpfApplication.Data.DogWpf.ConvertToEntity">
+            <summary>
+            copy from method.
+            </summary>
+            <returns>dog.</returns>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Data.DogWpf.CopyFrom(KutyaVerseny.WpfApplication.Data.DogWpf)">
+            <summary>
+            other copyfrom.
+            </summary>
+            <param name="dog">dot to copy.</param>
+        </member>
+        <member name="T:KutyaVerseny.WpfApplication.Logic.DogLogiWpf">
+            <summary>
+            doglogic.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.#ctor(GalaSoft.MvvmLight.Messaging.IMessenger,KutyaVerseny.WpfApplication.Logic.IEditorService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.Logic.DogLogiWpf"/> class.
+            </summary>
+            <param name="messengerService">vmi.</param>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.AddDog(System.Collections.Generic.IList{KutyaVerseny.WpfApplication.Data.DogWpf})">
+            <summary>
+            add dog method.
+            </summary>
+            <param name="list">add a dog.</param>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.GetAllDog">
+            <summary>
+            getallmethod.
+            </summary>
+            <returns>alldogs.</returns>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.DelDog(System.Collections.Generic.IList{KutyaVerseny.WpfApplication.Data.DogWpf},KutyaVerseny.WpfApplication.Data.DogWpf)">
+            <summary>
+            delete a dog.
+            </summary>
+            <param name="list">list.</param>
+            <param name="dog">dog.</param>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.ModyDog(KutyaVerseny.WpfApplication.Data.DogWpf)">
+            <summary>
+            modify dog.
+            </summary>
+            <param name="dogToModi">dot to mody.</param>
+        </member>
+        <member name="T:KutyaVerseny.WpfApplication.Logic.IEditorService">
+            <summary>
+            editorservice.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Logic.IEditorService.EditPlayer(KutyaVerseny.WpfApplication.Data.DogWpf)">
+            <summary>
+            edit player bool.
+            </summary>
+            <param name="d">dog name.</param>
+            <returns>is editabel.</returns>
+        </member>
         <member name="T:KutyaVerseny.WpfApplication.MainWindow">
             <summary>
-            Interaction logic for MainWindow.xaml
+            Interaction logic for MainWindow.xaml.
             </summary>
             <summary>
             MainWindow
             </summary>
         </member>
+        <member name="M:KutyaVerseny.WpfApplication.MainWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.MainWindow"/> class.
+            </summary>
+        </member>
         <member name="M:KutyaVerseny.WpfApplication.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:KutyaVerseny.WpfApplication.UI.EditorServiceViaWindow">
+            <summary>
+            editorvidow.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.UI.EditorServiceViaWindow.EditPlayer(KutyaVerseny.WpfApplication.Data.DogWpf)">
+            <inheritdoc/>
+        </member>
+        <member name="T:KutyaVerseny.WpfApplication.UI.EditorWindow">
+            <summary>
+            Interaction logic for EditorWindow.xaml
+            </summary>
+            <summary>
+            EditorWindow
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.UI.EditorWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.UI.EditorWindow"/> class.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.UI.EditorWindow.#ctor(KutyaVerseny.WpfApplication.Data.DogWpf)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.UI.EditorWindow"/> class.
+            </summary>
+            <param name="olddog">old dog to mody.</param>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.UI.EditorWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:KutyaVerseny.WpfApplication.VM.EditorViewModel">
+            <summary>
+            editroViewModel.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.VM.EditorViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.VM.EditorViewModel"/> class.
+            </summary>
+        </member>
+        <member name="T:KutyaVerseny.WpfApplication.VM.MainViewModel">
+            <summary>
+            mian view model.
+            </summary>
+        </member>
+        <member name="F:KutyaVerseny.WpfApplication.VM.MainViewModel.logic">
+            <summary>
+            logic.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.Dogs">
+            <summary>
+            Gets collector of dogs.
+            </summary>
+        </member>
+        <member name="F:KutyaVerseny.WpfApplication.VM.MainViewModel.selectedDog">
+            <summary>
+            Selected dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.SelectedDog">
+            <summary>
+            Selected dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.AddCmd">
+            <summary>
+            add cmd.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.VM.MainViewModel.#ctor(KutyaVerseny.WpfApplication.Logic.DogLogiWpf)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.VM.MainViewModel"/> class.
+            </summary>
+            <param name="messenger">mesige.</param>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>
