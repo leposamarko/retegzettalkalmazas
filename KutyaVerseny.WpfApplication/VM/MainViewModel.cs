@@ -19,14 +19,14 @@ namespace KutyaVerseny.WpfApplication.VM
     using KutyaVerseny.WpfApplication.Logic;
 
     /// <summary>
-    /// mian view model.
+    /// Mian view model.
     /// </summary>
     class MainViewModel : ViewModelBase
     {
         /// <summary>
         /// logic.
         /// </summary>
-        private DogLogiWpf logic;
+        private IDogLogiWpf logic;
 
         /// <summary>
         /// Gets collector of dogs.
@@ -68,8 +68,8 @@ namespace KutyaVerseny.WpfApplication.VM
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
         /// </summary>
-        /// <param name="messenger">mesige.</param>
-        public MainViewModel(DogLogiWpf log)
+        /// <param name="log">log.</param>
+        public MainViewModel(IDogLogiWpf log)
         {
             this.logic = log;
             this.RefreshCarList(this.logic);
@@ -79,31 +79,36 @@ namespace KutyaVerseny.WpfApplication.VM
             this.RefreshCmd = new RelayCommand(() => this.RefreshCarList(this.logic));
         }
 
-        private void RefreshCarList(DogLogiWpf logic)
+        private void RefreshCarList(IDogLogiWpf logic)
         {
             if (this.Dogs.Count > 0)
             {
                 this.Dogs.Clear();
             }
-
-            var carsInDb = logic.GetAllDog();
-
-            foreach (var car in carsInDb)
+            if (logic is null)
             {
-                this.Dogs.Add(car);
+                this.Dogs.Add(new DogWpf() { OwnerName = "try", DogName = "try", Breed = "try", Gender = "try" });
             }
+            else
+            {
+                var dogg = logic.GetAllDog();
 
+                foreach (var dog in dogg)
+                {
+                    this.Dogs.Add(dog);
+                }
+            }
         }
-        /*
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
-        /// ctor.
         /// </summary>
-        public MainViewModel() : this(IsInDesignModeStatic ? null : ServiceLocator.Current.GetInstance<DogLogiWpf>())//IoC
+        public MainViewModel()
+            : this(IsInDesignModeStatic ? null : ServiceLocator.Current.GetInstance<IDogLogiWpf>()) 
         {
-
         }
-        */
+
+        /*
         public MainViewModel()
         {
             this.logic = new DogLogiWpf();
@@ -113,5 +118,6 @@ namespace KutyaVerseny.WpfApplication.VM
             this.DelCmd = new RelayCommand(() => this.logic.DelDog(this.Dogs, this.SelectedDog));
             this.RefreshCmd = new RelayCommand(() => this.RefreshCarList(this.logic));
         }
+        _*/
     }
 }

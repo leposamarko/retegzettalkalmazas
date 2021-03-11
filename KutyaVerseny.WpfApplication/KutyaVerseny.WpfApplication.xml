@@ -190,7 +190,7 @@
         </member>
         <member name="T:KutyaVerseny.WpfApplication.VM.MainViewModel">
             <summary>
-            mian view model.
+            Mian view model.
             </summary>
         </member>
         <member name="F:KutyaVerseny.WpfApplication.VM.MainViewModel.logic">
@@ -218,11 +218,16 @@
             add cmd.
             </summary>
         </member>
-        <member name="M:KutyaVerseny.WpfApplication.VM.MainViewModel.#ctor(KutyaVerseny.WpfApplication.Logic.DogLogiWpf)">
+        <member name="M:KutyaVerseny.WpfApplication.VM.MainViewModel.#ctor(KutyaVerseny.WpfApplication.Logic.IDogLogiWpf)">
             <summary>
             Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.VM.MainViewModel"/> class.
             </summary>
-            <param name="messenger">mesige.</param>
+            <param name="log">log.</param>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.VM.MainViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.VM.MainViewModel"/> class.
+            </summary>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
             <summary>

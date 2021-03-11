@@ -8,14 +8,14 @@
         xmlns:ui="clr-namespace:KutyaVerseny.WpfApplication.UI"
         xmlns:vm="clr-namespace:KutyaVerseny.WpfApplication.VM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="388" Width="422">
+        Title="MainWindow" Height="344" Width="337">
     <Window.Resources>
         <vm:MainViewModel x:Key="VM" />
 
         <DataTemplate x:Key="listTemplate" DataType="{x:Type data:DogWpf}">
             <DockPanel>
-                <Label Content="{Binding Path=OwnerName}" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
-                <Label Content="{Binding Path=BornDate}" DockPanel.Dock="Bottom" HorizontalAlignment="Center"/>
+                <Label Content="{Binding Path=DogName}" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                <Label Content="{Binding Path=OwnerName}" DockPanel.Dock="Bottom" HorizontalAlignment="Center"/>
                 <Label Content="{Binding Path=Breed}" DockPanel.Dock="Left"/>
                 <Label Content="{Binding Path=Gender}" DockPanel.Dock="Right"/>
                 <Label/>

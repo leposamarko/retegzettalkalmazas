@@ -30,7 +30,7 @@ namespace KutyaVerseny.WpfApplication
 
             MyIoc.Instance.Register<IEditorService, EditorServiceViaWindow>();
             MyIoc.Instance.Register<IMessenger>(() => Messenger.Default);
-            //MyIoc.Instance.Register<DogLogiWpf, DogLogiWpf>();
+            MyIoc.Instance.Register<IDogLogiWpf, DogLogiWpf>();
         }
     }
 }

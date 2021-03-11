@@ -9,6 +9,7 @@ namespace KutyaVerseny.WpfApplication.Logic
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using GalaSoft.MvvmLight.Ioc;
     using GalaSoft.MvvmLight.Messaging;
     using KutyaVerseny.Data.Models;
     using KutyaVerseny.Logic;
@@ -18,7 +19,7 @@ namespace KutyaVerseny.WpfApplication.Logic
     /// <summary>
     /// doglogic.
     /// </summary>
-    public class DogLogiWpf
+    public class DogLogiWpf : IDogLogiWpf
     {
         private IEditorService editor;
         private OwnerLogic ownerLogic = null;
@@ -28,13 +29,14 @@ namespace KutyaVerseny.WpfApplication.Logic
         /// Initializes a new instance of the <see cref="DogLogiWpf"/> class.
         /// </summary>
         /// <param name="messengerService">vmi.</param>
+        [PreferredConstructor]
         public DogLogiWpf(IMessenger messengerService, IEditorService editors)
         {
             Db ctx = new Db();
             DogRepository dogRepo = new DogRepository(ctx);
             MedalRepository medalRepo = new MedalRepository(ctx);
             InterventionRepository intRepo = new InterventionRepository(ctx);
-            OwnerLogic ownerLogic = new OwnerLogic(dogRepo, intRepo, medalRepo);
+            this.ownerLogic = new OwnerLogic(dogRepo, intRepo, medalRepo);
             this.messengerService = messengerService;
             this.editor = editors;
         }
@@ -56,7 +58,7 @@ namespace KutyaVerseny.WpfApplication.Logic
         {
             DogWpf newDog = new DogWpf();
 
-            if (this.editor.EditPlayer(newDog) == true)
+            if (this.editor.EditPlayer(newDog) == true && list is not null)
             {
                 list.Add(newDog);
                 Dog entity = newDog.ConvertToEntity();
@@ -75,8 +77,14 @@ namespace KutyaVerseny.WpfApplication.Logic
         /// <returns>alldogs.</returns>
         public IEnumerable<DogWpf> GetAllDog()
         {
-            var retEntity = this.ownerLogic.GetAllDogs();
-            return retEntity.Select((dog) => new DogWpf(dog));
+            if (ownerLogic is not null)
+            {
+                var retEntity = this.ownerLogic.GetAllDogs();
+                return retEntity.Select((dog) => new DogWpf(dog));
+            }
+            else { messengerService.Send("SOMETHING WRONG", "LogicResult");
+                return null;
+            }
         }
 
         /// <summary>
@@ -86,7 +94,7 @@ namespace KutyaVerseny.WpfApplication.Logic
         /// <param name="dog">dog.</param>
         public void DelDog(IList<DogWpf> list, DogWpf dog)
         {
-            if (dog != null && list.Remove(dog))
+            if (dog != null && list is not null && list.Remove(dog))
             {
                 Dog d = dog.ConvertToEntity();
                 this.ownerLogic.RemoveDog(d);
