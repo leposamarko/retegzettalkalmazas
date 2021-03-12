@@ -18,6 +18,7 @@
                 <Label Content="{Binding Path=OwnerName}" DockPanel.Dock="Bottom" HorizontalAlignment="Center"/>
                 <Label Content="{Binding Path=Breed}" DockPanel.Dock="Left"/>
                 <Label Content="{Binding Path=Gender}" DockPanel.Dock="Right"/>
+                <Label Content="{Binding Path=ChipNum}" DockPanel.Dock="Right"/>
                 <Label/>
             </DockPanel>
         </DataTemplate>

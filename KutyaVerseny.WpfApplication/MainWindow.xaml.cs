@@ -18,18 +18,36 @@ namespace KutyaVerseny.WpfApplication
     using System.Windows.Media.Imaging;
     using System.Windows.Navigation;
     using System.Windows.Shapes;
+    using GalaSoft.MvvmLight.Messaging;
+    using KutyaVerseny.WpfApplication.VM;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainViewModel vm;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
         /// </summary>
         public MainWindow()
         {
             this.InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.vm = this.FindResource("VM") as MainViewModel;
+            Messenger.Default.Register<string>(this, "LogicResult", msg =>
+            {
+                MessageBox.Show(msg);
+            });
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Messenger.Default.Unregister(this);
         }
     }
 }

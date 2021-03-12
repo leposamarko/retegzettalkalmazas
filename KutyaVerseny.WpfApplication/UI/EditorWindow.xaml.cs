@@ -1,31 +1,40 @@
-﻿using KutyaVerseny.WpfApplication.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿// <copyright file="EditorWindow.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace KutyaVerseny.WpfApplication.UI
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Shapes;
+    using KutyaVerseny.WpfApplication.Data;
+    using KutyaVerseny.WpfApplication.VM;
+
     /// <summary>
-    /// Interaction logic for EditorWindow.xaml
+    /// Interaction logic for EditorWindow.xaml.
     /// </summary>
     public partial class EditorWindow : Window
     {
+        private EditorViewModel vm;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EditorWindow"/> class.
         /// </summary>
         public EditorWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
+            this.vm = this.FindResource("VM") as EditorViewModel;
         }
 
         /// <summary>
@@ -33,7 +42,9 @@ namespace KutyaVerseny.WpfApplication.UI
         /// </summary>
         /// <param name="olddog">old dog to mody.</param>
         public EditorWindow(DogWpf olddog)
+            : this()
         {
+            this.vm.Dog = olddog;
         }
     }
 }

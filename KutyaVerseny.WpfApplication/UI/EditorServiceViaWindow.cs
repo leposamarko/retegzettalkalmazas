@@ -1,4 +1,8 @@
-﻿namespace KutyaVerseny.WpfApplication.UI
+﻿// <copyright file="EditorServiceViaWindow.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace KutyaVerseny.WpfApplication.UI
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +15,7 @@
     /// <summary>
     /// editorvidow.
     /// </summary>
-    class EditorServiceViaWindow : IEditorService
+    internal class EditorServiceViaWindow : IEditorService
     {
         /// <inheritdoc/>
         public bool EditPlayer(DogWpf d)

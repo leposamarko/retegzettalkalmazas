@@ -4,12 +4,27 @@
         <name>KutyaVerseny.WpfApplication</name>
     </assembly>
     <members>
+        <member name="T:KutyaVerseny.WpfApplication.MyIoc">
+            <summary>
+            MyIoc.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.MyIoc.Instance">
+            <summary>
+            Gets Instance.
+            </summary>
+        </member>
         <member name="T:KutyaVerseny.WpfApplication.App">
             <summary>
-            Interaction logic for App.xaml
+            Interaction logic for App.xaml.
             </summary>
             <summary>
             App
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.App.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.App"/> class.
             </summary>
         </member>
         <member name="M:KutyaVerseny.WpfApplication.App.InitializeComponent">
@@ -37,6 +52,21 @@
             Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.Data.DogWpf"/> class.
             </summary>
             <param name="d">dog.</param>
+        </member>
+        <member name="T:KutyaVerseny.WpfApplication.Data.DogWpf.Genders">
+            <summary>
+            enum.
+            </summary>
+        </member>
+        <member name="F:KutyaVerseny.WpfApplication.Data.DogWpf.Genders.kan">
+            <summary>
+            kan.
+            </summary>
+        </member>
+        <member name="F:KutyaVerseny.WpfApplication.Data.DogWpf.Genders.female">
+            <summary>
+            female.
+            </summary>
         </member>
         <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.DogName">
             <summary>
@@ -90,6 +120,13 @@
             Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.Logic.DogLogiWpf"/> class.
             </summary>
             <param name="messengerService">vmi.</param>
+            <param name="editors">editors.</param>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.Logic.DogLogiWpf"/> class.
+            Doglogic.
+            </summary>
         </member>
         <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.AddDog(System.Collections.Generic.IList{KutyaVerseny.WpfApplication.Data.DogWpf})">
             <summary>
@@ -115,6 +152,36 @@
             modify dog.
             </summary>
             <param name="dogToModi">dot to mody.</param>
+        </member>
+        <member name="T:KutyaVerseny.WpfApplication.Logic.IDogLogiWpf">
+            <summary>
+            IDogLogci.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Logic.IDogLogiWpf.AddDog(System.Collections.Generic.IList{KutyaVerseny.WpfApplication.Data.DogWpf})">
+            <summary>
+            Add dog method.
+            </summary>
+            <param name="list">list of dogs.</param>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Logic.IDogLogiWpf.GetAllDog">
+            <summary>
+            get all dog method.
+            </summary>
+            <returns>all dog.</returns>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Logic.IDogLogiWpf.DelDog(System.Collections.Generic.IList{KutyaVerseny.WpfApplication.Data.DogWpf},KutyaVerseny.WpfApplication.Data.DogWpf)">
+            <summary>
+            delete a dog.
+            </summary>
+            <param name="list">list of dogs.</param>
+            <param name="dog">dog to remove.</param>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Logic.IDogLogiWpf.ModyDog(KutyaVerseny.WpfApplication.Data.DogWpf)">
+            <summary>
+            mody dog.
+            </summary>
+            <param name="dogToModi">dog to mody.</param>
         </member>
         <member name="T:KutyaVerseny.WpfApplication.Logic.IEditorService">
             <summary>
@@ -156,7 +223,7 @@
         </member>
         <member name="T:KutyaVerseny.WpfApplication.UI.EditorWindow">
             <summary>
-            Interaction logic for EditorWindow.xaml
+            Interaction logic for EditorWindow.xaml.
             </summary>
             <summary>
             EditorWindow
@@ -188,19 +255,14 @@
             Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.VM.EditorViewModel"/> class.
             </summary>
         </member>
+        <member name="P:KutyaVerseny.WpfApplication.VM.EditorViewModel.Dog">
+            <summary>
+            Gets or sets dog.
+            </summary>
+        </member>
         <member name="T:KutyaVerseny.WpfApplication.VM.MainViewModel">
             <summary>
             Mian view model.
-            </summary>
-        </member>
-        <member name="F:KutyaVerseny.WpfApplication.VM.MainViewModel.logic">
-            <summary>
-            logic.
-            </summary>
-        </member>
-        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.Dogs">
-            <summary>
-            Gets collector of dogs.
             </summary>
         </member>
         <member name="F:KutyaVerseny.WpfApplication.VM.MainViewModel.selectedDog">
@@ -208,14 +270,9 @@
             Selected dog.
             </summary>
         </member>
-        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.SelectedDog">
+        <member name="F:KutyaVerseny.WpfApplication.VM.MainViewModel.logic">
             <summary>
-            Selected dog.
-            </summary>
-        </member>
-        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.AddCmd">
-            <summary>
-            add cmd.
+            logic.
             </summary>
         </member>
         <member name="M:KutyaVerseny.WpfApplication.VM.MainViewModel.#ctor(KutyaVerseny.WpfApplication.Logic.IDogLogiWpf)">
@@ -229,34 +286,34 @@
             Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.VM.MainViewModel"/> class.
             </summary>
         </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.Dogs">
             <summary>
-            GeneratedInternalTypeHelper
+            Gets collector of dogs.
             </summary>
         </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.SelectedDog">
             <summary>
-            CreateInstance
+            Gets or sets .Selected dog.
             </summary>
         </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.AddCmd">
             <summary>
-            GetPropertyValue
+            Gets add cmd.
             </summary>
         </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.ModCmd">
             <summary>
-            SetPropertyValue
+            Gets modcmd.
             </summary>
         </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.DelCmd">
             <summary>
-            CreateDelegate
+            Gets delcmd.
             </summary>
         </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.RefreshCmd">
             <summary>
-            AddEventHandler
+            Gets refreshcmd.
             </summary>
         </member>
     </members>

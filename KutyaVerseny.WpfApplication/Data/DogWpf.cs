@@ -40,6 +40,22 @@ namespace KutyaVerseny.WpfApplication.Data
         }
 
         /// <summary>
+        /// enum.
+        /// </summary>
+        public enum Genders
+        {
+            /// <summary>
+            /// kan.
+            /// </summary>
+            kan = 0,
+
+            /// <summary>
+            /// female.
+            /// </summary>
+            female = 1,
+        }
+
+        /// <summary>
         /// Gets or sets name of the dog.
         /// </summary>
         public string DogName { get; set; }

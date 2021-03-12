@@ -15,15 +15,9 @@ namespace KutyaVerseny.WpfApplication.VM
     /// <summary>
     /// editroViewModel.
     /// </summary>
-    class EditorViewModel : ViewModelBase
+    internal class EditorViewModel : ViewModelBase
     {
         private DogWpf dog;
-
-        public DogWpf Dog
-        {
-            get { return this.dog; }
-            set { this.Set(ref this.dog, value); }
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EditorViewModel"/> class.
@@ -35,6 +29,15 @@ namespace KutyaVerseny.WpfApplication.VM
             {
                 this.dog.DogName = "Blöki";
             }
+        }
+
+        /// <summary>
+        /// Gets or sets dog.
+        /// </summary>
+        public DogWpf Dog
+        {
+            get { return this.dog; }
+            set { this.Set(ref this.dog, value); }
         }
     }
 }

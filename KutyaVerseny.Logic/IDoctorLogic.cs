@@ -15,9 +15,9 @@ namespace KutyaVerseny.Logic
     public interface IDoctorLogic
     {
         /// <summary>
-        /// list all doctor.
+        /// All doctor.
         /// </summary>
-        /// <returns>string list.</returns>
+        /// <returns>String list.</returns>
         List<string> AllDoctor();
 
         /// <summary>

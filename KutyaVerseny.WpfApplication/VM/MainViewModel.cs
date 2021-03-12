@@ -21,49 +21,17 @@ namespace KutyaVerseny.WpfApplication.VM
     /// <summary>
     /// Mian view model.
     /// </summary>
-    class MainViewModel : ViewModelBase
+    internal class MainViewModel : ViewModelBase
     {
-        /// <summary>
-        /// logic.
-        /// </summary>
-        private IDogLogiWpf logic;
-
-        /// <summary>
-        /// Gets collector of dogs.
-        /// </summary>
-        public ObservableCollection<DogWpf> Dogs { get; private set; } = new ObservableCollection<DogWpf>();
-
         /// <summary>
         /// Selected dog.
         /// </summary>
         private DogWpf selectedDog;
 
         /// <summary>
-        /// Selected dog.
+        /// logic.
         /// </summary>
-        public DogWpf SelectedDog
-        {
-            get
-            {
-                return this.selectedDog;
-            }
-
-            set
-            {
-                this.Set(ref this.selectedDog, value);
-            }
-        }
-
-        /// <summary>
-        /// add cmd.
-        /// </summary>
-        public ICommand AddCmd { get; private set; }
-
-        public ICommand ModCmd { get; private set; }
-
-        public ICommand DelCmd { get; private set; }
-
-        public ICommand RefreshCmd { get; }
+        private IDogLogiWpf logic;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
@@ -79,12 +47,62 @@ namespace KutyaVerseny.WpfApplication.VM
             this.RefreshCmd = new RelayCommand(() => this.RefreshCarList(this.logic));
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
+        /// </summary>
+        public MainViewModel()
+            : this(IsInDesignModeStatic ? null : ServiceLocator.Current.GetInstance<IDogLogiWpf>())
+        {
+        }
+
+        /// <summary>
+        /// Gets collector of dogs.
+        /// </summary>
+        public ObservableCollection<DogWpf> Dogs { get; private set; } = new ObservableCollection<DogWpf>();
+
+        /// <summary>
+        /// Gets or sets .Selected dog.
+        /// </summary>
+        public DogWpf SelectedDog
+        {
+            get
+            {
+                return this.selectedDog;
+            }
+
+            set
+            {
+                this.Set(ref this.selectedDog, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets add cmd.
+        /// </summary>
+        public ICommand AddCmd { get; private set; }
+
+        /// <summary>
+        /// Gets modcmd.
+        /// </summary>
+        public ICommand ModCmd { get; private set; }
+
+        /// <summary>
+        /// Gets delcmd.
+        /// </summary>
+        public ICommand DelCmd { get; private set; }
+
+        /// <summary>
+        /// Gets refreshcmd.
+        /// </summary>
+        public ICommand RefreshCmd { get; }
+
         private void RefreshCarList(IDogLogiWpf logic)
         {
             if (this.Dogs.Count > 0)
             {
                 this.Dogs.Clear();
             }
+
             if (logic is null)
             {
                 this.Dogs.Add(new DogWpf() { OwnerName = "try", DogName = "try", Breed = "try", Gender = "try" });
@@ -99,25 +117,5 @@ namespace KutyaVerseny.WpfApplication.VM
                 }
             }
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
-        /// </summary>
-        public MainViewModel()
-            : this(IsInDesignModeStatic ? null : ServiceLocator.Current.GetInstance<IDogLogiWpf>()) 
-        {
-        }
-
-        /*
-        public MainViewModel()
-        {
-            this.logic = new DogLogiWpf();
-            this.RefreshCarList(this.logic);
-            this.AddCmd = new RelayCommand(() => this.logic.AddDog(this.Dogs));
-            this.ModCmd = new RelayCommand(() => this.logic.ModyDog(this.SelectedDog));
-            this.DelCmd = new RelayCommand(() => this.logic.DelDog(this.Dogs, this.SelectedDog));
-            this.RefreshCmd = new RelayCommand(() => this.RefreshCarList(this.logic));
-        }
-        _*/
     }
 }

@@ -3,10 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KutyaVerseny.WpfApplication.UI"
+        xmlns:vm="clr-namespace:KutyaVerseny.WpfApplication.VM"
+        xmlns:ui="clr-namespace:KutyaVerseny.WpfApplication.UI"
         mc:Ignorable="d"
-        Title="EditorWindow" Height="450" Width="800">
-    <Grid>
         
+        Title="EditorWindow" Height="347" Width="318">
+    <Window.Resources>
+        <vm:EditorViewModel x:Key="VM"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource VM}">
+        <Label Content="Dog name" HorizontalAlignment="Left" Margin="29,33,0,0" VerticalAlignment="Top" Height="50" Width="86"/>
+        <Label Content="Owner name" HorizontalAlignment="Left" Margin="29,88,0,0" VerticalAlignment="Top" Height="50" Width="86"/>
+        <Label Content="Gender" HorizontalAlignment="Left" Margin="29,155,0,0" VerticalAlignment="Top" Height="50" Width="86"/>
+        <Label Content="Breed" HorizontalAlignment="Left" Margin="29,217,0,0" VerticalAlignment="Top" Height="50" Width="86"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="120,38,0,0" Text="{Binding Path=Dog.DogName}" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="153"/>
+        <TextBox HorizontalAlignment="Left" Margin="120,88,0,0" Text="{Binding Path=Dog.OwnerName}" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="77"/>
+
+        <ComboBox ItemsSource="{Binding Path=Status}" SelectedItem="{Binding Path=Player.Status}" HorizontalAlignment="Left" Margin="120,155,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox ItemsSource="{Binding Path=Positions}" SelectedItem="{Binding Path=Player.Position}" HorizontalAlignment="Left" Margin="120,226,0,0" VerticalAlignment="Top" Width="120"/>
+
     </Grid>
 </Window>

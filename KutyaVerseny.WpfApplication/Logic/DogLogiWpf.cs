@@ -22,13 +22,14 @@ namespace KutyaVerseny.WpfApplication.Logic
     public class DogLogiWpf : IDogLogiWpf
     {
         private IEditorService editor;
-        private OwnerLogic ownerLogic = null;
+        private OwnerLogic ownerLogic;
         private IMessenger messengerService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DogLogiWpf"/> class.
         /// </summary>
         /// <param name="messengerService">vmi.</param>
+        /// <param name="editors">editors.</param>
         [PreferredConstructor]
         public DogLogiWpf(IMessenger messengerService, IEditorService editors)
         {
@@ -41,6 +42,10 @@ namespace KutyaVerseny.WpfApplication.Logic
             this.editor = editors;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DogLogiWpf"/> class.
+        /// Doglogic.
+        /// </summary>
         public DogLogiWpf()
         {
             Db ctx = new Db();
@@ -60,9 +65,12 @@ namespace KutyaVerseny.WpfApplication.Logic
 
             if (this.editor.EditPlayer(newDog) == true && list is not null)
             {
-                list.Add(newDog);
                 Dog entity = newDog.ConvertToEntity();
                 this.ownerLogic.AddDog(entity);
+                var idlist = this.ownerLogic.GetAllDogs().ToList();
+                int newid = (int)idlist[idlist.Count - 1].ChipNum;
+                newDog.ChipNum = newid;
+                list.Add(newDog);
                 this.messengerService.Send("ADD OK", "LogicResult");
             }
             else
@@ -77,12 +85,14 @@ namespace KutyaVerseny.WpfApplication.Logic
         /// <returns>alldogs.</returns>
         public IEnumerable<DogWpf> GetAllDog()
         {
-            if (ownerLogic is not null)
+            if (this.ownerLogic is not null)
             {
                 var retEntity = this.ownerLogic.GetAllDogs();
                 return retEntity.Select((dog) => new DogWpf(dog));
             }
-            else { messengerService.Send("SOMETHING WRONG", "LogicResult");
+            else
+            {
+                this.messengerService.Send("SOMETHING WRONG", "LogicResult");
                 return null;
             }
         }

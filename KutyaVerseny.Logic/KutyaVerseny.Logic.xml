@@ -262,9 +262,9 @@
         </member>
         <member name="M:KutyaVerseny.Logic.IDoctorLogic.AllDoctor">
             <summary>
-            list all doctor.
+            All doctor.
             </summary>
-            <returns>string list.</returns>
+            <returns>String list.</returns>
         </member>
         <member name="M:KutyaVerseny.Logic.IDoctorLogic.ChangeInterventionDocPhone(System.Int32,System.Int32)">
             <summary>
