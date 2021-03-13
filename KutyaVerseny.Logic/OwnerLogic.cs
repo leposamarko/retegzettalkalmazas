@@ -75,6 +75,26 @@ namespace KutyaVerseny.Logic
         }
 
         /// <summary>
+        /// change dog name.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="name">name.</param>
+        public void ChangeOwnerName(int id, string name)
+        {
+            this.dogRepo.ChangeOwner(id, name);
+        }
+
+        /// <summary>
+        /// change dog name.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="name">name.</param>
+        public void ChangeBreed(int id, string name)
+        {
+            this.dogRepo.ChangeBreed(id, name);
+        }
+
+        /// <summary>
         /// get all dogs.
         /// </summary>
         /// <returns>list.</returns>

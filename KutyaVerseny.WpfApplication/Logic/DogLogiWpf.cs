@@ -66,11 +66,12 @@ namespace KutyaVerseny.WpfApplication.Logic
             if (this.editor.EditPlayer(newDog) == true && list is not null)
             {
                 Dog entity = newDog.ConvertToEntity();
-                this.ownerLogic.AddDog(entity);
                 var idlist = this.ownerLogic.GetAllDogs().ToList();
                 int newid = (int)idlist[idlist.Count - 1].ChipNum;
-                newDog.ChipNum = newid;
+                newDog.ChipNum = newid + 1;
+                entity.ChipNum = newDog.ChipNum;
                 list.Add(newDog);
+                this.ownerLogic.AddDog(entity);
                 this.messengerService.Send("ADD OK", "LogicResult");
             }
             else
@@ -106,8 +107,7 @@ namespace KutyaVerseny.WpfApplication.Logic
         {
             if (dog != null && list is not null && list.Remove(dog))
             {
-                Dog d = dog.ConvertToEntity();
-                this.ownerLogic.RemoveDog(d);
+                this.ownerLogic.RemoveDog(dog.ConvertToEntity());
                 this.messengerService.Send("DELETE OK", "LogicResult");
             }
             else
@@ -135,6 +135,8 @@ namespace KutyaVerseny.WpfApplication.Logic
                 dogToModi.CopyFrom(clone);
 
                 this.ownerLogic.ChangeDogName((int)dogToModi.ChipNum, dogToModi.DogName);
+                this.ownerLogic.ChangeOwnerName((int)dogToModi.ChipNum, dogToModi.OwnerName);
+                this.ownerLogic.ChangeBreed((int)dogToModi.ChipNum, dogToModi.Breed);
                 this.messengerService.Send("MODIFY OK", "LogicResult");
             }
             else

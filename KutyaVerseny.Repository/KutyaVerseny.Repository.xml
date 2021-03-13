@@ -29,6 +29,13 @@
             <param name="id">dog id.</param>
             <param name="owner">new name of owner.</param>
         </member>
+        <member name="M:KutyaVerseny.Repository.DogRepository.ChangeBreed(System.Int32,System.String)">
+            <summary>
+            method to change owner name.
+            </summary>
+            <param name="id">dog id.</param>
+            <param name="breed">new name of breed.</param>
+        </member>
         <member name="M:KutyaVerseny.Repository.DogRepository.DogNeutering(System.Int32)">
             <summary>
             chang the dog gender to neutering.
@@ -66,6 +73,13 @@
             chang the dog gender to neutering.
             </summary>
             <param name="chipnumb">dog cip id.</param>
+        </member>
+        <member name="M:KutyaVerseny.Repository.IDogRepository.ChangeBreed(System.Int32,System.String)">
+            <summary>
+            Dog owner changeing method.
+            </summary>
+            <param name="id">dog id.</param>
+            <param name="owner">new owner name.</param>
         </member>
         <member name="T:KutyaVerseny.Repository.IInterventionRepositry">
             <summary>

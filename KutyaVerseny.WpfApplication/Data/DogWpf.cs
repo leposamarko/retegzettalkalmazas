@@ -18,9 +18,16 @@ namespace KutyaVerseny.WpfApplication.Data
     /// </summary>
     public class DogWpf : ObservableObject
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DogWpf"/> class.
-        /// </summary>
+        private string dogName;
+        private string gender;
+        private decimal chipNum;
+        private string breed;
+        private DateTime? bornDate;
+        private string ownerName;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DogWpf"/> class.
+    /// </summary>
         public DogWpf()
         {
         }
@@ -58,32 +65,32 @@ namespace KutyaVerseny.WpfApplication.Data
         /// <summary>
         /// Gets or sets name of the dog.
         /// </summary>
-        public string DogName { get; set; }
+        public string DogName { get => this.dogName; set => this.Set(ref this.dogName, value); }
 
         /// <summary>
         /// Gets or sets gender of the dog.
         /// </summary>
-        public string Gender { get; set; }
+        public string Gender { get => this.gender; set => this.Set(ref this.gender, value); }
 
         /// <summary>
         /// Gets or sets chip number of the medal.
         /// </summary>
-        public decimal ChipNum { get; set; }
+        public decimal ChipNum { get => this.chipNum; set => this.Set(ref this.chipNum, value); }
 
         /// <summary>
         /// Gets or sets breed of the dog.
         /// </summary>
-        public string Breed { get; set; }
+        public string Breed { get => this.breed; set => this.Set(ref this.breed, value); }
 
         /// <summary>
         /// Gets or sets born date of the dog.
         /// </summary>
-        public DateTime? BornDate { get; set; }
+        public DateTime? BornDate { get => this.bornDate; set => this.Set(ref this.bornDate, value); }
 
         /// <summary>
         /// Gets or sets owner's name of the dog.
         /// </summary>
-        public string OwnerName { get; set; }
+        public string OwnerName { get => this.ownerName; set => this.Set(ref this.ownerName, value); }
 
         /// <summary>
         /// copy from method.

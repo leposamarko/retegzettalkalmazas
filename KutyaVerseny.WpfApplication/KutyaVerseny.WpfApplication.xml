@@ -260,6 +260,11 @@
             Gets or sets dog.
             </summary>
         </member>
+        <member name="P:KutyaVerseny.WpfApplication.VM.EditorViewModel.TypeGenders">
+            <summary>
+            Gets genders of type.
+            </summary>
+        </member>
         <member name="T:KutyaVerseny.WpfApplication.VM.MainViewModel">
             <summary>
             Mian view model.

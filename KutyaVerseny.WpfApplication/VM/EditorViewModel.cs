@@ -11,6 +11,7 @@ namespace KutyaVerseny.WpfApplication.VM
     using System.Threading.Tasks;
     using GalaSoft.MvvmLight;
     using KutyaVerseny.WpfApplication.Data;
+    using static KutyaVerseny.WpfApplication.Data.DogWpf;
 
     /// <summary>
     /// editroViewModel.
@@ -38,6 +39,14 @@ namespace KutyaVerseny.WpfApplication.VM
         {
             get { return this.dog; }
             set { this.Set(ref this.dog, value); }
+        }
+
+        /// <summary>
+        /// Gets genders of type.
+        /// </summary>
+        public Array TypeGenders
+        {
+            get { return Enum.GetValues(typeof(Genders)); }
         }
     }
 }

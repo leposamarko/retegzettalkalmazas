@@ -444,6 +444,20 @@
             <param name="id">id.</param>
             <param name="name">name.</param>
         </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.ChangeOwnerName(System.Int32,System.String)">
+            <summary>
+            change dog name.
+            </summary>
+            <param name="id">id.</param>
+            <param name="name">name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.OwnerLogic.ChangeBreed(System.Int32,System.String)">
+            <summary>
+            change dog name.
+            </summary>
+            <param name="id">id.</param>
+            <param name="name">name.</param>
+        </member>
         <member name="M:KutyaVerseny.Logic.OwnerLogic.GetAllDogs">
             <summary>
             get all dogs.

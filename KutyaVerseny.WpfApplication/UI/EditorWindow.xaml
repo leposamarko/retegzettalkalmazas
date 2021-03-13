@@ -20,8 +20,11 @@
         <TextBox HorizontalAlignment="Left" Margin="120,38,0,0" Text="{Binding Path=Dog.DogName}" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="153"/>
         <TextBox HorizontalAlignment="Left" Margin="120,88,0,0" Text="{Binding Path=Dog.OwnerName}" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="77"/>
 
-        <ComboBox ItemsSource="{Binding Path=Status}" SelectedItem="{Binding Path=Player.Status}" HorizontalAlignment="Left" Margin="120,155,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox ItemsSource="{Binding Path=Positions}" SelectedItem="{Binding Path=Player.Position}" HorizontalAlignment="Left" Margin="120,226,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox ItemsSource="{Binding Path=TypeGenders}" SelectedItem="{Binding Path=Dog.Gender}"  HorizontalAlignment="Left" Margin="120,155,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding Path=Dog.Breed}"  HorizontalAlignment="Left" Margin="120,226,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <Button Content="OK" Click="OkClick" HorizontalAlignment="Left" Margin="29,267,0,0" VerticalAlignment="Top" Height="29" Width="53"/>
+        <Button Click="CancelClikk" Content="CANCEL" HorizontalAlignment="Left" Margin="127,267,0,0" VerticalAlignment="Top" Height="29" Width="53"/>
 
     </Grid>
 </Window>

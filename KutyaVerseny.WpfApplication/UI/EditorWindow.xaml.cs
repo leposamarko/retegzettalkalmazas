@@ -46,5 +46,15 @@ namespace KutyaVerseny.WpfApplication.UI
         {
             this.vm.Dog = olddog;
         }
+
+        private void OkClick(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+        }
+
+        private void CancelClikk(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+        }
     }
 }

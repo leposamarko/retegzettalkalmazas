@@ -137,6 +137,7 @@ namespace KutyaVerseny.Data.Models
                 entity.HasOne(d => d.DogChipNumNavigation)
                     .WithMany(p => p.Intervention)
                     .HasForeignKey(d => d.DogChipNum)
+                    .OnDelete(DeleteBehavior.SetNull)
                     .HasConstraintName("beavatkozas_fk");
             });
 
@@ -176,6 +177,7 @@ namespace KutyaVerseny.Data.Models
                 entity.HasOne(d => d.DogChipNumNavigation)
                     .WithMany(p => p.Medal)
                     .HasForeignKey(d => d.DogChipNum)
+                    .OnDelete(DeleteBehavior.SetNull)
                     .HasConstraintName("erem_fk");
             });
 
