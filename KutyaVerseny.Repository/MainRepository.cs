@@ -24,7 +24,7 @@ namespace KutyaVerseny.Repository
         /// constructor.
         /// </summary>
         /// <param name="ctx">ctx is the context.</param>
-        public MainRepository(DbContext ctx)
+        protected MainRepository(DbContext ctx)
         {
             this.Ctx = ctx;
         }

@@ -18,7 +18,7 @@ namespace KutyaVerseny.Logic
         /// All doctor.
         /// </summary>
         /// <returns>String list.</returns>
-        List<string> AllDoctor();
+        IList<string> AllDoctor();
 
         /// <summary>
         /// method to change the doctro phone number.
@@ -71,7 +71,7 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <param name="name">name of the doctor.</param>
         /// <returns>list of intervention.</returns>
-        List<Intervention> AllInterventionForDoc(string name);
+        IList<Intervention> AllInterventionForDoc(string name);
 
         /// <summary>
         /// Dog neutering.

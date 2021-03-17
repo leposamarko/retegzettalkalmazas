@@ -3,9 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KutyaVerseny.WpfApplication"
         xmlns:data="clr-namespace:KutyaVerseny.WpfApplication.Data"
-        xmlns:ui="clr-namespace:KutyaVerseny.WpfApplication.UI"
         xmlns:vm="clr-namespace:KutyaVerseny.WpfApplication.VM"
         mc:Ignorable="d"
         Title="MainWindow" Height="344" Width="337">
@@ -30,7 +28,6 @@
         <Button Command="{Binding Path=AddCmd}" Content="ADD" HorizontalAlignment="Left" Margin="225,15,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Command="{Binding Path=ModCmd}" Content="MOD" HorizontalAlignment="Left" Margin="225,40,0,0" VerticalAlignment="Top" Width="75" />
         <Button Command="{Binding Path=DelCmd}" Content="DEL" HorizontalAlignment="Left" Margin="225,65,0,0" VerticalAlignment="Top" Width="75" />
-
 
     </Grid>
 </Window>

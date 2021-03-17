@@ -14,7 +14,7 @@ namespace KutyaVerseny.WpfApplication.Logic
     /// <summary>
     /// IDogLogci.
     /// </summary>
-    internal interface IDogLogiWpf
+    public interface IDogLogiWpf
     {
         /// <summary>
         /// Add dog method.
@@ -26,7 +26,7 @@ namespace KutyaVerseny.WpfApplication.Logic
         /// get all dog method.
         /// </summary>
         /// <returns>all dog.</returns>
-        public IEnumerable<DogWpf> GetAllDog();
+        public IList<DogWpf> GetAllDog();
 
         /// <summary>
         /// delete a dog.

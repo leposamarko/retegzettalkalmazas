@@ -73,18 +73,18 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <param name="degree">medal degree.</param>
         /// <returns>list of dogs.</returns>
-        List<Dog> DogsWithThisDegree(string degree);
+        IList<Dog> DogsWithThisDegree(string degree);
 
         /// <summary>
         /// number of medals.
         /// </summary>
         /// <returns>string list.</returns>
-        List<string> DegreeNumb();
+        IList<string> DegreeNumb();
 
         /// <summary>
         /// task of noncroud.
         /// </summary>
         /// <returns>list task.</returns>
-        Task<List<string>> DegreeNumbAsync();
+        Task<IList<string>> DegreeNumbAsync();
     }
 }

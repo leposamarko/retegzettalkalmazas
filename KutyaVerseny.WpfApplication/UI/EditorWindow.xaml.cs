@@ -47,6 +47,11 @@ namespace KutyaVerseny.WpfApplication.UI
             this.vm.Dog = olddog;
         }
 
+        /// <summary>
+        /// Gets or sets dog wpf.
+        /// </summary>
+        public DogWpf Dog { get => this.vm.Dog; set => this.vm.Dog = value; }
+
         private void OkClick(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;

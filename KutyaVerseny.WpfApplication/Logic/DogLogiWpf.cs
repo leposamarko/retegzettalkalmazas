@@ -22,7 +22,7 @@ namespace KutyaVerseny.WpfApplication.Logic
     public class DogLogiWpf : IDogLogiWpf
     {
         private IEditorService editor;
-        private OwnerLogic ownerLogic;
+        private IOwnerLogic ownerLogic;
         private IMessenger messengerService;
 
         /// <summary>
@@ -30,48 +30,28 @@ namespace KutyaVerseny.WpfApplication.Logic
         /// </summary>
         /// <param name="messengerService">vmi.</param>
         /// <param name="editors">editors.</param>
-        [PreferredConstructor]
         public DogLogiWpf(IMessenger messengerService, IEditorService editors)
         {
-            Db ctx = new Db();
-            DogRepository dogRepo = new DogRepository(ctx);
-            MedalRepository medalRepo = new MedalRepository(ctx);
-            InterventionRepository intRepo = new InterventionRepository(ctx);
-            this.ownerLogic = new OwnerLogic(dogRepo, intRepo, medalRepo);
+            this.ownerLogic = new OwnerLogic(Factory.DogRepo, Factory.IntRepo, Factory.MedRepo);
             this.messengerService = messengerService;
             this.editor = editors;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DogLogiWpf"/> class.
-        /// Doglogic.
+        /// Add dog method.
         /// </summary>
-        public DogLogiWpf()
-        {
-            Db ctx = new Db();
-            DogRepository dogRepo = new DogRepository(ctx);
-            MedalRepository medalRepo = new MedalRepository(ctx);
-            InterventionRepository intRepo = new InterventionRepository(ctx);
-            this.ownerLogic = new OwnerLogic(dogRepo, intRepo, medalRepo);
-        }
-
-        /// <summary>
-        /// add dog method.
-        /// </summary>
-        /// <param name="list">add a dog.</param>
+        /// <param name="list">list of dog.</param>
         public void AddDog(IList<DogWpf> list)
         {
             DogWpf newDog = new DogWpf();
 
-            if (this.editor.EditPlayer(newDog) == true && list is not null)
+            if (this.editor.EditPlayer(newDog) == true && list != null)
             {
-                Dog entity = newDog.ConvertToEntity();
                 var idlist = this.ownerLogic.GetAllDogs().ToList();
                 int newid = (int)idlist[idlist.Count - 1].ChipNum;
                 newDog.ChipNum = newid + 1;
-                entity.ChipNum = newDog.ChipNum;
                 list.Add(newDog);
-                this.ownerLogic.AddDog(entity);
+                this.ownerLogic.AddDog(newDog.ConvertToEntity());
                 this.messengerService.Send("ADD OK", "LogicResult");
             }
             else
@@ -84,12 +64,24 @@ namespace KutyaVerseny.WpfApplication.Logic
         /// getallmethod.
         /// </summary>
         /// <returns>alldogs.</returns>
-        public IEnumerable<DogWpf> GetAllDog()
+        public IList<DogWpf> GetAllDog()
         {
-            if (this.ownerLogic is not null)
+            if (this.ownerLogic != null)
             {
+                IList<DogWpf> result = new List<DogWpf>();
                 var retEntity = this.ownerLogic.GetAllDogs();
-                return retEntity.Select((dog) => new DogWpf(dog));
+                foreach (var item in retEntity)
+                {
+                    DogWpf d = new DogWpf();
+                    d.ChipNum = item.ChipNum;
+                    d.DogName = item.DogName;
+                    d.Gender = item.Gender;
+                    d.OwnerName = item.OwnerName;
+                    d.Breed = item.Breed;
+                    result.Add(d);
+                }
+
+                return result;
             }
             else
             {
@@ -105,9 +97,11 @@ namespace KutyaVerseny.WpfApplication.Logic
         /// <param name="dog">dog.</param>
         public void DelDog(IList<DogWpf> list, DogWpf dog)
         {
-            if (dog != null && list is not null && list.Remove(dog))
+            if (dog != null && list != null && list.Remove(dog))
             {
-                this.ownerLogic.RemoveDog(dog.ConvertToEntity());
+                int id = (int)dog.ChipNum;
+                Dog rm = this.ownerLogic.GetYourDogByChip(id);
+                this.ownerLogic.RemoveDog(rm);
                 this.messengerService.Send("DELETE OK", "LogicResult");
             }
             else

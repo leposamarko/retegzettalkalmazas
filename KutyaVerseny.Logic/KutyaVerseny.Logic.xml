@@ -404,6 +404,20 @@
             <param name="name">name of owner.</param>
             <returns>task list.</returns>
         </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.ChangeOwnerName(System.Int32,System.String)">
+            <summary>
+            change dog name.
+            </summary>
+            <param name="id">id.</param>
+            <param name="name">name.</param>
+        </member>
+        <member name="M:KutyaVerseny.Logic.IOwnerLogic.ChangeBreed(System.Int32,System.String)">
+            <summary>
+            change dog name.
+            </summary>
+            <param name="id">id.</param>
+            <param name="name">name.</param>
+        </member>
         <member name="T:KutyaVerseny.Logic.OwnerLogic">
             <summary>
             class of owner logic.

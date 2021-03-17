@@ -16,7 +16,7 @@ namespace KutyaVerseny.WpfApplication.VM
     /// <summary>
     /// editroViewModel.
     /// </summary>
-    internal class EditorViewModel : ViewModelBase
+    public class EditorViewModel : ViewModelBase
     {
         private DogWpf dog;
 

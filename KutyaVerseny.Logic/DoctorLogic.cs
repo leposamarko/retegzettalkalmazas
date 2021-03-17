@@ -111,9 +111,9 @@ namespace KutyaVerseny.Logic
         /// return all doctor.
         /// </summary>
         /// <returns>string list.</returns>
-        public List<string> AllDoctor()
+        public IList<string> AllDoctor()
         {
-            List<string> doctors = new List<string>();
+            IList<string> doctors = new List<string>();
             foreach (var item in this.interRepo.GetAll().ToList())
             {
                 if (!doctors.Contains(item.Doctor))
@@ -130,7 +130,7 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <param name="name">doctor name.</param>
         /// <returns>list.</returns>
-        public List<Intervention> AllInterventionForDoc(string name)
+        public IList<Intervention> AllInterventionForDoc(string name)
         {
             return this.interRepo.GetAll().Where(x => x.Doctor == name).ToList();
         }

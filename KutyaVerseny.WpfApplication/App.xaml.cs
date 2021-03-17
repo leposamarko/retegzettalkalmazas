@@ -18,17 +18,6 @@ namespace KutyaVerseny.WpfApplication
     using KutyaVerseny.WpfApplication.UI;
 
     /// <summary>
-    /// MyIoc.
-    /// </summary>
-    internal class MyIoc : SimpleIoc, IServiceLocator
-    {
-        /// <summary>
-        /// Gets Instance.
-        /// </summary>
-        public static MyIoc Instance { get; private set; } = new MyIoc();
-    }
-
-    /// <summary>
     /// Interaction logic for App.xaml.
     /// </summary>
     public partial class App : Application

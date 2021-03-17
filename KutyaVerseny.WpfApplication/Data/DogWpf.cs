@@ -16,7 +16,7 @@ namespace KutyaVerseny.WpfApplication.Data
     /// <summary>
     /// dog entity in wpf.
     /// </summary>
-    public class DogWpf : ObservableObject
+    public partial class DogWpf : ObservableObject
     {
         private string dogName;
         private string gender;
@@ -25,6 +25,7 @@ namespace KutyaVerseny.WpfApplication.Data
         private DateTime? bornDate;
         private string ownerName;
 
+        /*
     /// <summary>
     /// Initializes a new instance of the <see cref="DogWpf"/> class.
     /// </summary>
@@ -45,6 +46,7 @@ namespace KutyaVerseny.WpfApplication.Data
             this.BornDate = d.BornDate;
             this.OwnerName = d.OwnerName;
         }
+        */
 
         /// <summary>
         /// enum.
@@ -54,12 +56,12 @@ namespace KutyaVerseny.WpfApplication.Data
             /// <summary>
             /// kan.
             /// </summary>
-            kan = 0,
+            Kan = 0,
 
             /// <summary>
             /// female.
             /// </summary>
-            female = 1,
+            Female = 1,
         }
 
         /// <summary>
@@ -98,7 +100,14 @@ namespace KutyaVerseny.WpfApplication.Data
         /// <returns>dog.</returns>
         public Dog ConvertToEntity()
         {
-            return new Dog() { ChipNum = this.ChipNum, BornDate = this.BornDate, OwnerName = this.OwnerName, Breed = this.Breed, Gender = this.Gender, DogName = this.DogName };
+            Dog d = new Dog();
+            d.ChipNum = this.ChipNum;
+            d.DogName = this.dogName;
+            d.OwnerName = this.ownerName;
+            d.Breed = this.breed;
+            d.Gender = this.gender;
+            d.BornDate = this.bornDate;
+            return d;
         }
 
         /// <summary>

@@ -26,20 +26,18 @@ namespace KutyaVerseny.WpfApplication
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainViewModel vm;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
         /// </summary>
         public MainWindow()
         {
+            Factory.CreateClass();
             this.InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.vm = this.FindResource("VM") as MainViewModel;
-            Messenger.Default.Register<string>(this, "LogicResult", msg =>
+           Messenger.Default.Register<string>(this, "LogicResult", msg =>
             {
                 MessageBox.Show(msg);
             });

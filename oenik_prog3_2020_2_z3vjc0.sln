@@ -3,17 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KutyaVerseny.Program", "KutyaVerseny.Program\KutyaVerseny.Program.csproj", "{5FB5F337-E54B-4144-BEBD-EA13522C6A52}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KutyaVerseny.Data", "KutyaVerseny.Data\KutyaVerseny.Data.csproj", "{0B12A2D4-09D2-4805-86E7-BE76717D8CCB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KutyaVerseny.Repository", "KutyaVerseny.Repository\KutyaVerseny.Repository.csproj", "{64469604-D102-4A88-B17F-1D6A7607C772}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KutyaVerseny.Logic", "KutyaVerseny.Logic\KutyaVerseny.Logic.csproj", "{22F9233D-D90F-4C3D-BC22-E59146EB262F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KutyaVerseny.Logic.Tests", "KutyaVerseny.Logic.Tests\KutyaVerseny.Logic.Tests.csproj", "{587517FF-E489-44C0-9F81-E0A4156AE96F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KutyaVerseny.WpfApplication", "KutyaVerseny.WpfApplication\KutyaVerseny.WpfApplication.csproj", "{0139318F-8611-407B-AB44-1A359CC40D2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KutyaVerseny.WpfApplication", "KutyaVerseny.WpfApplication\KutyaVerseny.WpfApplication.csproj", "{0139318F-8611-407B-AB44-1A359CC40D2F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{64469604-D102-4A88-B17F-1D6A7607C772} = {64469604-D102-4A88-B17F-1D6A7607C772}
 		{22F9233D-D90F-4C3D-BC22-E59146EB262F} = {22F9233D-D90F-4C3D-BC22-E59146EB262F}
@@ -26,10 +22,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5FB5F337-E54B-4144-BEBD-EA13522C6A52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5FB5F337-E54B-4144-BEBD-EA13522C6A52}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5FB5F337-E54B-4144-BEBD-EA13522C6A52}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5FB5F337-E54B-4144-BEBD-EA13522C6A52}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0B12A2D4-09D2-4805-86E7-BE76717D8CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0B12A2D4-09D2-4805-86E7-BE76717D8CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B12A2D4-09D2-4805-86E7-BE76717D8CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,10 +34,6 @@ Global
 		{22F9233D-D90F-4C3D-BC22-E59146EB262F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22F9233D-D90F-4C3D-BC22-E59146EB262F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22F9233D-D90F-4C3D-BC22-E59146EB262F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{587517FF-E489-44C0-9F81-E0A4156AE96F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{587517FF-E489-44C0-9F81-E0A4156AE96F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{587517FF-E489-44C0-9F81-E0A4156AE96F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{587517FF-E489-44C0-9F81-E0A4156AE96F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0139318F-8611-407B-AB44-1A359CC40D2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0139318F-8611-407B-AB44-1A359CC40D2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0139318F-8611-407B-AB44-1A359CC40D2F}.Release|Any CPU.ActiveCfg = Release|Any CPU

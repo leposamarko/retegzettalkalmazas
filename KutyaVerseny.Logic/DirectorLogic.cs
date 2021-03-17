@@ -122,7 +122,7 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <param name="degree">type of medal.</param>
         /// <returns>dog list.</returns>
-        public List<Dog> DogsWithThisDegree(string degree)
+        public IList<Dog> DogsWithThisDegree(string degree)
         {
             return this.dogRepo.GetAll().ToList();
         }
@@ -131,7 +131,7 @@ namespace KutyaVerseny.Logic
         /// number of medals.
         /// </summary>
         /// <returns>string list.</returns>
-        public List<string> DegreeNumb()
+        public IList<string> DegreeNumb()
         {
             var q3 = from b in this.medalRepo.GetAll()
                      group b by b.Degree into g
@@ -147,7 +147,7 @@ namespace KutyaVerseny.Logic
         /// task.
         /// </summary>
         /// <returns>Task.</returns>
-        public Task<List<string>> DegreeNumbAsync()
+        public Task<IList<string>> DegreeNumbAsync()
         {
             return Task.Run(() => this.DegreeNumb());
         }

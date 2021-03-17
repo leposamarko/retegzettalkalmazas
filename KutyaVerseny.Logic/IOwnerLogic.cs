@@ -73,20 +73,34 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <param name="name">name of dog.</param>
         /// <returns>string list.</returns>
-        List<string> DogsMedals(string name);
+        IList<string> DogsMedals(string name);
 
         /// <summary>
         /// task croud.
         /// </summary>
         /// <param name="name">name of owner.</param>
         /// <returns>task list.</returns>
-        Task<List<string>> DogInterventionsAsync(string name);
+        Task<IList<string>> DogInterventionsAsync(string name);
 
         /// <summary>
         /// task croud.
         /// </summary>
         /// <param name="name">name of owner.</param>
         /// <returns>task list.</returns>
-        Task<List<string>> DogMedalsAsync(string name);
+        Task<IList<string>> DogMedalsAsync(string name);
+
+        /// <summary>
+        /// change dog name.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="name">name.</param>
+        public void ChangeOwnerName(int id, string name);
+
+        /// <summary>
+        /// change dog name.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="name">name.</param>
+        public void ChangeBreed(int id, string name);
     }
 }

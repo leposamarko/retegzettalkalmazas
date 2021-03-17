@@ -21,7 +21,7 @@ namespace KutyaVerseny.WpfApplication.VM
     /// <summary>
     /// Mian view model.
     /// </summary>
-    internal class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         /// <summary>
         /// Selected dog.
@@ -40,11 +40,17 @@ namespace KutyaVerseny.WpfApplication.VM
         public MainViewModel(IDogLogiWpf log)
         {
             this.logic = log;
-            this.RefreshCarList(this.logic);
+            if (log != null)
+            {
+                foreach (var item in this.logic.GetAllDog())
+                {
+                    this.Dogs.Add(item);
+                }
+            }
+
             this.AddCmd = new RelayCommand(() => this.logic.AddDog(this.Dogs));
             this.ModCmd = new RelayCommand(() => this.logic.ModyDog(this.SelectedDog));
             this.DelCmd = new RelayCommand(() => this.logic.DelDog(this.Dogs, this.SelectedDog));
-            this.RefreshCmd = new RelayCommand(() => this.RefreshCarList(this.logic));
         }
 
         /// <summary>
@@ -90,32 +96,5 @@ namespace KutyaVerseny.WpfApplication.VM
         /// Gets delcmd.
         /// </summary>
         public ICommand DelCmd { get; private set; }
-
-        /// <summary>
-        /// Gets refreshcmd.
-        /// </summary>
-        public ICommand RefreshCmd { get; }
-
-        private void RefreshCarList(IDogLogiWpf logic)
-        {
-            if (this.Dogs.Count > 0)
-            {
-                this.Dogs.Clear();
-            }
-
-            if (logic is null)
-            {
-                this.Dogs.Add(new DogWpf() { OwnerName = "try", DogName = "try", Breed = "try", Gender = "try" });
-            }
-            else
-            {
-                var dogg = logic.GetAllDog();
-
-                foreach (var dog in dogg)
-                {
-                    this.Dogs.Add(dog);
-                }
-            }
-        }
     }
 }

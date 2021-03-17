@@ -31,10 +31,10 @@
         </member>
         <member name="M:KutyaVerseny.Repository.DogRepository.ChangeBreed(System.Int32,System.String)">
             <summary>
-            method to change owner name.
+            chage breed.
             </summary>
-            <param name="id">dog id.</param>
-            <param name="breed">new name of breed.</param>
+            <param name="id">id of dog.</param>
+            <param name="breed">breed of dog.</param>
         </member>
         <member name="M:KutyaVerseny.Repository.DogRepository.DogNeutering(System.Int32)">
             <summary>
@@ -76,10 +76,10 @@
         </member>
         <member name="M:KutyaVerseny.Repository.IDogRepository.ChangeBreed(System.Int32,System.String)">
             <summary>
-            Dog owner changeing method.
+            Dog breed breed method.
             </summary>
             <param name="id">dog id.</param>
-            <param name="owner">new owner name.</param>
+            <param name="breed">new breed name.</param>
         </member>
         <member name="T:KutyaVerseny.Repository.IInterventionRepositry">
             <summary>

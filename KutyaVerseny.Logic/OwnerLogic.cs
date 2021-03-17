@@ -156,7 +156,7 @@ namespace KutyaVerseny.Logic
         /// list all owner in the database.
         /// </summary>
         /// <returns>list of string.</returns>
-        public List<string> AllOwner()
+        public IList<string> AllOwner()
         {
             List<string> doctors = new List<string>();
             foreach (var item in this.dogRepo.GetAll().ToList())
@@ -175,7 +175,7 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <param name="name">naem of owner.</param>
         /// <returns>string list.</returns>
-        public List<string> DogsMedals(string name)
+        public IList<string> DogsMedals(string name)
         {
             var q1 = from a in this.dogRepo.GetAll().ToList()
                      join b in this.medalRepo.GetAll().ToList() on a.ChipNum equals b.DogChipNum
@@ -195,7 +195,7 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <param name="name">name of owner.</param>
         /// <returns>Task.</returns>
-        public Task<List<string>> DogMedalsAsync(string name)
+        public Task<IList<string>> DogMedalsAsync(string name)
         {
             return Task.Run(() => this.DogsMedals(name));
         }
@@ -205,7 +205,7 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <param name="name">name.</param>
         /// <returns>string list.</returns>
-        public List<string> DogsInterventions(string name)
+        public IList<string> DogsInterventions(string name)
         {
             var q2 = from a in this.dogRepo.GetAll().ToList()
                      join b in this.intRepo.GetAll().ToList() on a.ChipNum equals b.DogChipNum
@@ -226,7 +226,7 @@ namespace KutyaVerseny.Logic
         /// </summary>
         /// <param name="name">name of owner.</param>
         /// <returns>Task.</returns>
-        public Task<List<string>> DogInterventionsAsync(string name)
+        public Task<IList<string>> DogInterventionsAsync(string name)
         {
             return Task.Run(() => this.DogsInterventions(name));
         }

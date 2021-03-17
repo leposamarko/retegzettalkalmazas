@@ -15,7 +15,7 @@ namespace KutyaVerseny.WpfApplication.UI
     /// <summary>
     /// editorvidow.
     /// </summary>
-    internal class EditorServiceViaWindow : IEditorService
+    public class EditorServiceViaWindow : IEditorService
     {
         /// <inheritdoc/>
         public bool EditPlayer(DogWpf d)

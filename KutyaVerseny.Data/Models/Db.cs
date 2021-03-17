@@ -69,7 +69,7 @@ namespace KutyaVerseny.Data.Models
             modelBuilder?.Entity<Dog>(entity =>
             {
                 entity.HasKey(e => e.ChipNum)
-                    .HasName("PK__Dog__7476179439C4C731");
+                    .HasName("chip_pk");
 
                 entity.Property(e => e.ChipNum)
                     .HasColumnName("chip_num")

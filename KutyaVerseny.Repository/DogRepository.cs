@@ -50,10 +50,10 @@ namespace KutyaVerseny.Repository
         }
 
         /// <summary>
-        /// method to change owner name.
+        /// chage breed.
         /// </summary>
-        /// <param name="id">dog id.</param>
-        /// <param name="breed">new name of breed.</param>
+        /// <param name="id">id of dog.</param>
+        /// <param name="breed">breed of dog.</param>
         public void ChangeBreed(int id, string breed)
         {
             var dog = this.GetOne(id);

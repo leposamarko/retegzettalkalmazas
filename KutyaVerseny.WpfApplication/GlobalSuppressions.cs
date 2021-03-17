@@ -4,7 +4,5 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:Element should begin with upper-case letter", Justification = "Not usefull", Scope = "type", Target = "~T:KutyaVerseny.WpfApplication.Data.DogWpf.Genders")]
-[assembly: SuppressMessage("Design", "CA1812:Avoid uninstantiated internal classes", Justification = "False error.")]
-[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1602:Enumeration items should be documented", Justification = "Not usefull", Scope = "type", Target = "~T:KutyaVerseny.WpfApplication.Data.DogWpf.Genders")]
-[assembly: SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "NotUsefull", Scope = "member", Target = "~M:KutyaVerseny.WpfApplication.Data.DogWpf.#ctor(KutyaVerseny.Data.Models.Dog)")]
+[assembly: SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Scope = "type", Target = "~T:KutyaVerseny.WpfApplication.UI.EditorServiceViaWindow", Justification = "<Silent>")]
+[assembly: SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Silent>", Scope = "member", Target = "~P:KutyaVerseny.WpfApplication.VM.EditorViewModel.TypeGenders")]

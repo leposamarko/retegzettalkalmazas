@@ -4,16 +4,6 @@
         <name>KutyaVerseny.WpfApplication</name>
     </assembly>
     <members>
-        <member name="T:KutyaVerseny.WpfApplication.MyIoc">
-            <summary>
-            MyIoc.
-            </summary>
-        </member>
-        <member name="P:KutyaVerseny.WpfApplication.MyIoc.Instance">
-            <summary>
-            Gets Instance.
-            </summary>
-        </member>
         <member name="T:KutyaVerseny.WpfApplication.App">
             <summary>
             Interaction logic for App.xaml.
@@ -42,28 +32,17 @@
             dog entity in wpf.
             </summary>
         </member>
-        <member name="M:KutyaVerseny.WpfApplication.Data.DogWpf.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.Data.DogWpf"/> class.
-            </summary>
-        </member>
-        <member name="M:KutyaVerseny.WpfApplication.Data.DogWpf.#ctor(KutyaVerseny.Data.Models.Dog)">
-            <summary>
-            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.Data.DogWpf"/> class.
-            </summary>
-            <param name="d">dog.</param>
-        </member>
         <member name="T:KutyaVerseny.WpfApplication.Data.DogWpf.Genders">
             <summary>
             enum.
             </summary>
         </member>
-        <member name="F:KutyaVerseny.WpfApplication.Data.DogWpf.Genders.kan">
+        <member name="F:KutyaVerseny.WpfApplication.Data.DogWpf.Genders.Kan">
             <summary>
             kan.
             </summary>
         </member>
-        <member name="F:KutyaVerseny.WpfApplication.Data.DogWpf.Genders.female">
+        <member name="F:KutyaVerseny.WpfApplication.Data.DogWpf.Genders.Female">
             <summary>
             female.
             </summary>
@@ -110,6 +89,36 @@
             </summary>
             <param name="dog">dot to copy.</param>
         </member>
+        <member name="T:KutyaVerseny.WpfApplication.Factory">
+            <summary>
+            Factory.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.Factory.DogRepo">
+            <summary>
+            Gets dogRepo.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.Factory.IntRepo">
+            <summary>
+            Gets  intrepo.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.Factory.MedRepo">
+            <summary>
+            Gets medalrepo.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.Factory.DogDb">
+            <summary>
+            Gets or sets  DB.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.WpfApplication.Factory.CreateClass">
+            <summary>
+            create calls method.
+            </summary>
+        </member>
         <member name="T:KutyaVerseny.WpfApplication.Logic.DogLogiWpf">
             <summary>
             doglogic.
@@ -122,17 +131,11 @@
             <param name="messengerService">vmi.</param>
             <param name="editors">editors.</param>
         </member>
-        <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.Logic.DogLogiWpf"/> class.
-            Doglogic.
-            </summary>
-        </member>
         <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.AddDog(System.Collections.Generic.IList{KutyaVerseny.WpfApplication.Data.DogWpf})">
             <summary>
-            add dog method.
+            Add dog method.
             </summary>
-            <param name="list">add a dog.</param>
+            <param name="list">list of dog.</param>
         </member>
         <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.GetAllDog">
             <summary>
@@ -213,6 +216,16 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:KutyaVerseny.WpfApplication.MyIoc">
+            <summary>
+            MyIoc.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.MyIoc.Instance">
+            <summary>
+            Gets Instance.
+            </summary>
+        </member>
         <member name="T:KutyaVerseny.WpfApplication.UI.EditorServiceViaWindow">
             <summary>
             editorvidow.
@@ -239,6 +252,11 @@
             Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.UI.EditorWindow"/> class.
             </summary>
             <param name="olddog">old dog to mody.</param>
+        </member>
+        <member name="P:KutyaVerseny.WpfApplication.UI.EditorWindow.Dog">
+            <summary>
+            Gets or sets dog wpf.
+            </summary>
         </member>
         <member name="M:KutyaVerseny.WpfApplication.UI.EditorWindow.InitializeComponent">
             <summary>
@@ -314,11 +332,6 @@
         <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.DelCmd">
             <summary>
             Gets delcmd.
-            </summary>
-        </member>
-        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.RefreshCmd">
-            <summary>
-            Gets refreshcmd.
             </summary>
         </member>
     </members>
