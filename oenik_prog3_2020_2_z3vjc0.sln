@@ -16,6 +16,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KutyaVerseny.WpfApplication
 		{0B12A2D4-09D2-4805-86E7-BE76717D8CCB} = {0B12A2D4-09D2-4805-86E7-BE76717D8CCB}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KutyaVerseny.Web", "KutyaVerseny.Web\KutyaVerseny.Web.csproj", "{80445B93-7BAF-4E72-99C8-9DA8C1917F90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{0139318F-8611-407B-AB44-1A359CC40D2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0139318F-8611-407B-AB44-1A359CC40D2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0139318F-8611-407B-AB44-1A359CC40D2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80445B93-7BAF-4E72-99C8-9DA8C1917F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80445B93-7BAF-4E72-99C8-9DA8C1917F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80445B93-7BAF-4E72-99C8-9DA8C1917F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80445B93-7BAF-4E72-99C8-9DA8C1917F90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

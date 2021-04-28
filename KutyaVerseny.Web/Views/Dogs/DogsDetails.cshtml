@@ -1,0 +1,37 @@
+﻿@model KutyaVerseny.Web.Models.Dog
+@{
+    ViewData["Title"] =  "DogDeatels";
+}
+
+<h2>Datasheet of one dog</h2>
+
+@Html.ActionLink("Back to the list", "Index")
+
+<table border="1">
+    <tr>
+        <td>Dog chip number</td>
+        <td>@Model.ChipNum</td>
+
+    </tr>
+    <tr>
+        <td>Dog name</td>
+        <td>@Model.DogName</td>
+
+    </tr>
+    <tr>
+        <td>Dog owner name</td>
+        <td>@Model.OwnerName</td>
+
+    </tr>
+    <tr>
+        <td>Dog breed</td>
+        <td>@Model.Breed</td>
+
+    </tr>
+    <tr>
+        <td>Dog gender</td>
+        <td>@Model.Gender</td>
+
+    </tr>
+
+</table>

@@ -1,0 +1,28 @@
+﻿@model Dog
+
+<h2>DogsEdit</h2>
+
+@using (Html.BeginForm("Edit", "Dogs"))
+{
+    @Html.ValidationSummary()
+
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.ChipNum)
+
+    @Html.Hidden("editAction", ViewData["editAction"].ToString())
+
+    <div class="editor-label">@Html.LabelFor(m => m.DogName)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.DogName)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.Breed)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Breed)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.OwnerName)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.OwnerName)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.Gender)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Gender)</div>
+
+    <input type="submit" value="SEND" />
+}

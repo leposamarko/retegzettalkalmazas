@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KutyaVerseny.Data\KutyaVerseny.Data.csproj" />
+    <ProjectReference Include="..\KutyaVerseny.Logic\KutyaVerseny.Logic.csproj" />
+    <ProjectReference Include="..\KutyaVerseny.Repository\KutyaVerseny.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

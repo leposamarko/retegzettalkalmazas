@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Dog>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "DogList";
+}
+<h2>Dogs list</h2>
+
+@if(Model.Count() ==0)
+{
+    <p>No data in the database!!</p>
+}
+else {
+<table border="1">
+     <tr>
+         <th>@Html.DisplayNameFor(m => m.First().DogName)</th>
+         <th>@Html.DisplayNameFor(m => m.First().OwnerName)</th>
+         <th>@Html.DisplayNameFor(m => m.First().Breed)</th>
+         <th>@Html.DisplayNameFor(m => m.First().Gender)</th>
+         <th>Datasheet</th>
+         <th>Delete</th>
+         <th>Modify</th>
+     </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => item.DogName)</td>
+                <td>@Html.DisplayFor(m => item.OwnerName)</td>
+                <td>@Html.DisplayFor(m => item.Breed)</td>
+                <td>@Html.DisplayFor(m => item.Gender)</td>
+                <td>@Html.ActionLink("[SHOW]","Details",new { id = item.ChipNum })</td>
+                <td>@Html.ActionLink("[DEL]", "Remove", new { id = item.ChipNum })</td>
+                <td>@Html.ActionLink("[EDIT]", "Edit", new { id = item.ChipNum })</td>
+            </tr>
+        }
+
+</table>
+}

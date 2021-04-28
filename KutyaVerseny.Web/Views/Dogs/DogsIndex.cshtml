@@ -1,0 +1,12 @@
+﻿@model DogListViewModel
+
+@{ 
+    ViewData["Title"] = "CarsIndes";
+}
+
+<h2>Card index</h2>
+
+<p style="color:red">@TempData["editResult"]</p>
+
+@await Html.PartialAsync("DogsEdit", Model.EditedDog)
+@await Html.PartialAsync("DogsList", Model.ListOfDog)

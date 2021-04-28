@@ -1,0 +1,2069 @@
+diff --git a/KutyaVerseny.Data/AssemblyInfo.cs b/KutyaVerseny.Data/AssemblyInfo.cs
+new file mode 100644
+index 0000000..2e81201
+--- /dev/null
++++ b/KutyaVerseny.Data/AssemblyInfo.cs
+@@ -0,0 +1,20 @@
++// <copyright file="AssemblyInfo.cs" company="Z3VJC0">
++// Copyright (c) Z3VJC0. All rights reserved.
++// </copyright>
++
++using System;
++using System.Runtime.InteropServices;
++
++// In SDK-style projects such as this one, several assembly attributes that were historically
++// defined in this file are now automatically added during build and populated with
++// values defined in project properties. For details of which attributes are included
++// and how to customise this process see: https://aka.ms/assembly-info-properties
++
++// Setting ComVisible to false makes the types in this assembly not visible to COM
++// components.  If you need to access a type in this assembly from COM, set the ComVisible
++// attribute to true on that type.
++[assembly: ComVisible(false)]
++
++// The following GUID is for the ID of the typelib if this project is exposed to COM.
++[assembly: Guid("4c6671e2-8afb-4978-a176-58569aaa4cd0")]
++[assembly: CLSCompliant(false)]
+\ No newline at end of file
+diff --git a/KutyaVerseny.Data/Database.mdf b/KutyaVerseny.Data/Database.mdf
+index 5ba1ee7..8783186 100644
+Binary files a/KutyaVerseny.Data/Database.mdf and b/KutyaVerseny.Data/Database.mdf differ
+diff --git a/KutyaVerseny.Data/Database_log.ldf b/KutyaVerseny.Data/Database_log.ldf
+index 2980a84..314a919 100644
+Binary files a/KutyaVerseny.Data/Database_log.ldf and b/KutyaVerseny.Data/Database_log.ldf differ
+diff --git a/KutyaVerseny.Data/KutyaVerseny.Data.csproj b/KutyaVerseny.Data/KutyaVerseny.Data.csproj
+index bbc99b8..301eb4b 100644
+--- a/KutyaVerseny.Data/KutyaVerseny.Data.csproj
++++ b/KutyaVerseny.Data/KutyaVerseny.Data.csproj
+@@ -1,7 +1,10 @@
+ ﻿<Project Sdk="Microsoft.NET.Sdk">
+ 
+   <PropertyGroup>
+-    <TargetFramework>netcoreapp3.1</TargetFramework>
++    <TargetFramework>net5.0</TargetFramework>
++    <EnableNETAnalyzers>true</EnableNETAnalyzers>
++    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
++    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+   </PropertyGroup>
+ 
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+@@ -29,18 +32,14 @@
+   </ItemGroup>
+ 
+   <ItemGroup>
+-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
++    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
++    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
+       <PrivateAssets>all</PrivateAssets>
+       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+     </PackageReference>
+-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.9">
+-      <PrivateAssets>all</PrivateAssets>
+-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+-    </PackageReference>
+-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.9" />
+-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
++    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.4" />
++    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
++    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4">
+       <PrivateAssets>all</PrivateAssets>
+       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+     </PackageReference>
+diff --git a/KutyaVerseny.Data/Models/Db.cs b/KutyaVerseny.Data/Models/Db.cs
+index cf082b8..2c13a27 100644
+--- a/KutyaVerseny.Data/Models/Db.cs
++++ b/KutyaVerseny.Data/Models/Db.cs
+@@ -69,7 +69,7 @@ namespace KutyaVerseny.Data.Models
+             modelBuilder?.Entity<Dog>(entity =>
+             {
+                 entity.HasKey(e => e.ChipNum)
+-                    .HasName("PK__Dog__7476179439C4C731");
++                    .HasName("chip_pk");
+ 
+                 entity.Property(e => e.ChipNum)
+                     .HasColumnName("chip_num")
+@@ -137,6 +137,7 @@ namespace KutyaVerseny.Data.Models
+                 entity.HasOne(d => d.DogChipNumNavigation)
+                     .WithMany(p => p.Intervention)
+                     .HasForeignKey(d => d.DogChipNum)
++                    .OnDelete(DeleteBehavior.SetNull)
+                     .HasConstraintName("beavatkozas_fk");
+             });
+ 
+@@ -176,6 +177,7 @@ namespace KutyaVerseny.Data.Models
+                 entity.HasOne(d => d.DogChipNumNavigation)
+                     .WithMany(p => p.Medal)
+                     .HasForeignKey(d => d.DogChipNum)
++                    .OnDelete(DeleteBehavior.SetNull)
+                     .HasConstraintName("erem_fk");
+             });
+ 
+diff --git a/KutyaVerseny.Logic.Tests/AssemblyInfo.cs b/KutyaVerseny.Logic.Tests/AssemblyInfo.cs
+new file mode 100644
+index 0000000..0a4b013
+--- /dev/null
++++ b/KutyaVerseny.Logic.Tests/AssemblyInfo.cs
+@@ -0,0 +1,20 @@
++// <copyright file="AssemblyInfo.cs" company="Z3VJC0">
++// Copyright (c) Z3VJC0. All rights reserved.
++// </copyright>
++
++using System;
++using System.Runtime.InteropServices;
++
++// In SDK-style projects such as this one, several assembly attributes that were historically
++// defined in this file are now automatically added during build and populated with
++// values defined in project properties. For details of which attributes are included
++// and how to customise this process see: https://aka.ms/assembly-info-properties
++
++// Setting ComVisible to false makes the types in this assembly not visible to COM
++// components.  If you need to access a type in this assembly from COM, set the ComVisible
++// attribute to true on that type.
++[assembly: ComVisible(false)]
++
++// The following GUID is for the ID of the typelib if this project is exposed to COM.
++[assembly: Guid("082c899d-aa31-4b5e-8578-8681c8fbd9a6")]
++[assembly: CLSCompliant(false)]
+diff --git a/KutyaVerseny.Logic.Tests/KutyaVerseny.Logic.Tests.csproj b/KutyaVerseny.Logic.Tests/KutyaVerseny.Logic.Tests.csproj
+index 998b8cb..d0f9d41 100644
+--- a/KutyaVerseny.Logic.Tests/KutyaVerseny.Logic.Tests.csproj
++++ b/KutyaVerseny.Logic.Tests/KutyaVerseny.Logic.Tests.csproj
+@@ -1,7 +1,10 @@
+ ﻿<Project Sdk="Microsoft.NET.Sdk">
+ 
+   <PropertyGroup>
+-    <TargetFramework>netcoreapp3.1</TargetFramework>
++    <TargetFramework>net5.0</TargetFramework>
++    <EnableNETAnalyzers>true</EnableNETAnalyzers>
++    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
++    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+   </PropertyGroup>
+ 
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+@@ -19,13 +22,9 @@
+   </ItemGroup>
+ 
+   <ItemGroup>
+-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
+-      <PrivateAssets>all</PrivateAssets>
+-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+-    </PackageReference>
+-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+-    <PackageReference Include="Moq" Version="4.14.7" />
+-    <PackageReference Include="NUnit" Version="3.12.0" />
++    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
++    <PackageReference Include="Moq" Version="4.16.1" />
++    <PackageReference Include="NUnit" Version="3.13.1" />
+     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+       <PrivateAssets>all</PrivateAssets>
+diff --git a/KutyaVerseny.Logic/AssemblyInfo.cs b/KutyaVerseny.Logic/AssemblyInfo.cs
+new file mode 100644
+index 0000000..852946d
+--- /dev/null
++++ b/KutyaVerseny.Logic/AssemblyInfo.cs
+@@ -0,0 +1,20 @@
++// <copyright file="AssemblyInfo.cs" company="Z3VJC0">
++// Copyright (c) Z3VJC0. All rights reserved.
++// </copyright>
++
++using System;
++using System.Runtime.InteropServices;
++
++// In SDK-style projects such as this one, several assembly attributes that were historically
++// defined in this file are now automatically added during build and populated with
++// values defined in project properties. For details of which attributes are included
++// and how to customise this process see: https://aka.ms/assembly-info-properties
++
++// Setting ComVisible to false makes the types in this assembly not visible to COM
++// components.  If you need to access a type in this assembly from COM, set the ComVisible
++// attribute to true on that type.
++[assembly: ComVisible(false)]
++
++// The following GUID is for the ID of the typelib if this project is exposed to COM.
++[assembly: Guid("696a67cd-8bbd-419b-8307-b12b6d8d1b9c")]
++[assembly: CLSCompliant(false)]
+diff --git a/KutyaVerseny.Logic/DirectorLogic.cs b/KutyaVerseny.Logic/DirectorLogic.cs
+index ad3dbf0..22a92ff 100644
+--- a/KutyaVerseny.Logic/DirectorLogic.cs
++++ b/KutyaVerseny.Logic/DirectorLogic.cs
+@@ -122,7 +122,7 @@ namespace KutyaVerseny.Logic
+         /// </summary>
+         /// <param name="degree">type of medal.</param>
+         /// <returns>dog list.</returns>
+-        public List<Dog> DogsWithThisDegree(string degree)
++        public IList<Dog> DogsWithThisDegree(string degree)
+         {
+             return this.dogRepo.GetAll().ToList();
+         }
+@@ -131,7 +131,7 @@ namespace KutyaVerseny.Logic
+         /// number of medals.
+         /// </summary>
+         /// <returns>string list.</returns>
+-        public List<string> DegreeNumb()
++        public IList<string> DegreeNumb()
+         {
+             var q3 = from b in this.medalRepo.GetAll()
+                      group b by b.Degree into g
+@@ -147,7 +147,7 @@ namespace KutyaVerseny.Logic
+         /// task.
+         /// </summary>
+         /// <returns>Task.</returns>
+-        public Task<List<string>> DegreeNumbAsync()
++        public Task<IList<string>> DegreeNumbAsync()
+         {
+             return Task.Run(() => this.DegreeNumb());
+         }
+diff --git a/KutyaVerseny.Logic/DoctorLogic.cs b/KutyaVerseny.Logic/DoctorLogic.cs
+index 3ae69c6..d5515ab 100644
+--- a/KutyaVerseny.Logic/DoctorLogic.cs
++++ b/KutyaVerseny.Logic/DoctorLogic.cs
+@@ -111,9 +111,9 @@ namespace KutyaVerseny.Logic
+         /// return all doctor.
+         /// </summary>
+         /// <returns>string list.</returns>
+-        public List<string> AllDoctor()
++        public IList<string> AllDoctor()
+         {
+-            List<string> doctors = new List<string>();
++            IList<string> doctors = new List<string>();
+             foreach (var item in this.interRepo.GetAll().ToList())
+             {
+                 if (!doctors.Contains(item.Doctor))
+@@ -130,7 +130,7 @@ namespace KutyaVerseny.Logic
+         /// </summary>
+         /// <param name="name">doctor name.</param>
+         /// <returns>list.</returns>
+-        public List<Intervention> AllInterventionForDoc(string name)
++        public IList<Intervention> AllInterventionForDoc(string name)
+         {
+             return this.interRepo.GetAll().Where(x => x.Doctor == name).ToList();
+         }
+diff --git a/KutyaVerseny.Logic/IDirectorLogic.cs b/KutyaVerseny.Logic/IDirectorLogic.cs
+index 8072806..fcb8845 100644
+--- a/KutyaVerseny.Logic/IDirectorLogic.cs
++++ b/KutyaVerseny.Logic/IDirectorLogic.cs
+@@ -73,18 +73,18 @@ namespace KutyaVerseny.Logic
+         /// </summary>
+         /// <param name="degree">medal degree.</param>
+         /// <returns>list of dogs.</returns>
+-        List<Dog> DogsWithThisDegree(string degree);
++        IList<Dog> DogsWithThisDegree(string degree);
+ 
+         /// <summary>
+         /// number of medals.
+         /// </summary>
+         /// <returns>string list.</returns>
+-        List<string> DegreeNumb();
++        IList<string> DegreeNumb();
+ 
+         /// <summary>
+         /// task of noncroud.
+         /// </summary>
+         /// <returns>list task.</returns>
+-        Task<List<string>> DegreeNumbAsync();
++        Task<IList<string>> DegreeNumbAsync();
+     }
+ }
+diff --git a/KutyaVerseny.Logic/IDoctorLogic.cs b/KutyaVerseny.Logic/IDoctorLogic.cs
+index 58eb44c..cbcb8f2 100644
+--- a/KutyaVerseny.Logic/IDoctorLogic.cs
++++ b/KutyaVerseny.Logic/IDoctorLogic.cs
+@@ -15,10 +15,10 @@ namespace KutyaVerseny.Logic
+     public interface IDoctorLogic
+     {
+         /// <summary>
+-        /// list all doctor.
++        /// All doctor.
+         /// </summary>
+-        /// <returns>string list.</returns>
+-        List<string> AllDoctor();
++        /// <returns>String list.</returns>
++        IList<string> AllDoctor();
+ 
+         /// <summary>
+         /// method to change the doctro phone number.
+@@ -71,7 +71,7 @@ namespace KutyaVerseny.Logic
+         /// </summary>
+         /// <param name="name">name of the doctor.</param>
+         /// <returns>list of intervention.</returns>
+-        List<Intervention> AllInterventionForDoc(string name);
++        IList<Intervention> AllInterventionForDoc(string name);
+ 
+         /// <summary>
+         /// Dog neutering.
+diff --git a/KutyaVerseny.Logic/IOwnerLogic.cs b/KutyaVerseny.Logic/IOwnerLogic.cs
+index b91d6cc..12672aa 100644
+--- a/KutyaVerseny.Logic/IOwnerLogic.cs
++++ b/KutyaVerseny.Logic/IOwnerLogic.cs
+@@ -73,20 +73,34 @@ namespace KutyaVerseny.Logic
+         /// </summary>
+         /// <param name="name">name of dog.</param>
+         /// <returns>string list.</returns>
+-        List<string> DogsMedals(string name);
++        IList<string> DogsMedals(string name);
+ 
+         /// <summary>
+         /// task croud.
+         /// </summary>
+         /// <param name="name">name of owner.</param>
+         /// <returns>task list.</returns>
+-        Task<List<string>> DogInterventionsAsync(string name);
++        Task<IList<string>> DogInterventionsAsync(string name);
+ 
+         /// <summary>
+         /// task croud.
+         /// </summary>
+         /// <param name="name">name of owner.</param>
+         /// <returns>task list.</returns>
+-        Task<List<string>> DogMedalsAsync(string name);
++        Task<IList<string>> DogMedalsAsync(string name);
++
++        /// <summary>
++        /// change dog name.
++        /// </summary>
++        /// <param name="id">id.</param>
++        /// <param name="name">name.</param>
++        public void ChangeOwnerName(int id, string name);
++
++        /// <summary>
++        /// change dog name.
++        /// </summary>
++        /// <param name="id">id.</param>
++        /// <param name="name">name.</param>
++        public void ChangeBreed(int id, string name);
+     }
+ }
+diff --git a/KutyaVerseny.Logic/KutyaVerseny.Logic.csproj b/KutyaVerseny.Logic/KutyaVerseny.Logic.csproj
+index 9f74c52..0f66e48 100644
+--- a/KutyaVerseny.Logic/KutyaVerseny.Logic.csproj
++++ b/KutyaVerseny.Logic/KutyaVerseny.Logic.csproj
+@@ -1,7 +1,10 @@
+ <Project Sdk="Microsoft.NET.Sdk">
+ 
+   <PropertyGroup>
+-    <TargetFramework>netcoreapp3.1</TargetFramework>
++    <TargetFramework>net5.0</TargetFramework>
++    <EnableNETAnalyzers>true</EnableNETAnalyzers>
++    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
++    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+   </PropertyGroup>
+ 
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+@@ -19,10 +22,6 @@
+   </ItemGroup>
+ 
+   <ItemGroup>
+-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
+-      <PrivateAssets>all</PrivateAssets>
+-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+-    </PackageReference>
+     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+       <PrivateAssets>all</PrivateAssets>
+       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+diff --git a/KutyaVerseny.Logic/KutyaVerseny.Logic.xml b/KutyaVerseny.Logic/KutyaVerseny.Logic.xml
+index e211919..2b3e0f1 100644
+--- a/KutyaVerseny.Logic/KutyaVerseny.Logic.xml
++++ b/KutyaVerseny.Logic/KutyaVerseny.Logic.xml
+@@ -262,9 +262,9 @@
+         </member>
+         <member name="M:KutyaVerseny.Logic.IDoctorLogic.AllDoctor">
+             <summary>
+-            list all doctor.
++            All doctor.
+             </summary>
+-            <returns>string list.</returns>
++            <returns>String list.</returns>
+         </member>
+         <member name="M:KutyaVerseny.Logic.IDoctorLogic.ChangeInterventionDocPhone(System.Int32,System.Int32)">
+             <summary>
+@@ -404,6 +404,20 @@
+             <param name="name">name of owner.</param>
+             <returns>task list.</returns>
+         </member>
++        <member name="M:KutyaVerseny.Logic.IOwnerLogic.ChangeOwnerName(System.Int32,System.String)">
++            <summary>
++            change dog name.
++            </summary>
++            <param name="id">id.</param>
++            <param name="name">name.</param>
++        </member>
++        <member name="M:KutyaVerseny.Logic.IOwnerLogic.ChangeBreed(System.Int32,System.String)">
++            <summary>
++            change dog name.
++            </summary>
++            <param name="id">id.</param>
++            <param name="name">name.</param>
++        </member>
+         <member name="T:KutyaVerseny.Logic.OwnerLogic">
+             <summary>
+             class of owner logic.
+@@ -444,6 +458,20 @@
+             <param name="id">id.</param>
+             <param name="name">name.</param>
+         </member>
++        <member name="M:KutyaVerseny.Logic.OwnerLogic.ChangeOwnerName(System.Int32,System.String)">
++            <summary>
++            change dog name.
++            </summary>
++            <param name="id">id.</param>
++            <param name="name">name.</param>
++        </member>
++        <member name="M:KutyaVerseny.Logic.OwnerLogic.ChangeBreed(System.Int32,System.String)">
++            <summary>
++            change dog name.
++            </summary>
++            <param name="id">id.</param>
++            <param name="name">name.</param>
++        </member>
+         <member name="M:KutyaVerseny.Logic.OwnerLogic.GetAllDogs">
+             <summary>
+             get all dogs.
+diff --git a/KutyaVerseny.Logic/OwnerLogic.cs b/KutyaVerseny.Logic/OwnerLogic.cs
+index 25a606a..b444a76 100644
+--- a/KutyaVerseny.Logic/OwnerLogic.cs
++++ b/KutyaVerseny.Logic/OwnerLogic.cs
+@@ -74,6 +74,26 @@ namespace KutyaVerseny.Logic
+             this.dogRepo.ChangeName(id, name);
+         }
+ 
++        /// <summary>
++        /// change dog name.
++        /// </summary>
++        /// <param name="id">id.</param>
++        /// <param name="name">name.</param>
++        public void ChangeOwnerName(int id, string name)
++        {
++            this.dogRepo.ChangeOwner(id, name);
++        }
++
++        /// <summary>
++        /// change dog name.
++        /// </summary>
++        /// <param name="id">id.</param>
++        /// <param name="name">name.</param>
++        public void ChangeBreed(int id, string name)
++        {
++            this.dogRepo.ChangeBreed(id, name);
++        }
++
+         /// <summary>
+         /// get all dogs.
+         /// </summary>
+@@ -136,7 +156,7 @@ namespace KutyaVerseny.Logic
+         /// list all owner in the database.
+         /// </summary>
+         /// <returns>list of string.</returns>
+-        public List<string> AllOwner()
++        public IList<string> AllOwner()
+         {
+             List<string> doctors = new List<string>();
+             foreach (var item in this.dogRepo.GetAll().ToList())
+@@ -155,7 +175,7 @@ namespace KutyaVerseny.Logic
+         /// </summary>
+         /// <param name="name">naem of owner.</param>
+         /// <returns>string list.</returns>
+-        public List<string> DogsMedals(string name)
++        public IList<string> DogsMedals(string name)
+         {
+             var q1 = from a in this.dogRepo.GetAll().ToList()
+                      join b in this.medalRepo.GetAll().ToList() on a.ChipNum equals b.DogChipNum
+@@ -175,7 +195,7 @@ namespace KutyaVerseny.Logic
+         /// </summary>
+         /// <param name="name">name of owner.</param>
+         /// <returns>Task.</returns>
+-        public Task<List<string>> DogMedalsAsync(string name)
++        public Task<IList<string>> DogMedalsAsync(string name)
+         {
+             return Task.Run(() => this.DogsMedals(name));
+         }
+@@ -185,7 +205,7 @@ namespace KutyaVerseny.Logic
+         /// </summary>
+         /// <param name="name">name.</param>
+         /// <returns>string list.</returns>
+-        public List<string> DogsInterventions(string name)
++        public IList<string> DogsInterventions(string name)
+         {
+             var q2 = from a in this.dogRepo.GetAll().ToList()
+                      join b in this.intRepo.GetAll().ToList() on a.ChipNum equals b.DogChipNum
+@@ -206,7 +226,7 @@ namespace KutyaVerseny.Logic
+         /// </summary>
+         /// <param name="name">name of owner.</param>
+         /// <returns>Task.</returns>
+-        public Task<List<string>> DogInterventionsAsync(string name)
++        public Task<IList<string>> DogInterventionsAsync(string name)
+         {
+             return Task.Run(() => this.DogsInterventions(name));
+         }
+diff --git a/KutyaVerseny.Program/AssemblyInfo.cs b/KutyaVerseny.Program/AssemblyInfo.cs
+new file mode 100644
+index 0000000..a91a4b3
+--- /dev/null
++++ b/KutyaVerseny.Program/AssemblyInfo.cs
+@@ -0,0 +1,20 @@
++// <copyright file="AssemblyInfo.cs" company="Z3VJC0">
++// Copyright (c) Z3VJC0. All rights reserved.
++// </copyright>
++
++using System;
++using System.Runtime.InteropServices;
++
++// In SDK-style projects such as this one, several assembly attributes that were historically
++// defined in this file are now automatically added during build and populated with
++// values defined in project properties. For details of which attributes are included
++// and how to customise this process see: https://aka.ms/assembly-info-properties
++
++// Setting ComVisible to false makes the types in this assembly not visible to COM
++// components.  If you need to access a type in this assembly from COM, set the ComVisible
++// attribute to true on that type.
++[assembly: ComVisible(false)]
++
++// The following GUID is for the ID of the typelib if this project is exposed to COM.
++[assembly: Guid("61155d68-e913-4824-be1b-7e1ba5725b88")]
++[assembly: CLSCompliant(false)]
+diff --git a/KutyaVerseny.Program/KutyaVerseny.Program.csproj b/KutyaVerseny.Program/KutyaVerseny.Program.csproj
+index 1582307..792870b 100644
+--- a/KutyaVerseny.Program/KutyaVerseny.Program.csproj
++++ b/KutyaVerseny.Program/KutyaVerseny.Program.csproj
+@@ -2,7 +2,10 @@
+ 
+   <PropertyGroup>
+     <OutputType>Exe</OutputType>
+-    <TargetFramework>netcoreapp3.1</TargetFramework>
++    <TargetFramework>net5.0</TargetFramework>
++    <EnableNETAnalyzers>true</EnableNETAnalyzers>
++    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
++    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+   </PropertyGroup>
+ 
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+@@ -21,10 +24,6 @@
+ 
+   <ItemGroup>
+     <PackageReference Include="ConsoleMenu-simple" Version="2.4.0" />
+-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
+-      <PrivateAssets>all</PrivateAssets>
+-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+-    </PackageReference>
+     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+       <PrivateAssets>all</PrivateAssets>
+       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+diff --git a/KutyaVerseny.Repository/AssemblyInfo.cs b/KutyaVerseny.Repository/AssemblyInfo.cs
+new file mode 100644
+index 0000000..641f797
+--- /dev/null
++++ b/KutyaVerseny.Repository/AssemblyInfo.cs
+@@ -0,0 +1,20 @@
++// <copyright file="AssemblyInfo.cs" company="Z3VJC0">
++// Copyright (c) Z3VJC0. All rights reserved.
++// </copyright>
++
++using System;
++using System.Runtime.InteropServices;
++
++// In SDK-style projects such as this one, several assembly attributes that were historically
++// defined in this file are now automatically added during build and populated with
++// values defined in project properties. For details of which attributes are included
++// and how to customise this process see: https://aka.ms/assembly-info-properties
++
++// Setting ComVisible to false makes the types in this assembly not visible to COM
++// components.  If you need to access a type in this assembly from COM, set the ComVisible
++// attribute to true on that type.
++[assembly: ComVisible(false)]
++
++// The following GUID is for the ID of the typelib if this project is exposed to COM.
++[assembly: Guid("e3ea337b-acd7-4c6d-b9db-05036b48298d")]
++[assembly: CLSCompliant(false)]
+diff --git a/KutyaVerseny.Repository/DogRepository.cs b/KutyaVerseny.Repository/DogRepository.cs
+index fc0d5f3..d95bd94 100644
+--- a/KutyaVerseny.Repository/DogRepository.cs
++++ b/KutyaVerseny.Repository/DogRepository.cs
+@@ -49,6 +49,18 @@ namespace KutyaVerseny.Repository
+             this.Ctx.SaveChanges();
+         }
+ 
++        /// <summary>
++        /// chage breed.
++        /// </summary>
++        /// <param name="id">id of dog.</param>
++        /// <param name="breed">breed of dog.</param>
++        public void ChangeBreed(int id, string breed)
++        {
++            var dog = this.GetOne(id);
++            dog.Breed = breed;
++            this.Ctx.SaveChanges();
++        }
++
+         /// <summary>
+         /// chang the dog gender to neutering.
+         /// </summary>
+diff --git a/KutyaVerseny.Repository/IDogRepository.cs b/KutyaVerseny.Repository/IDogRepository.cs
+index 8539ce8..4e78e59 100644
+--- a/KutyaVerseny.Repository/IDogRepository.cs
++++ b/KutyaVerseny.Repository/IDogRepository.cs
+@@ -33,5 +33,12 @@ namespace KutyaVerseny.Repository
+         /// </summary>
+         /// <param name="chipnumb">dog cip id.</param>
+         void DogNeutering(int chipnumb);
++
++        /// <summary>
++        /// Dog breed breed method.
++        /// </summary>
++        /// <param name="id">dog id.</param>
++        /// <param name="breed">new breed name.</param>
++        void ChangeBreed(int id, string breed);
+     }
+ }
+diff --git a/KutyaVerseny.Repository/KutyaVerseny.Repository.csproj b/KutyaVerseny.Repository/KutyaVerseny.Repository.csproj
+index 611f0d5..7a2de25 100644
+--- a/KutyaVerseny.Repository/KutyaVerseny.Repository.csproj
++++ b/KutyaVerseny.Repository/KutyaVerseny.Repository.csproj
+@@ -1,7 +1,10 @@
+ ﻿<Project Sdk="Microsoft.NET.Sdk">
+ 
+   <PropertyGroup>
+-    <TargetFramework>netcoreapp3.1</TargetFramework>
++    <TargetFramework>net5.0</TargetFramework>
++    <EnableNETAnalyzers>true</EnableNETAnalyzers>
++    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
++    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+   </PropertyGroup>
+ 
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+@@ -18,10 +21,6 @@
+   </ItemGroup>
+ 
+   <ItemGroup>
+-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
+-      <PrivateAssets>all</PrivateAssets>
+-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+-    </PackageReference>
+     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+       <PrivateAssets>all</PrivateAssets>
+       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+diff --git a/KutyaVerseny.Repository/KutyaVerseny.Repository.xml b/KutyaVerseny.Repository/KutyaVerseny.Repository.xml
+index 00cfd42..8479b41 100644
+--- a/KutyaVerseny.Repository/KutyaVerseny.Repository.xml
++++ b/KutyaVerseny.Repository/KutyaVerseny.Repository.xml
+@@ -29,6 +29,13 @@
+             <param name="id">dog id.</param>
+             <param name="owner">new name of owner.</param>
+         </member>
++        <member name="M:KutyaVerseny.Repository.DogRepository.ChangeBreed(System.Int32,System.String)">
++            <summary>
++            chage breed.
++            </summary>
++            <param name="id">id of dog.</param>
++            <param name="breed">breed of dog.</param>
++        </member>
+         <member name="M:KutyaVerseny.Repository.DogRepository.DogNeutering(System.Int32)">
+             <summary>
+             chang the dog gender to neutering.
+@@ -67,6 +74,13 @@
+             </summary>
+             <param name="chipnumb">dog cip id.</param>
+         </member>
++        <member name="M:KutyaVerseny.Repository.IDogRepository.ChangeBreed(System.Int32,System.String)">
++            <summary>
++            Dog breed breed method.
++            </summary>
++            <param name="id">dog id.</param>
++            <param name="breed">new breed name.</param>
++        </member>
+         <member name="T:KutyaVerseny.Repository.IInterventionRepositry">
+             <summary>
+             intervention repo.
+diff --git a/KutyaVerseny.Repository/MainRepository.cs b/KutyaVerseny.Repository/MainRepository.cs
+index 45e757f..b264bca 100644
+--- a/KutyaVerseny.Repository/MainRepository.cs
++++ b/KutyaVerseny.Repository/MainRepository.cs
+@@ -24,7 +24,7 @@ namespace KutyaVerseny.Repository
+         /// constructor.
+         /// </summary>
+         /// <param name="ctx">ctx is the context.</param>
+-        public MainRepository(DbContext ctx)
++        protected MainRepository(DbContext ctx)
+         {
+             this.Ctx = ctx;
+         }
+diff --git a/KutyaVerseny.WpfApplication/App.xaml b/KutyaVerseny.WpfApplication/App.xaml
+new file mode 100644
+index 0000000..9c9d4c1
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/App.xaml
+@@ -0,0 +1,9 @@
++﻿<Application x:Class="KutyaVerseny.WpfApplication.App"
++             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
++             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
++             xmlns:local="clr-namespace:KutyaVerseny.WpfApplication"
++             StartupUri="MainWindow.xaml">
++    <Application.Resources>
++         
++    </Application.Resources>
++</Application>
+diff --git a/KutyaVerseny.WpfApplication/App.xaml.cs b/KutyaVerseny.WpfApplication/App.xaml.cs
+new file mode 100644
+index 0000000..ebb8676
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/App.xaml.cs
+@@ -0,0 +1,37 @@
++﻿// <copyright file="App.xaml.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++namespace KutyaVerseny.WpfApplication
++{
++    using System;
++    using System.Collections.Generic;
++    using System.Configuration;
++    using System.Data;
++    using System.Linq;
++    using System.Threading.Tasks;
++    using System.Windows;
++    using CommonServiceLocator;
++    using GalaSoft.MvvmLight.Ioc;
++    using GalaSoft.MvvmLight.Messaging;
++    using KutyaVerseny.WpfApplication.Logic;
++    using KutyaVerseny.WpfApplication.UI;
++
++    /// <summary>
++    /// Interaction logic for App.xaml.
++    /// </summary>
++    public partial class App : Application
++    {
++        /// <summary>
++        /// Initializes a new instance of the <see cref="App"/> class.
++        /// </summary>
++        public App()
++        {
++            ServiceLocator.SetLocatorProvider(() => MyIoc.Instance);
++
++            MyIoc.Instance.Register<IEditorService, EditorServiceViaWindow>();
++            MyIoc.Instance.Register<IMessenger>(() => Messenger.Default);
++            MyIoc.Instance.Register<IDogLogiWpf, DogLogiWpf>();
++        }
++    }
++}
+diff --git a/KutyaVerseny.WpfApplication/AssemblyInfo.cs b/KutyaVerseny.WpfApplication/AssemblyInfo.cs
+new file mode 100644
+index 0000000..e998895
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/AssemblyInfo.cs
+@@ -0,0 +1,14 @@
++// <copyright file="AssemblyInfo.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++using System;
++using System.Windows;
++
++[assembly: ThemeInfo(
++    ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly) // where the generic resource dictionary is located
++
++                                                                               // (used if a resource is not found in the page,
++                                                                               // app, or any theme specific resource dictionaries)
++]
++[assembly: CLSCompliant(false)]
+diff --git a/KutyaVerseny.WpfApplication/Data/DogWpf.cs b/KutyaVerseny.WpfApplication/Data/DogWpf.cs
+new file mode 100644
+index 0000000..52efc06
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/Data/DogWpf.cs
+@@ -0,0 +1,122 @@
++﻿// <copyright file="DogWpf.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++namespace KutyaVerseny.WpfApplication.Data
++{
++    using System;
++    using System.Collections.Generic;
++    using System.Linq;
++    using System.Reflection;
++    using System.Text;
++    using System.Threading.Tasks;
++    using GalaSoft.MvvmLight;
++    using KutyaVerseny.Data.Models;
++
++    /// <summary>
++    /// dog entity in wpf.
++    /// </summary>
++    public partial class DogWpf : ObservableObject
++    {
++        private string dogName;
++        private string gender;
++        private decimal chipNum;
++        private string breed;
++        private DateTime? bornDate;
++        private string ownerName;
++
++        /*
++    /// <summary>
++    /// Initializes a new instance of the <see cref="DogWpf"/> class.
++    /// </summary>
++        public DogWpf()
++        {
++        }
++
++        /// <summary>
++        /// Initializes a new instance of the <see cref="DogWpf"/> class.
++        /// </summary>
++        /// <param name="d">dog.</param>
++        public DogWpf(Dog d)
++        {
++            this.ChipNum = d.ChipNum;
++            this.DogName = d.DogName;
++            this.Gender = d.Gender;
++            this.Breed = d.Breed;
++            this.BornDate = d.BornDate;
++            this.OwnerName = d.OwnerName;
++        }
++        */
++
++        /// <summary>
++        /// enum.
++        /// </summary>
++        public enum Genders
++        {
++            /// <summary>
++            /// kan.
++            /// </summary>
++            Kan = 0,
++
++            /// <summary>
++            /// female.
++            /// </summary>
++            Female = 1,
++        }
++
++        /// <summary>
++        /// Gets or sets name of the dog.
++        /// </summary>
++        public string DogName { get => this.dogName; set => this.Set(ref this.dogName, value); }
++
++        /// <summary>
++        /// Gets or sets gender of the dog.
++        /// </summary>
++        public string Gender { get => this.gender; set => this.Set(ref this.gender, value); }
++
++        /// <summary>
++        /// Gets or sets chip number of the medal.
++        /// </summary>
++        public decimal ChipNum { get => this.chipNum; set => this.Set(ref this.chipNum, value); }
++
++        /// <summary>
++        /// Gets or sets breed of the dog.
++        /// </summary>
++        public string Breed { get => this.breed; set => this.Set(ref this.breed, value); }
++
++        /// <summary>
++        /// Gets or sets born date of the dog.
++        /// </summary>
++        public DateTime? BornDate { get => this.bornDate; set => this.Set(ref this.bornDate, value); }
++
++        /// <summary>
++        /// Gets or sets owner's name of the dog.
++        /// </summary>
++        public string OwnerName { get => this.ownerName; set => this.Set(ref this.ownerName, value); }
++
++        /// <summary>
++        /// copy from method.
++        /// </summary>
++        /// <returns>dog.</returns>
++        public Dog ConvertToEntity()
++        {
++            Dog d = new Dog();
++            d.ChipNum = this.ChipNum;
++            d.DogName = this.dogName;
++            d.OwnerName = this.ownerName;
++            d.Breed = this.breed;
++            d.Gender = this.gender;
++            d.BornDate = this.bornDate;
++            return d;
++        }
++
++        /// <summary>
++        /// other copyfrom.
++        /// </summary>
++        /// <param name="dog">dot to copy.</param>
++        public void CopyFrom(DogWpf dog)
++        {
++            this.GetType().GetProperties().ToList().ForEach(p => p.SetValue(this, p.GetValue(dog)));
++        }
++    }
++}
+diff --git a/KutyaVerseny.WpfApplication/Factory.cs b/KutyaVerseny.WpfApplication/Factory.cs
+new file mode 100644
+index 0000000..06f4e97
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/Factory.cs
+@@ -0,0 +1,51 @@
++﻿// <copyright file="Factory.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++namespace KutyaVerseny.WpfApplication
++{
++    using System;
++    using System.Collections.Generic;
++    using System.Linq;
++    using System.Text;
++    using System.Threading.Tasks;
++    using KutyaVerseny.Data.Models;
++    using KutyaVerseny.Repository;
++
++    /// <summary>
++    /// Factory.
++    /// </summary>
++    public static class Factory
++    {
++        /// <summary>
++        /// Gets dogRepo.
++        /// </summary>
++        public static DogRepository DogRepo { get; private set; }
++
++        /// <summary>
++        /// Gets  intrepo.
++        /// </summary>
++        public static InterventionRepository IntRepo { get; private set; }
++
++        /// <summary>
++        /// Gets medalrepo.
++        /// </summary>
++        public static MedalRepository MedRepo { get; private set; }
++
++        /// <summary>
++        /// Gets or sets  DB.
++        /// </summary>
++        public static Db DogDb { get; set; }
++
++        /// <summary>
++        /// create calls method.
++        /// </summary>
++        public static void CreateClass()
++        {
++            DogDb = new Db();
++            DogRepo = new DogRepository(DogDb);
++            IntRepo = new InterventionRepository(DogDb);
++            MedRepo = new MedalRepository(DogDb);
++        }
++    }
++}
+diff --git a/KutyaVerseny.WpfApplication/GlobalSuppressions.cs b/KutyaVerseny.WpfApplication/GlobalSuppressions.cs
+new file mode 100644
+index 0000000..53585c9
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/GlobalSuppressions.cs
+@@ -0,0 +1,8 @@
++﻿// <copyright file="GlobalSuppressions.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++using System.Diagnostics.CodeAnalysis;
++
++[assembly: SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Scope = "type", Target = "~T:KutyaVerseny.WpfApplication.UI.EditorServiceViaWindow", Justification = "<Silent>")]
++[assembly: SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Silent>", Scope = "member", Target = "~P:KutyaVerseny.WpfApplication.VM.EditorViewModel.TypeGenders")]
+diff --git a/KutyaVerseny.WpfApplication/KutyaVerseny.WpfApplication.csproj b/KutyaVerseny.WpfApplication/KutyaVerseny.WpfApplication.csproj
+new file mode 100644
+index 0000000..c492035
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/KutyaVerseny.WpfApplication.csproj
+@@ -0,0 +1,29 @@
++﻿<Project Sdk="Microsoft.NET.Sdk">
++
++  <PropertyGroup>
++    <OutputType>WinExe</OutputType>
++    <TargetFramework>net5.0-windows</TargetFramework>
++    <UseWPF>true</UseWPF>
++    <EnableNETAnalyzers>true</EnableNETAnalyzers>
++    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
++    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
++  </PropertyGroup>
++
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
++    <DocumentationFile>KutyaVerseny.WpfApplication.xml</DocumentationFile>
++  </PropertyGroup>
++
++  <ItemGroup>
++    <PackageReference Include="CommonServiceLocator" Version="2.0.6" />
++    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
++    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
++      <PrivateAssets>all</PrivateAssets>
++      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
++    </PackageReference>
++    <ProjectReference Include="..\KutyaVerseny.Data\KutyaVerseny.Data.csproj" />
++    <ProjectReference Include="..\KutyaVerseny.Logic\KutyaVerseny.Logic.csproj" />
++    <ProjectReference Include="..\KutyaVerseny.Repository\KutyaVerseny.Repository.csproj" />
++    
++  </ItemGroup>
++
++</Project>
+\ No newline at end of file
+diff --git a/KutyaVerseny.WpfApplication/KutyaVerseny.WpfApplication.xml b/KutyaVerseny.WpfApplication/KutyaVerseny.WpfApplication.xml
+new file mode 100644
+index 0000000..16be009
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/KutyaVerseny.WpfApplication.xml
+@@ -0,0 +1,338 @@
++<?xml version="1.0"?>
++<doc>
++    <assembly>
++        <name>KutyaVerseny.WpfApplication</name>
++    </assembly>
++    <members>
++        <member name="T:KutyaVerseny.WpfApplication.App">
++            <summary>
++            Interaction logic for App.xaml.
++            </summary>
++            <summary>
++            App
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.App.#ctor">
++            <summary>
++            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.App"/> class.
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.App.InitializeComponent">
++            <summary>
++            InitializeComponent
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.App.Main">
++            <summary>
++            Application Entry Point.
++            </summary>
++        </member>
++        <member name="T:KutyaVerseny.WpfApplication.Data.DogWpf">
++            <summary>
++            dog entity in wpf.
++            </summary>
++        </member>
++        <member name="T:KutyaVerseny.WpfApplication.Data.DogWpf.Genders">
++            <summary>
++            enum.
++            </summary>
++        </member>
++        <member name="F:KutyaVerseny.WpfApplication.Data.DogWpf.Genders.Kan">
++            <summary>
++            kan.
++            </summary>
++        </member>
++        <member name="F:KutyaVerseny.WpfApplication.Data.DogWpf.Genders.Female">
++            <summary>
++            female.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.DogName">
++            <summary>
++            Gets or sets name of the dog.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.Gender">
++            <summary>
++            Gets or sets gender of the dog.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.ChipNum">
++            <summary>
++            Gets or sets chip number of the medal.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.Breed">
++            <summary>
++            Gets or sets breed of the dog.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.BornDate">
++            <summary>
++            Gets or sets born date of the dog.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.Data.DogWpf.OwnerName">
++            <summary>
++            Gets or sets owner's name of the dog.
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Data.DogWpf.ConvertToEntity">
++            <summary>
++            copy from method.
++            </summary>
++            <returns>dog.</returns>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Data.DogWpf.CopyFrom(KutyaVerseny.WpfApplication.Data.DogWpf)">
++            <summary>
++            other copyfrom.
++            </summary>
++            <param name="dog">dot to copy.</param>
++        </member>
++        <member name="T:KutyaVerseny.WpfApplication.Factory">
++            <summary>
++            Factory.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.Factory.DogRepo">
++            <summary>
++            Gets dogRepo.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.Factory.IntRepo">
++            <summary>
++            Gets  intrepo.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.Factory.MedRepo">
++            <summary>
++            Gets medalrepo.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.Factory.DogDb">
++            <summary>
++            Gets or sets  DB.
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Factory.CreateClass">
++            <summary>
++            create calls method.
++            </summary>
++        </member>
++        <member name="T:KutyaVerseny.WpfApplication.Logic.DogLogiWpf">
++            <summary>
++            doglogic.
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.#ctor(GalaSoft.MvvmLight.Messaging.IMessenger,KutyaVerseny.WpfApplication.Logic.IEditorService)">
++            <summary>
++            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.Logic.DogLogiWpf"/> class.
++            </summary>
++            <param name="messengerService">vmi.</param>
++            <param name="editors">editors.</param>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.AddDog(System.Collections.Generic.IList{KutyaVerseny.WpfApplication.Data.DogWpf})">
++            <summary>
++            Add dog method.
++            </summary>
++            <param name="list">list of dog.</param>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.GetAllDog">
++            <summary>
++            getallmethod.
++            </summary>
++            <returns>alldogs.</returns>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.DelDog(System.Collections.Generic.IList{KutyaVerseny.WpfApplication.Data.DogWpf},KutyaVerseny.WpfApplication.Data.DogWpf)">
++            <summary>
++            delete a dog.
++            </summary>
++            <param name="list">list.</param>
++            <param name="dog">dog.</param>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Logic.DogLogiWpf.ModyDog(KutyaVerseny.WpfApplication.Data.DogWpf)">
++            <summary>
++            modify dog.
++            </summary>
++            <param name="dogToModi">dot to mody.</param>
++        </member>
++        <member name="T:KutyaVerseny.WpfApplication.Logic.IDogLogiWpf">
++            <summary>
++            IDogLogci.
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Logic.IDogLogiWpf.AddDog(System.Collections.Generic.IList{KutyaVerseny.WpfApplication.Data.DogWpf})">
++            <summary>
++            Add dog method.
++            </summary>
++            <param name="list">list of dogs.</param>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Logic.IDogLogiWpf.GetAllDog">
++            <summary>
++            get all dog method.
++            </summary>
++            <returns>all dog.</returns>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Logic.IDogLogiWpf.DelDog(System.Collections.Generic.IList{KutyaVerseny.WpfApplication.Data.DogWpf},KutyaVerseny.WpfApplication.Data.DogWpf)">
++            <summary>
++            delete a dog.
++            </summary>
++            <param name="list">list of dogs.</param>
++            <param name="dog">dog to remove.</param>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Logic.IDogLogiWpf.ModyDog(KutyaVerseny.WpfApplication.Data.DogWpf)">
++            <summary>
++            mody dog.
++            </summary>
++            <param name="dogToModi">dog to mody.</param>
++        </member>
++        <member name="T:KutyaVerseny.WpfApplication.Logic.IEditorService">
++            <summary>
++            editorservice.
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.Logic.IEditorService.EditPlayer(KutyaVerseny.WpfApplication.Data.DogWpf)">
++            <summary>
++            edit player bool.
++            </summary>
++            <param name="d">dog name.</param>
++            <returns>is editabel.</returns>
++        </member>
++        <member name="T:KutyaVerseny.WpfApplication.MainWindow">
++            <summary>
++            Interaction logic for MainWindow.xaml.
++            </summary>
++            <summary>
++            MainWindow
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.MainWindow.#ctor">
++            <summary>
++            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.MainWindow"/> class.
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.MainWindow.InitializeComponent">
++            <summary>
++            InitializeComponent
++            </summary>
++        </member>
++        <member name="T:KutyaVerseny.WpfApplication.MyIoc">
++            <summary>
++            MyIoc.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.MyIoc.Instance">
++            <summary>
++            Gets Instance.
++            </summary>
++        </member>
++        <member name="T:KutyaVerseny.WpfApplication.UI.EditorServiceViaWindow">
++            <summary>
++            editorvidow.
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.UI.EditorServiceViaWindow.EditPlayer(KutyaVerseny.WpfApplication.Data.DogWpf)">
++            <inheritdoc/>
++        </member>
++        <member name="T:KutyaVerseny.WpfApplication.UI.EditorWindow">
++            <summary>
++            Interaction logic for EditorWindow.xaml.
++            </summary>
++            <summary>
++            EditorWindow
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.UI.EditorWindow.#ctor">
++            <summary>
++            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.UI.EditorWindow"/> class.
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.UI.EditorWindow.#ctor(KutyaVerseny.WpfApplication.Data.DogWpf)">
++            <summary>
++            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.UI.EditorWindow"/> class.
++            </summary>
++            <param name="olddog">old dog to mody.</param>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.UI.EditorWindow.Dog">
++            <summary>
++            Gets or sets dog wpf.
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.UI.EditorWindow.InitializeComponent">
++            <summary>
++            InitializeComponent
++            </summary>
++        </member>
++        <member name="T:KutyaVerseny.WpfApplication.VM.EditorViewModel">
++            <summary>
++            editroViewModel.
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.VM.EditorViewModel.#ctor">
++            <summary>
++            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.VM.EditorViewModel"/> class.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.VM.EditorViewModel.Dog">
++            <summary>
++            Gets or sets dog.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.VM.EditorViewModel.TypeGenders">
++            <summary>
++            Gets genders of type.
++            </summary>
++        </member>
++        <member name="T:KutyaVerseny.WpfApplication.VM.MainViewModel">
++            <summary>
++            Mian view model.
++            </summary>
++        </member>
++        <member name="F:KutyaVerseny.WpfApplication.VM.MainViewModel.selectedDog">
++            <summary>
++            Selected dog.
++            </summary>
++        </member>
++        <member name="F:KutyaVerseny.WpfApplication.VM.MainViewModel.logic">
++            <summary>
++            logic.
++            </summary>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.VM.MainViewModel.#ctor(KutyaVerseny.WpfApplication.Logic.IDogLogiWpf)">
++            <summary>
++            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.VM.MainViewModel"/> class.
++            </summary>
++            <param name="log">log.</param>
++        </member>
++        <member name="M:KutyaVerseny.WpfApplication.VM.MainViewModel.#ctor">
++            <summary>
++            Initializes a new instance of the <see cref="T:KutyaVerseny.WpfApplication.VM.MainViewModel"/> class.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.Dogs">
++            <summary>
++            Gets collector of dogs.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.SelectedDog">
++            <summary>
++            Gets or sets .Selected dog.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.AddCmd">
++            <summary>
++            Gets add cmd.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.ModCmd">
++            <summary>
++            Gets modcmd.
++            </summary>
++        </member>
++        <member name="P:KutyaVerseny.WpfApplication.VM.MainViewModel.DelCmd">
++            <summary>
++            Gets delcmd.
++            </summary>
++        </member>
++    </members>
++</doc>
+diff --git a/KutyaVerseny.WpfApplication/Logic/DogLogiWpf.cs b/KutyaVerseny.WpfApplication/Logic/DogLogiWpf.cs
+new file mode 100644
+index 0000000..5848b0c
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/Logic/DogLogiWpf.cs
+@@ -0,0 +1,142 @@
++﻿// <copyright file="DogLogiWpf.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++namespace KutyaVerseny.WpfApplication.Logic
++{
++    using System;
++    using System.Collections.Generic;
++    using System.Linq;
++    using System.Text;
++    using System.Threading.Tasks;
++    using GalaSoft.MvvmLight.Ioc;
++    using GalaSoft.MvvmLight.Messaging;
++    using KutyaVerseny.Data.Models;
++    using KutyaVerseny.Logic;
++    using KutyaVerseny.Repository;
++    using KutyaVerseny.WpfApplication.Data;
++
++    /// <summary>
++    /// doglogic.
++    /// </summary>
++    public class DogLogiWpf : IDogLogiWpf
++    {
++        private IEditorService editor;
++        private IOwnerLogic ownerLogic;
++        private IMessenger messengerService;
++
++        /// <summary>
++        /// Initializes a new instance of the <see cref="DogLogiWpf"/> class.
++        /// </summary>
++        /// <param name="messengerService">vmi.</param>
++        /// <param name="editors">editors.</param>
++        public DogLogiWpf(IMessenger messengerService, IEditorService editors)
++        {
++            this.ownerLogic = new OwnerLogic(Factory.DogRepo, Factory.IntRepo, Factory.MedRepo);
++            this.messengerService = messengerService;
++            this.editor = editors;
++        }
++
++        /// <summary>
++        /// Add dog method.
++        /// </summary>
++        /// <param name="list">list of dog.</param>
++        public void AddDog(IList<DogWpf> list)
++        {
++            DogWpf newDog = new DogWpf();
++
++            if (this.editor.EditPlayer(newDog) == true && list != null)
++            {
++                var idlist = this.ownerLogic.GetAllDogs().ToList();
++                int newid = (int)idlist[idlist.Count - 1].ChipNum;
++                newDog.ChipNum = newid + 1;
++                list.Add(newDog);
++                this.ownerLogic.AddDog(newDog.ConvertToEntity());
++                this.messengerService.Send("ADD OK", "LogicResult");
++            }
++            else
++            {
++                this.messengerService.Send("ADD CANCEL", "LogicResult");
++            }
++        }
++
++        /// <summary>
++        /// getallmethod.
++        /// </summary>
++        /// <returns>alldogs.</returns>
++        public IList<DogWpf> GetAllDog()
++        {
++            if (this.ownerLogic != null)
++            {
++                IList<DogWpf> result = new List<DogWpf>();
++                var retEntity = this.ownerLogic.GetAllDogs();
++                foreach (var item in retEntity)
++                {
++                    DogWpf d = new DogWpf();
++                    d.ChipNum = item.ChipNum;
++                    d.DogName = item.DogName;
++                    d.Gender = item.Gender;
++                    d.OwnerName = item.OwnerName;
++                    d.Breed = item.Breed;
++                    result.Add(d);
++                }
++
++                return result;
++            }
++            else
++            {
++                this.messengerService.Send("SOMETHING WRONG", "LogicResult");
++                return null;
++            }
++        }
++
++        /// <summary>
++        /// delete a dog.
++        /// </summary>
++        /// <param name="list">list.</param>
++        /// <param name="dog">dog.</param>
++        public void DelDog(IList<DogWpf> list, DogWpf dog)
++        {
++            if (dog != null && list != null && list.Remove(dog))
++            {
++                int id = (int)dog.ChipNum;
++                Dog rm = this.ownerLogic.GetYourDogByChip(id);
++                this.ownerLogic.RemoveDog(rm);
++                this.messengerService.Send("DELETE OK", "LogicResult");
++            }
++            else
++            {
++                this.messengerService.Send("DELETE FAILD", "LogicResult");
++            }
++        }
++
++        /// <summary>
++        /// modify dog.
++        /// </summary>
++        /// <param name="dogToModi">dot to mody.</param>
++        public void ModyDog(DogWpf dogToModi)
++        {
++            if (dogToModi == null)
++            {
++                this.messengerService.Send("EDIT FAILED", "LogicResult");
++                return;
++            }
++
++            DogWpf clone = new DogWpf();
++            clone.CopyFrom(dogToModi);
++            if (this.editor.EditPlayer(clone) == true)
++            {
++                dogToModi.CopyFrom(clone);
++
++                this.ownerLogic.ChangeDogName((int)dogToModi.ChipNum, dogToModi.DogName);
++                this.ownerLogic.ChangeOwnerName((int)dogToModi.ChipNum, dogToModi.OwnerName);
++                this.ownerLogic.ChangeBreed((int)dogToModi.ChipNum, dogToModi.Breed);
++                this.messengerService.Send("MODIFY OK", "LogicResult");
++            }
++            else
++            {
++                this.messengerService.Send("MODIFY CANCEL", "LogciResult");
++            }
++        }
++    }
++}
+\ No newline at end of file
+diff --git a/KutyaVerseny.WpfApplication/Logic/IDogLogiWpf.cs b/KutyaVerseny.WpfApplication/Logic/IDogLogiWpf.cs
+new file mode 100644
+index 0000000..ca91ae9
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/Logic/IDogLogiWpf.cs
+@@ -0,0 +1,44 @@
++﻿// <copyright file="IDogLogiWpf.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++namespace KutyaVerseny.WpfApplication.Logic
++{
++    using System;
++    using System.Collections.Generic;
++    using System.Linq;
++    using System.Text;
++    using System.Threading.Tasks;
++    using KutyaVerseny.WpfApplication.Data;
++
++    /// <summary>
++    /// IDogLogci.
++    /// </summary>
++    public interface IDogLogiWpf
++    {
++        /// <summary>
++        /// Add dog method.
++        /// </summary>
++        /// <param name="list">list of dogs.</param>
++        public void AddDog(IList<DogWpf> list);
++
++        /// <summary>
++        /// get all dog method.
++        /// </summary>
++        /// <returns>all dog.</returns>
++        public IList<DogWpf> GetAllDog();
++
++        /// <summary>
++        /// delete a dog.
++        /// </summary>
++        /// <param name="list">list of dogs.</param>
++        /// <param name="dog">dog to remove.</param>
++        public void DelDog(IList<DogWpf> list, DogWpf dog);
++
++        /// <summary>
++        /// mody dog.
++        /// </summary>
++        /// <param name="dogToModi">dog to mody.</param>
++        public void ModyDog(DogWpf dogToModi);
++    }
++}
+diff --git a/KutyaVerseny.WpfApplication/Logic/IEditorService.cs b/KutyaVerseny.WpfApplication/Logic/IEditorService.cs
+new file mode 100644
+index 0000000..e250697
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/Logic/IEditorService.cs
+@@ -0,0 +1,26 @@
++﻿// <copyright file="IEditorService.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++namespace KutyaVerseny.WpfApplication.Logic
++{
++    using System;
++    using System.Collections.Generic;
++    using System.Linq;
++    using System.Text;
++    using System.Threading.Tasks;
++    using KutyaVerseny.WpfApplication.Data;
++
++    /// <summary>
++    /// editorservice.
++    /// </summary>
++    public interface IEditorService
++    {
++        /// <summary>
++        /// edit player bool.
++        /// </summary>
++        /// <param name="d">dog name.</param>
++        /// <returns>is editabel.</returns>
++        bool EditPlayer(DogWpf d);
++    }
++}
+diff --git a/KutyaVerseny.WpfApplication/MainWindow.xaml b/KutyaVerseny.WpfApplication/MainWindow.xaml
+new file mode 100644
+index 0000000..8800c78
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/MainWindow.xaml
+@@ -0,0 +1,33 @@
++﻿<Window x:Class="KutyaVerseny.WpfApplication.MainWindow"
++        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
++        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
++        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
++        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
++        xmlns:data="clr-namespace:KutyaVerseny.WpfApplication.Data"
++        xmlns:vm="clr-namespace:KutyaVerseny.WpfApplication.VM"
++        mc:Ignorable="d"
++        Title="MainWindow" Height="344" Width="337">
++    <Window.Resources>
++        <vm:MainViewModel x:Key="VM" />
++
++        <DataTemplate x:Key="listTemplate" DataType="{x:Type data:DogWpf}">
++            <DockPanel>
++                <Label Content="{Binding Path=DogName}" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
++                <Label Content="{Binding Path=OwnerName}" DockPanel.Dock="Bottom" HorizontalAlignment="Center"/>
++                <Label Content="{Binding Path=Breed}" DockPanel.Dock="Left"/>
++                <Label Content="{Binding Path=Gender}" DockPanel.Dock="Right"/>
++                <Label Content="{Binding Path=ChipNum}" DockPanel.Dock="Right"/>
++                <Label/>
++            </DockPanel>
++        </DataTemplate>
++    </Window.Resources>
++    <Grid DataContext="{StaticResource VM}">
++
++        <ListBox ItemTemplate="{StaticResource listTemplate}" ItemsSource="{Binding Path=Dogs}" SelectedItem="{Binding Path=SelectedDog}" 
++                 HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Height="251" Margin="10,10,0,0" VerticalAlignment="Top" Width="210"/>
++        <Button Command="{Binding Path=AddCmd}" Content="ADD" HorizontalAlignment="Left" Margin="225,15,0,0" VerticalAlignment="Top" Width="75"/>
++        <Button Command="{Binding Path=ModCmd}" Content="MOD" HorizontalAlignment="Left" Margin="225,40,0,0" VerticalAlignment="Top" Width="75" />
++        <Button Command="{Binding Path=DelCmd}" Content="DEL" HorizontalAlignment="Left" Margin="225,65,0,0" VerticalAlignment="Top" Width="75" />
++
++    </Grid>
++</Window>
+\ No newline at end of file
+diff --git a/KutyaVerseny.WpfApplication/MainWindow.xaml.cs b/KutyaVerseny.WpfApplication/MainWindow.xaml.cs
+new file mode 100644
+index 0000000..fcc62a8
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/MainWindow.xaml.cs
+@@ -0,0 +1,51 @@
++﻿// <copyright file="MainWindow.xaml.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++namespace KutyaVerseny.WpfApplication
++{
++    using System;
++    using System.Collections.Generic;
++    using System.Linq;
++    using System.Text;
++    using System.Threading.Tasks;
++    using System.Windows;
++    using System.Windows.Controls;
++    using System.Windows.Data;
++    using System.Windows.Documents;
++    using System.Windows.Input;
++    using System.Windows.Media;
++    using System.Windows.Media.Imaging;
++    using System.Windows.Navigation;
++    using System.Windows.Shapes;
++    using GalaSoft.MvvmLight.Messaging;
++    using KutyaVerseny.WpfApplication.VM;
++
++    /// <summary>
++    /// Interaction logic for MainWindow.xaml.
++    /// </summary>
++    public partial class MainWindow : Window
++    {
++        /// <summary>
++        /// Initializes a new instance of the <see cref="MainWindow"/> class.
++        /// </summary>
++        public MainWindow()
++        {
++            Factory.CreateClass();
++            this.InitializeComponent();
++        }
++
++        private void Window_Loaded(object sender, RoutedEventArgs e)
++        {
++           Messenger.Default.Register<string>(this, "LogicResult", msg =>
++            {
++                MessageBox.Show(msg);
++            });
++        }
++
++        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
++        {
++            Messenger.Default.Unregister(this);
++        }
++    }
++}
+diff --git a/KutyaVerseny.WpfApplication/MyIoc.xaml.cs b/KutyaVerseny.WpfApplication/MyIoc.xaml.cs
+new file mode 100644
+index 0000000..51e94ec
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/MyIoc.xaml.cs
+@@ -0,0 +1,30 @@
++﻿// <copyright file="MyIoc.xaml.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++namespace KutyaVerseny.WpfApplication
++{
++    using System;
++    using System.Collections.Generic;
++    using System.Configuration;
++    using System.Data;
++    using System.Linq;
++    using System.Threading.Tasks;
++    using System.Windows;
++    using CommonServiceLocator;
++    using GalaSoft.MvvmLight.Ioc;
++    using GalaSoft.MvvmLight.Messaging;
++    using KutyaVerseny.WpfApplication.Logic;
++    using KutyaVerseny.WpfApplication.UI;
++
++    /// <summary>
++    /// MyIoc.
++    /// </summary>
++    public class MyIoc : SimpleIoc, IServiceLocator
++    {
++        /// <summary>
++        /// Gets Instance.
++        /// </summary>
++        public static MyIoc Instance { get; private set; } = new MyIoc();
++    }
++}
+diff --git a/KutyaVerseny.WpfApplication/UI/EditorServiceViaWindow.cs b/KutyaVerseny.WpfApplication/UI/EditorServiceViaWindow.cs
+new file mode 100644
+index 0000000..65945f5
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/UI/EditorServiceViaWindow.cs
+@@ -0,0 +1,27 @@
++﻿// <copyright file="EditorServiceViaWindow.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++namespace KutyaVerseny.WpfApplication.UI
++{
++    using System;
++    using System.Collections.Generic;
++    using System.Linq;
++    using System.Text;
++    using System.Threading.Tasks;
++    using KutyaVerseny.WpfApplication.Data;
++    using KutyaVerseny.WpfApplication.Logic;
++
++    /// <summary>
++    /// editorvidow.
++    /// </summary>
++    public class EditorServiceViaWindow : IEditorService
++    {
++        /// <inheritdoc/>
++        public bool EditPlayer(DogWpf d)
++        {
++            EditorWindow win = new EditorWindow(d);
++            return win.ShowDialog() ?? false;
++        }
++    }
++}
+diff --git a/KutyaVerseny.WpfApplication/UI/EditorWindow.xaml b/KutyaVerseny.WpfApplication/UI/EditorWindow.xaml
+new file mode 100644
+index 0000000..a47a932
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/UI/EditorWindow.xaml
+@@ -0,0 +1,29 @@
++﻿<Window x:Class="KutyaVerseny.WpfApplication.UI.EditorWindow"
++        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
++        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
++        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
++        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
++        xmlns:vm="clr-namespace:KutyaVerseny.WpfApplication.VM"
++        mc:Ignorable="d"
++        
++        Title="EditorWindow" Height="347" Width="318">
++    <Window.Resources>
++        <vm:EditorViewModel x:Key="VM"/>
++    </Window.Resources>
++    <Grid DataContext="{StaticResource VM}">
++        <Label Content="Dog name" HorizontalAlignment="Left" Margin="29,33,0,0" VerticalAlignment="Top" Height="50" Width="86"/>
++        <Label Content="Owner name" HorizontalAlignment="Left" Margin="29,88,0,0" VerticalAlignment="Top" Height="50" Width="86"/>
++        <Label Content="Gender" HorizontalAlignment="Left" Margin="29,155,0,0" VerticalAlignment="Top" Height="50" Width="86"/>
++        <Label Content="Breed" HorizontalAlignment="Left" Margin="29,217,0,0" VerticalAlignment="Top" Height="50" Width="86"/>
++
++        <TextBox HorizontalAlignment="Left" Margin="120,38,0,0" Text="{Binding Path=Dog.DogName}" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="153"/>
++        <TextBox HorizontalAlignment="Left" Margin="120,88,0,0" Text="{Binding Path=Dog.OwnerName}" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="77"/>
++
++        <ComboBox ItemsSource="{Binding Path=TypeGenders}" SelectedItem="{Binding Path=Dog.Gender}"  HorizontalAlignment="Left" Margin="120,155,0,0" VerticalAlignment="Top" Width="120"/>
++        <TextBox Text="{Binding Path=Dog.Breed}"  HorizontalAlignment="Left" Margin="120,226,0,0" VerticalAlignment="Top" Width="120"/>
++
++        <Button Content="OK" Click="OkClick" HorizontalAlignment="Left" Margin="29,267,0,0" VerticalAlignment="Top" Height="29" Width="53"/>
++        <Button Click="CancelClikk" Content="CANCEL" HorizontalAlignment="Left" Margin="127,267,0,0" VerticalAlignment="Top" Height="29" Width="53"/>
++
++    </Grid>
++</Window>
+diff --git a/KutyaVerseny.WpfApplication/UI/EditorWindow.xaml.cs b/KutyaVerseny.WpfApplication/UI/EditorWindow.xaml.cs
+new file mode 100644
+index 0000000..644700e
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/UI/EditorWindow.xaml.cs
+@@ -0,0 +1,65 @@
++﻿// <copyright file="EditorWindow.xaml.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++namespace KutyaVerseny.WpfApplication.UI
++{
++    using System;
++    using System.Collections.Generic;
++    using System.Linq;
++    using System.Text;
++    using System.Threading.Tasks;
++    using System.Windows;
++    using System.Windows.Controls;
++    using System.Windows.Data;
++    using System.Windows.Documents;
++    using System.Windows.Input;
++    using System.Windows.Media;
++    using System.Windows.Media.Imaging;
++    using System.Windows.Shapes;
++    using KutyaVerseny.WpfApplication.Data;
++    using KutyaVerseny.WpfApplication.VM;
++
++    /// <summary>
++    /// Interaction logic for EditorWindow.xaml.
++    /// </summary>
++    public partial class EditorWindow : Window
++    {
++        private EditorViewModel vm;
++
++        /// <summary>
++        /// Initializes a new instance of the <see cref="EditorWindow"/> class.
++        /// </summary>
++        public EditorWindow()
++        {
++            this.InitializeComponent();
++
++            this.vm = this.FindResource("VM") as EditorViewModel;
++        }
++
++        /// <summary>
++        /// Initializes a new instance of the <see cref="EditorWindow"/> class.
++        /// </summary>
++        /// <param name="olddog">old dog to mody.</param>
++        public EditorWindow(DogWpf olddog)
++            : this()
++        {
++            this.vm.Dog = olddog;
++        }
++
++        /// <summary>
++        /// Gets or sets dog wpf.
++        /// </summary>
++        public DogWpf Dog { get => this.vm.Dog; set => this.vm.Dog = value; }
++
++        private void OkClick(object sender, RoutedEventArgs e)
++        {
++            this.DialogResult = true;
++        }
++
++        private void CancelClikk(object sender, RoutedEventArgs e)
++        {
++            this.DialogResult = false;
++        }
++    }
++}
+diff --git a/KutyaVerseny.WpfApplication/VM/EditorViewModel.cs b/KutyaVerseny.WpfApplication/VM/EditorViewModel.cs
+new file mode 100644
+index 0000000..7b44388
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/VM/EditorViewModel.cs
+@@ -0,0 +1,52 @@
++﻿// <copyright file="EditorViewModel.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++namespace KutyaVerseny.WpfApplication.VM
++{
++    using System;
++    using System.Collections.Generic;
++    using System.Linq;
++    using System.Text;
++    using System.Threading.Tasks;
++    using GalaSoft.MvvmLight;
++    using KutyaVerseny.WpfApplication.Data;
++    using static KutyaVerseny.WpfApplication.Data.DogWpf;
++
++    /// <summary>
++    /// editroViewModel.
++    /// </summary>
++    public class EditorViewModel : ViewModelBase
++    {
++        private DogWpf dog;
++
++        /// <summary>
++        /// Initializes a new instance of the <see cref="EditorViewModel"/> class.
++        /// </summary>
++        public EditorViewModel()
++        {
++            this.dog = new DogWpf();
++            if (this.IsInDesignMode)
++            {
++                this.dog.DogName = "Blöki";
++            }
++        }
++
++        /// <summary>
++        /// Gets or sets dog.
++        /// </summary>
++        public DogWpf Dog
++        {
++            get { return this.dog; }
++            set { this.Set(ref this.dog, value); }
++        }
++
++        /// <summary>
++        /// Gets genders of type.
++        /// </summary>
++        public Array TypeGenders
++        {
++            get { return Enum.GetValues(typeof(Genders)); }
++        }
++    }
++}
+diff --git a/KutyaVerseny.WpfApplication/VM/MainViewModel.cs b/KutyaVerseny.WpfApplication/VM/MainViewModel.cs
+new file mode 100644
+index 0000000..989fabc
+--- /dev/null
++++ b/KutyaVerseny.WpfApplication/VM/MainViewModel.cs
+@@ -0,0 +1,100 @@
++﻿// <copyright file="MainViewModel.cs" company="PlaceholderCompany">
++// Copyright (c) PlaceholderCompany. All rights reserved.
++// </copyright>
++
++namespace KutyaVerseny.WpfApplication.VM
++{
++    using System;
++    using System.Collections.Generic;
++    using System.Collections.ObjectModel;
++    using System.Linq;
++    using System.Text;
++    using System.Threading.Tasks;
++    using System.Windows.Input;
++    using CommonServiceLocator;
++    using GalaSoft.MvvmLight;
++    using GalaSoft.MvvmLight.Command;
++    using GalaSoft.MvvmLight.Messaging;
++    using KutyaVerseny.WpfApplication.Data;
++    using KutyaVerseny.WpfApplication.Logic;
++
++    /// <summary>
++    /// Mian view model.
++    /// </summary>
++    public class MainViewModel : ViewModelBase
++    {
++        /// <summary>
++        /// Selected dog.
++        /// </summary>
++        private DogWpf selectedDog;
++
++        /// <summary>
++        /// logic.
++        /// </summary>
++        private IDogLogiWpf logic;
++
++        /// <summary>
++        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
++        /// </summary>
++        /// <param name="log">log.</param>
++        public MainViewModel(IDogLogiWpf log)
++        {
++            this.logic = log;
++            if (log != null)
++            {
++                foreach (var item in this.logic.GetAllDog())
++                {
++                    this.Dogs.Add(item);
++                }
++            }
++
++            this.AddCmd = new RelayCommand(() => this.logic.AddDog(this.Dogs));
++            this.ModCmd = new RelayCommand(() => this.logic.ModyDog(this.SelectedDog));
++            this.DelCmd = new RelayCommand(() => this.logic.DelDog(this.Dogs, this.SelectedDog));
++        }
++
++        /// <summary>
++        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
++        /// </summary>
++        public MainViewModel()
++            : this(IsInDesignModeStatic ? null : ServiceLocator.Current.GetInstance<IDogLogiWpf>())
++        {
++        }
++
++        /// <summary>
++        /// Gets collector of dogs.
++        /// </summary>
++        public ObservableCollection<DogWpf> Dogs { get; private set; } = new ObservableCollection<DogWpf>();
++
++        /// <summary>
++        /// Gets or sets .Selected dog.
++        /// </summary>
++        public DogWpf SelectedDog
++        {
++            get
++            {
++                return this.selectedDog;
++            }
++
++            set
++            {
++                this.Set(ref this.selectedDog, value);
++            }
++        }
++
++        /// <summary>
++        /// Gets add cmd.
++        /// </summary>
++        public ICommand AddCmd { get; private set; }
++
++        /// <summary>
++        /// Gets modcmd.
++        /// </summary>
++        public ICommand ModCmd { get; private set; }
++
++        /// <summary>
++        /// Gets delcmd.
++        /// </summary>
++        public ICommand DelCmd { get; private set; }
++    }
++}
+diff --git a/oenik_prog3_2020_2_z3vjc0.sln b/oenik_prog3_2020_2_z3vjc0.sln
+index 00b840a..fea62d6 100644
+--- a/oenik_prog3_2020_2_z3vjc0.sln
++++ b/oenik_prog3_2020_2_z3vjc0.sln
+@@ -3,15 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
+ # Visual Studio Version 16
+ VisualStudioVersion = 16.0.30523.141
+ MinimumVisualStudioVersion = 10.0.40219.1
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KutyaVerseny.Program", "KutyaVerseny.Program\KutyaVerseny.Program.csproj", "{5FB5F337-E54B-4144-BEBD-EA13522C6A52}"
++Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KutyaVerseny.Data", "KutyaVerseny.Data\KutyaVerseny.Data.csproj", "{0B12A2D4-09D2-4805-86E7-BE76717D8CCB}"
+ EndProject
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KutyaVerseny.Data", "KutyaVerseny.Data\KutyaVerseny.Data.csproj", "{0B12A2D4-09D2-4805-86E7-BE76717D8CCB}"
++Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KutyaVerseny.Repository", "KutyaVerseny.Repository\KutyaVerseny.Repository.csproj", "{64469604-D102-4A88-B17F-1D6A7607C772}"
+ EndProject
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KutyaVerseny.Repository", "KutyaVerseny.Repository\KutyaVerseny.Repository.csproj", "{64469604-D102-4A88-B17F-1D6A7607C772}"
++Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KutyaVerseny.Logic", "KutyaVerseny.Logic\KutyaVerseny.Logic.csproj", "{22F9233D-D90F-4C3D-BC22-E59146EB262F}"
+ EndProject
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KutyaVerseny.Logic", "KutyaVerseny.Logic\KutyaVerseny.Logic.csproj", "{22F9233D-D90F-4C3D-BC22-E59146EB262F}"
+-EndProject
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KutyaVerseny.Logic.Tests", "KutyaVerseny.Logic.Tests\KutyaVerseny.Logic.Tests.csproj", "{587517FF-E489-44C0-9F81-E0A4156AE96F}"
++Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KutyaVerseny.WpfApplication", "KutyaVerseny.WpfApplication\KutyaVerseny.WpfApplication.csproj", "{0139318F-8611-407B-AB44-1A359CC40D2F}"
++	ProjectSection(ProjectDependencies) = postProject
++		{64469604-D102-4A88-B17F-1D6A7607C772} = {64469604-D102-4A88-B17F-1D6A7607C772}
++		{22F9233D-D90F-4C3D-BC22-E59146EB262F} = {22F9233D-D90F-4C3D-BC22-E59146EB262F}
++		{0B12A2D4-09D2-4805-86E7-BE76717D8CCB} = {0B12A2D4-09D2-4805-86E7-BE76717D8CCB}
++	EndProjectSection
+ EndProject
+ Global
+ 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+@@ -19,10 +22,6 @@ Global
+ 		Release|Any CPU = Release|Any CPU
+ 	EndGlobalSection
+ 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+-		{5FB5F337-E54B-4144-BEBD-EA13522C6A52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+-		{5FB5F337-E54B-4144-BEBD-EA13522C6A52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+-		{5FB5F337-E54B-4144-BEBD-EA13522C6A52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+-		{5FB5F337-E54B-4144-BEBD-EA13522C6A52}.Release|Any CPU.Build.0 = Release|Any CPU
+ 		{0B12A2D4-09D2-4805-86E7-BE76717D8CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+ 		{0B12A2D4-09D2-4805-86E7-BE76717D8CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+ 		{0B12A2D4-09D2-4805-86E7-BE76717D8CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+@@ -35,10 +34,10 @@ Global
+ 		{22F9233D-D90F-4C3D-BC22-E59146EB262F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+ 		{22F9233D-D90F-4C3D-BC22-E59146EB262F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+ 		{22F9233D-D90F-4C3D-BC22-E59146EB262F}.Release|Any CPU.Build.0 = Release|Any CPU
+-		{587517FF-E489-44C0-9F81-E0A4156AE96F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+-		{587517FF-E489-44C0-9F81-E0A4156AE96F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+-		{587517FF-E489-44C0-9F81-E0A4156AE96F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+-		{587517FF-E489-44C0-9F81-E0A4156AE96F}.Release|Any CPU.Build.0 = Release|Any CPU
++		{0139318F-8611-407B-AB44-1A359CC40D2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
++		{0139318F-8611-407B-AB44-1A359CC40D2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
++		{0139318F-8611-407B-AB44-1A359CC40D2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
++		{0139318F-8611-407B-AB44-1A359CC40D2F}.Release|Any CPU.Build.0 = Release|Any CPU
+ 	EndGlobalSection
+ 	GlobalSection(SolutionProperties) = preSolution
+ 		HideSolutionNode = FALSE
