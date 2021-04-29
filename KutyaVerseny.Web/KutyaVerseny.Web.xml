@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KutyaVerseny.Web</name>
+    </assembly>
+    <members>
+        <member name="T:KutyaVerseny.Web.Controllers.Dogs">
+            <summary>
+            dog class.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.Dogs.#ctor(KutyaVerseny.Logic.IOwnerLogic,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Web.Controllers.Dogs"/> class.
+            Dogs ctor.
+            </summary>
+            <param name="logic">logic.</param>
+            <param name="mapper">mapper.</param>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.Dogs.Index">
+            <summary>
+            index.
+            </summary>
+            <returns>view.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.Dogs.Details(System.Int32)">
+            <summary>
+            details.
+            </summary>
+            <param name="id">dog id.</param>
+            <returns>view.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.Dogs.Remove(System.Int32)">
+            <summary>
+            remove.
+            </summary>
+            <param name="id">dog id.</param>
+            <returns>view.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.Dogs.Edit(System.Int32)">
+            <summary>
+            Edit.
+            </summary>
+            <param name="id">id of dog.</param>
+            <returns>view.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.Dogs.Edit(KutyaVerseny.Web.Models.Dog,System.String)">
+            <summary>
+            edit.
+            </summary>
+            <param name="dog">dot to edit.</param>
+            <param name="editAction">action.</param>
+            <returns>view.</returns>
+        </member>
+        <member name="T:KutyaVerseny.Web.Controllers.HomeController">
+            <summary>
+            homecontroller.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.HomeController.#ctor(Microsoft.Extensions.Logging.ILogger{KutyaVerseny.Web.Controllers.HomeController})">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Web.Controllers.HomeController"/> class.
+            </summary>
+            <param name="logger">logger.</param>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.HomeController.Index">
+            <summary>
+            index.
+            </summary>
+            <returns>view.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.HomeController.Privacy">
+            <summary>
+            privacy.
+            </summary>
+            <returns>view.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.HomeController.Error">
+            <summary>
+            error.
+            </summary>
+            <returns>view.</returns>
+        </member>
+        <member name="T:KutyaVerseny.Web.Models.Dog">
+            <summary>
+            dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Web.Models.Dog.DogName">
+            <summary>
+            Gets or sets name of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Web.Models.Dog.Gender">
+            <summary>
+            Gets or sets gender of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Web.Models.Dog.ChipNum">
+            <summary>
+            Gets or sets chip number of the medal.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Web.Models.Dog.Breed">
+            <summary>
+            Gets or sets breed of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Web.Models.Dog.BornDate">
+            <summary>
+            Gets or sets born date of the dog.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Web.Models.Dog.OwnerName">
+            <summary>
+            Gets or sets owner's name of the dog.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Web.Models.Dog.ToString">
+            <summary>
+            toString method.
+            </summary>
+            <returns>string.</returns>
+        </member>
+        <member name="T:KutyaVerseny.Web.Models.DogListViewModel">
+            <summary>
+            doglist.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Web.Models.DogListViewModel.ListOfDog">
+            <summary>
+            Gets or sets list of dogs.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Web.Models.DogListViewModel.EditedDog">
+            <summary>
+            Gets or sets editd dog.
+            </summary>
+        </member>
+        <member name="T:KutyaVerseny.Web.Models.DogsViewModel">
+            <summary>
+            dogs view model.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Web.Models.DogsViewModel.ListOfDogs">
+            <summary>
+            Gets or sets lost of dogs.
+            </summary>
+        </member>
+        <member name="T:KutyaVerseny.Web.Models.ErrorViewModel">
+            <summary>
+            errros.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Web.Models.ErrorViewModel.RequestId">
+            <summary>
+            Gets or sets requsetId.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Web.Models.ErrorViewModel.ShowRequestId">
+            <summary>
+            Gets a value indicating whether show request id.
+            </summary>
+        </member>
+        <member name="T:KutyaVerseny.Web.Models.MapperFactory">
+            <summary>
+            mapper.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Web.Models.MapperFactory.CreateMapper">
+            <summary>
+            create mapper.
+            </summary>
+            <returns>mapped items.</returns>
+        </member>
+        <member name="T:KutyaVerseny.Web.Program">
+            <summary>
+            progam.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Web.Program.Main(System.String[])">
+            <summary>
+            main.
+            </summary>
+            <param name="args">args.</param>
+        </member>
+        <member name="M:KutyaVerseny.Web.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            create host.
+            </summary>
+            <param name="args">args.</param>
+            <returns>host.</returns>
+        </member>
+        <member name="T:KutyaVerseny.Web.Startup">
+            <summary>
+            startup.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Web.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Web.Startup"/> class.
+            startup.
+            </summary>
+            <param name="configuration">config.</param>
+        </member>
+        <member name="P:KutyaVerseny.Web.Startup.Configuration">
+            <summary>
+            Gets config.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Web.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            configservices.
+            </summary>
+            <param name="services">servieces.</param>
+        </member>
+        <member name="M:KutyaVerseny.Web.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            configure.
+            </summary>
+            <param name="app">app.</param>
+            <param name="env">env.</param>
+        </member>
+    </members>
+</doc>

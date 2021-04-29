@@ -13,7 +13,7 @@ namespace KutyaVerseny.Web.Models
     /// <summary>
     /// mapper.
     /// </summary>
-    public class MapperFactory
+    public static class MapperFactory
     {
         /// <summary>
         /// create mapper.

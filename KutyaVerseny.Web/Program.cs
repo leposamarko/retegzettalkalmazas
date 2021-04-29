@@ -16,7 +16,7 @@ namespace KutyaVerseny.Web
     /// <summary>
     /// progam.
     /// </summary>
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// main.

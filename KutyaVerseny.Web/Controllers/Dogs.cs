@@ -36,8 +36,8 @@ namespace KutyaVerseny.Web.Controllers
             this.vm = new DogListViewModel();
             this.vm.EditedDog = new Models.Dog();
 
-            var dogs = logic.GetAllDogs();
-            this.vm.ListOfDog = mapper.Map<IList<Data.Models.Dog>, List<Web.Models.Dog>>(dogs);
+            var dogs = this.logic.GetAllDogs();
+            this.vm.ListOfDog = this.mapper.Map<IList<Data.Models.Dog>, List<Web.Models.Dog>>(dogs);
         }
 
         /// <summary>

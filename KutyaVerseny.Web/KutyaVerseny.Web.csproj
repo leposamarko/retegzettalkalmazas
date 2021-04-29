@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>KutyaVerseny.Web.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,9 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KutyaVerseny.Data\KutyaVerseny.Data.csproj" />
     <ProjectReference Include="..\KutyaVerseny.Logic\KutyaVerseny.Logic.csproj" />
-    <ProjectReference Include="..\KutyaVerseny.Repository\KutyaVerseny.Repository.csproj" />
   </ItemGroup>
 
 </Project>
