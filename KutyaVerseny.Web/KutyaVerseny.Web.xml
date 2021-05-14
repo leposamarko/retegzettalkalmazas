@@ -4,6 +4,16 @@
         <name>KutyaVerseny.Web</name>
     </assembly>
     <members>
+        <member name="T:KutyaVerseny.Web.Controllers.ApiResult">
+            <summary>
+            apiresutl.
+            </summary>
+        </member>
+        <member name="P:KutyaVerseny.Web.Controllers.ApiResult.OpertaionResult">
+            <summary>
+            Gets or sets a value indicating whether result.
+            </summary>
+        </member>
         <member name="T:KutyaVerseny.Web.Controllers.Dogs">
             <summary>
             dog class.
@@ -51,6 +61,46 @@
             <param name="dog">dot to edit.</param>
             <param name="editAction">action.</param>
             <returns>view.</returns>
+        </member>
+        <member name="T:KutyaVerseny.Web.Controllers.DogsApiController">
+            <summary>
+            dogapi.
+            </summary>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.DogsApiController.#ctor(KutyaVerseny.Logic.IOwnerLogic,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KutyaVerseny.Web.Controllers.DogsApiController"/> class.
+            ctro.
+            </summary>
+            <param name="logic">logic.</param>
+            <param name="mapper">mapper.</param>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.DogsApiController.GetAll">
+            <summary>
+            get all dog.
+            </summary>
+            <returns>list of dogs.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.DogsApiController.DelOneDog(System.Int32)">
+            <summary>
+            del one dog.
+            </summary>
+            <param name="id">id of dog.</param>
+            <returns>apiresutl.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.DogsApiController.AddOneDog(KutyaVerseny.Web.Models.Dog)">
+            <summary>
+            add dog.
+            </summary>
+            <param name="dog">dog to add.</param>
+            <returns>apiresult.</returns>
+        </member>
+        <member name="M:KutyaVerseny.Web.Controllers.DogsApiController.ModOneDog(KutyaVerseny.Web.Models.Dog)">
+            <summary>
+            modify dog.
+            </summary>
+            <param name="dog">dog to mody.</param>
+            <returns>apiresult.</returns>
         </member>
         <member name="T:KutyaVerseny.Web.Controllers.HomeController">
             <summary>

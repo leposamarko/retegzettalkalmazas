@@ -6,3 +6,76 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<h2>API test X</h2>
+
+<p id="message" style="color:red;font-weight:bold"></p>
+<ul id="dogs"></ul>
+Dog Chip number:
+<input type="text" id="ChipNumb" />
+<br />
+<button onclick="doList()">LIST</button>
+<button onclick="doListNEW()">LIST NEW</button>
+<button onclick="doAdd()">ADD</button>
+<button onclick="doMod()">MOD</button>
+<button onclick="doDel()">DEL</button>
+
+@section scripts {
+    <script language="javascript">
+        var url = "https://localhost:44372/DogsApi/";
+
+        // XSS = Cross Site Scripting
+        function htmlEncode(value) {
+            return $('<div />').text(value).html();
+        }
+
+        function doList() {
+            $.get(url + "all", null, function (data, status, jqxr) {
+                alert("ALL: " + data);
+            }, "html");
+        }
+
+        
+        function doListNEW() {
+            $("#dogs").html("");
+            $.getJSON(url + "all")
+                .done(function (data) {
+                    $.each(data, function (key, item) {
+                        var html = "<li>#" +
+                            htmlEncode(item.ChipNumb) + " " +
+                            htmlEncode(item.DogName) + " " +
+                            htmlEncode(item.OwnerName) + " " +
+                            htmlEncode(item.Gender) + " " +
+                            htmlEncode(item.Breed) +" ";
+                        $("#dogs").append(html);
+                    });
+                });
+        }
+        
+        
+        function doAdd() {
+            var newCar = {
+                "DogName": "Bukta", "OwnerName": "Pisti", "Breed": "pitbul", "Gender": "kan"
+            };
+            $.post(url + "add", newCar, function (data, status, jqxr) {
+                $("#message").html("ADD: " + data.operationResult);
+                doListNEW();
+            });
+        }
+        function doMod() {
+            var newCar = {
+                "ChipNumb":$("#ChipNumb").val() ,"DogName": "Bukta", "OwnerName": "Pistike", "Breed": "extra pitbul"
+            };
+            $.post(url + "mod", newCar, function (data, status, jqxr) {
+                $("#message").html("MOD: " + data.operationResult);
+                doListNEW();
+            });
+        }
+        function doDel() {
+            $.get(url + "del/" + $("#ChipNumb").val(), null, function (data, status, jqxr) {
+                $("#message").html("DEL: " + data.operationResult);
+                doListNEW();
+            });
+        }
+    </script>
+}

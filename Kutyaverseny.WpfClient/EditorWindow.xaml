@@ -1,0 +1,24 @@
+﻿<Window x:Class="Kutyaverseny.WpfClient.EditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kutyaverseny.WpfClient"
+        mc:Ignorable="d"
+        Title="EditorWindow" Height="207" Width="312"
+        d:DataContext="{d:DesignInstance Type={x:Type local:DogVM}}">
+    <Grid>
+        <Label Content="Dog name" HorizontalAlignment="Left" Margin="17,18,0,0" VerticalAlignment="Top"/>
+        <Label Content="Owner name" HorizontalAlignment="Left" Margin="17,46,0,0" VerticalAlignment="Top"/>
+        <Label Content="Breed" HorizontalAlignment="Left" Margin="17,74,0,0" VerticalAlignment="Top"/>
+        <Label Content="Gender" HorizontalAlignment="Left" Margin="17,104,0,0" VerticalAlignment="Top"/>
+
+        <TextBox Text="{Binding Path=DogName}" HorizontalAlignment="Left" Height="23" Margin="97,21,0,0" VerticalAlignment="Top" Width="190"/>
+        <TextBox Text="{Binding Path=OwnerName}" HorizontalAlignment="Left" Height="23" Margin="97,49,0,0" VerticalAlignment="Top" Width="190"/>
+        <TextBox Text="{Binding Path=Breed}" HorizontalAlignment="Left" Height="23" Margin="97,77,0,0" VerticalAlignment="Top" Width="190"/>
+        <TextBox Text="{Binding Path=Gender}" HorizontalAlignment="Left" Height="23" Margin="97,105,0,0" VerticalAlignment="Top" Width="190"/>
+
+        <Button Content="OK" Click="OkClick" HorizontalAlignment="Left" Margin="17,148,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Cancel" Click="CancelClick" HorizontalAlignment="Left" Margin="116,148,0,0" VerticalAlignment="Top" Width="76"/>
+    </Grid>
+</Window>
