@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Kutyaverseny.WpfClient</name>
+    </assembly>
+    <members>
+        <member name="T:Kutyaverseny.WpfClient.ApiResult">
+            <summary>
+            apiresutl.
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.ApiResult.OpertaionResult">
+            <summary>
+            Gets or sets a value indicating whether result.
+            </summary>
+        </member>
+        <member name="T:Kutyaverseny.WpfClient.App">
+            <summary>
+            Interaction logic for App.xaml.
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.App.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kutyaverseny.WpfClient.App"/> class.
+            </summary>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:Kutyaverseny.WpfClient.DogVM">
+            <summary>
+            dog vm.
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.DogVM.DogName">
+            <summary>
+            Gets or sets name of the dog.
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.DogVM.Gender">
+            <summary>
+            Gets or sets gender of the dog.
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.DogVM.ChipNum">
+            <summary>
+            Gets or sets chip number of the medal.
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.DogVM.Breed">
+            <summary>
+            Gets or sets breed of the dog.
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.DogVM.BornDate">
+            <summary>
+            Gets or sets born date of the dog.
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.DogVM.OwnerName">
+            <summary>
+            Gets or sets owner's name of the dog.
+            </summary>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.DogVM.CopyFrom(Kutyaverseny.WpfClient.DogVM)">
+            <summary>
+            copy from.
+            </summary>
+            <param name="other">copyed dog.</param>
+        </member>
+        <member name="T:Kutyaverseny.WpfClient.EditorWindow">
+            <summary>
+            Interaction logic for EditorWindow.xaml.
+            </summary>
+            <summary>
+            EditorWindow
+            </summary>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.EditorWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kutyaverseny.WpfClient.EditorWindow"/> class.
+            ctor.
+            </summary>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.EditorWindow.#ctor(Kutyaverseny.WpfClient.DogVM)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kutyaverseny.WpfClient.EditorWindow"/> class.
+            ctor.
+            </summary>
+            <param name="dog">dog.</param>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.EditorWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Kutyaverseny.WpfClient.MainLogic">
+            <summary>
+            main logic.
+            </summary>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.MainLogic.ApiGetDogs">
+            <summary>
+            get dogs.
+            </summary>
+            <returns>list.
+            </returns>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.MainLogic.ApiDelDog(Kutyaverseny.WpfClient.DogVM)">
+            <summary>
+            api del dog.
+            </summary>
+            <param name="dog">dog to del.</param>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.MainLogic.EditDog(Kutyaverseny.WpfClient.DogVM,System.Func{Kutyaverseny.WpfClient.DogVM,System.Boolean})">
+            <summary>
+            public edit dog.
+            </summary>
+            <param name="dog">dog to edit.</param>
+            <param name="editorFunc">func.</param>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.MainLogic.SendMessage(System.Boolean)">
+            <summary>
+            sendmessege.
+            </summary>
+            <param name="success">succes.</param>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.MainLogic.ApiEditDog(Kutyaverseny.WpfClient.DogVM,System.Boolean)">
+            <summary>
+            adi etid dog.
+            </summary>
+            <param name="dog">dog to esid.</param>
+            <param name="isEditing">edit or add.</param>
+            <returns>is ok.</returns>
+        </member>
+        <member name="T:Kutyaverseny.WpfClient.MainVM">
+            <summary>
+            mian vm.
+            </summary>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.MainVM.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kutyaverseny.WpfClient.MainVM"/> class.
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.MainVM.AllDogs">
+            <summary>
+            Gets or sets all cars.
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.MainVM.SelectedDog">
+            <summary>
+            Gets or sets a dog..
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.MainVM.EditorFunc">
+            <summary>
+            Gets or sets.
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.MainVM.AddCmd">
+            <summary>
+            Gets .
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.MainVM.DelCmd">
+            <summary>
+            Gets .
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.MainVM.ModCmd">
+            <summary>
+            Gets .
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.MainVM.LoadCmd">
+            <summary>
+            Gets .
+            </summary>
+        </member>
+        <member name="T:Kutyaverseny.WpfClient.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml.
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.MainWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kutyaverseny.WpfClient.MainWindow"/> class.
+            Main window.
+            </summary>
+        </member>
+        <member name="M:Kutyaverseny.WpfClient.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Kutyaverseny.WpfClient.MyIoc">
+            <summary>
+            MyIoc.
+            </summary>
+        </member>
+        <member name="P:Kutyaverseny.WpfClient.MyIoc.Instance">
+            <summary>
+            Gets Instance.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -17,7 +17,7 @@ namespace Kutyaverseny.WpfClient
     /// <summary>
     /// mian vm.
     /// </summary>
-    internal class MainVM : ViewModelBase
+    public class MainVM : ViewModelBase
     {
         private MainLogic logic;
         private DogVM selectedDog;
